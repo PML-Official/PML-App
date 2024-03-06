@@ -1,0 +1,11 @@
+/* opening screen */
+body {background-color: rgb(33, 33, 33);} #opening-screen {color: white; font-family: "Roboto", sans-serif; padding: 20px;} .opening-screen-button {padding: 8px; padding-left: 35px; padding-right: 35px; cursor: pointer; color: white; border: 1px solid rgb(223,27,27); background-color: rgb(223, 27, 27); border: none; border-radius: 14px; font-size: 1.2rem;}
+.opening-screen-button:hover {background-color: rgba(223, 27, 27, 0.728); box-shadow: 0px 4px 8px rgba(0,0,0,0.1)} #welcome {font-size: 2.5rem;} #welcome-contain {max-width: 100%; width: 100%; display: flex; justify-content: center; align-items: center; margin-top: 30px;}
+#getstarted-contain {max-width: 100%; width: 100%; display: flex; justify-content: center; align-items: center; margin-top: 0px;} #getstarted {font-size: 1.4rem;}
+/* logo */
+#logo {max-height: 100px; width:100%; align-items: center; display: flex; justify-content: center; margin-top: 15vh;} .pml-logo {height: 100px; max-width: 100%; }
+#options {display: flex; align-items: center; justify-content: center;} #options ul { list-style-type: none; } #options li {display: inline-block;} .description {text-align: center;}
+/* option 2 */
+.option2-text {font-size: 1.5rem; white-space: nowrap;} #option2-container {max-width: 100%; width: fit-content; margin-left: 100px; margin-top: 30px; display: flex; flex-direction: column; justify-content: center; align-items: center;} #bttn2contain { max-width: 100%;  margin-top: 12px;} 
+/* option 1 */
+.option1-text {font-size: 1.5rem; white-space: nowrap;} #option1-container {max-width: 100%; width: fit-content; margin-right: 100px;  margin-top: 30px; display: flex; flex-direction: column; justify-content: center; align-items: center;} #bttn1contain {max-width: 100%;  margin-top: 12px;} 
