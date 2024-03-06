@@ -3,6 +3,5 @@ class Header1 extends TextTag {
         super();
         this.text = text;
         this.style.fontSize = 24;
-        
     }
 }

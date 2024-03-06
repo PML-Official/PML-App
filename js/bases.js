@@ -18,6 +18,13 @@ class Page {
     }
 }
 
+class Tag {
+    constructor(name, content) {
+        this.name = name;
+        this.content = content;
+    }
+}
+
 class TextTag {
     constructor() {
         this.style = new Style();
