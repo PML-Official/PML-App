@@ -13,7 +13,7 @@ function createWindow() {
   });
 
   // Load your HTML file (e.g., index.html)
-  win.loadFile('code/index.html');
+  win.loadFile('index.html');
 }
 
 app.whenReady().then(createWindow);
