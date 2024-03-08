@@ -1,3 +1,6 @@
+const PDFDocument = require('pdfkit');
+const fs = require('fs');
+
 var fileLines = [];
 var allPages = [];
 
@@ -15,6 +18,9 @@ function setFileData(input) {
 
 function parseData() {
     var currentPage = 0;
+    var pageStyle = new Style();
+    pageStyle.margin = 40;
+    const doc = new PDFDocument();
 
     let buffer = "";
     let scope = 0;
@@ -52,15 +58,20 @@ function parseData() {
                             else {
                                 let tagName = buffer.split(":")[0];
                                 let tagContent = buffer.split(":")[1];
-    
-                                if (tagName == "h1") {
-                                    if (currentPage == 0) {
-                                        alert("page not created yet");
-                                    }
-                                    else {
+                                
+                                if (currentPage == 0) {
+                                    alert("page not created yet");
+                                }
+                                else {
+                                    if (tagName == "h1") {
                                         currentPage.tags.push(new Header1(tagContent));
+                                        
+                                    }
+                                    else if (tagName == "p") {
+                                        currentPage.tags.push(new P(tagContent));
                                     }
                                 }
+
                             }
                         }
                         buffer = "";
@@ -73,5 +84,20 @@ function parseData() {
         }
     }
     allPages.push(currentPage);
-    alert(allPages[0].tags[0].text);
+    for (let x = 0; x < allPages.length; x ++) {
+        for (let y = 0; y < allPages[x].tags.length; y ++) {
+            let currTag = allPages[x].tags[y];
+            if (currTag.isText) {
+                doc.lineGap(currTag.style.lineGap).fontSize(currTag.style.fontSize).text(currTag.text);
+            }
+        }
+        if (x != allPages.length - 1) {
+            doc.addPage({ margin: pageStyle.margin });
+            pageY = pageStyle.topMargin;
+        }
+    }
+    doc.pipe(fs.createWriteStream('output.pdf'));
+    doc.end();
+
+    document.getElementById("display-pdf").style.display = "block";
 }

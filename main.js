@@ -5,15 +5,17 @@ const { app, BrowserWindow } = require('electron');
 
 function createWindow() {
   const win = new BrowserWindow({
-    width: 800,
-    height: 600,
+    width: 1200,
+    height: 800,
     webPreferences: {
       nodeIntegration: true, // Enable Node.js integration in renderer process
+      contextIsolation: false,
     },
   });
+  win.openDevTools();
 
   // Load your HTML file (e.g., index.html)
-  win.loadFile('code/index.html');
+  win.loadFile('index.html');
 }
 
 app.whenReady().then(createWindow);
@@ -30,3 +32,4 @@ app.on('activate', () => {
     createWindow();
   }
 });
+
