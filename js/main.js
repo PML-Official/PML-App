@@ -67,10 +67,10 @@ function parseData() {
                                     pthScope ++;
                                 }
                                 if (brcsScope == 0 && styleString[s] != " ") {
-                                    styleTagStr += styleString[s];
+                                    styleTagName += styleString[s];
                                 }
                                 else if (brcsScope == 1) {
-                                    alert(styleTagStr);
+                                    alert(styleTagName);
                                 } 
                             }
                             parsingStyle = false;
@@ -146,7 +146,6 @@ function parseData() {
     }
     doc.pipe(fs.createWriteStream('output.pdf'));
     doc.end();
-    alert(styleString);
 
     document.getElementById("display-pdf").style.display = "block";
 }
