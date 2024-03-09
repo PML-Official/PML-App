@@ -35,8 +35,8 @@
                                 <p>Open new or existing folder to code <br>and preview PML on built-in text-editor!</p>
                             </div>
                             <div id="bttn1contain">
-                                <button id="open-button1" class="opening-screen-button" onclick="document.getElementById('file-searcher').click()">Open</button>
-                                <input type="file" id="file-searcher" style="display: none;" onchange="setFileData(this)"/>
+                                <button id="open-button1" class="opening-screen-button" onclick="window.location.href='main.html'">Open</button>
+
                             </div>
                         </div>
                     </li>
@@ -55,9 +55,9 @@
             </div></li>
             </ul>
 </div>
-
+<!--iframe testing area
         <div><iframe id="display-pdf" src="output.pdf" width="900" height="700" style="display: none;"></iframe></div>
-
+-->
         <script src="node_modules/pdfkit/js/pdfkit.standalone.js"></script>
 
         <script src="js/colors.js"></script>
