@@ -16,6 +16,11 @@ function setFileData(input) {
     }
 }
 
+function setTextEditor() {
+    fileLines = document.getElementById("runbutton").value.split("\n");
+    parseData();
+}
+
 function parseData() {
     var currentPage = 0;
     var pageStyle = new Style();
