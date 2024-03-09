@@ -23,22 +23,61 @@ function parseData() {
     const doc = new PDFDocument();
 
     let buffer = "";
-    let scope = 0;
+
+    let pthScope = 0;
+    let brktScope = 0;
+    let brcsScope = 0;
     let inComment = false;
+    let parsingStyle = false;
+    let styleString = "";
+    let styleTagName = "";
+    let styleTagContent = "";
     for (let x = 0; x < fileLines.length; x ++) {
         for (let y = 0; y < fileLines[x].length; y ++) {
             if (fileLines[x][y] == '~') {
                 inComment = !inComment;
             }
             if (!inComment) {
-                if (fileLines[x][y] == '{' && scope == 0) {
-                    buffer = "";
-                    scope ++;
+                if (fileLines[x][y] == ']') {
+                    brktScope --;
                 }
-                if (fileLines[x][y] == ']' || fileLines[x][y] == '}') {
-                    scope --;
+                if (fileLines[x][y] == '}') {
+                    brcsScope --;
                 }
-                if (scope >= 1) {
+                if (fileLines[x][y] == ')') {
+                    pthScope --;
+                }
+                if (fileLines[x].substring(y, y+5) == "style") {
+                    parsingStyle = true;
+                }
+                else if (parsingStyle) {
+                    if (pthScope != 0) {
+                        styleString += fileLines[x][y];
+                    }
+                    else {
+                        if (styleString != "") {
+                            // parse style here
+                            for (let s = 0; s < styleString.length; s ++) {
+                                pthScope = 0;
+                                brcsScope = 0;
+                                if (styleString[s] == '{') {
+                                    brcsScope ++;
+                                }
+                                else if (styleString[s] == '(') {
+                                    pthScope ++;
+                                }
+                                if (brcsScope == 0 && styleString[s] != " ") {
+                                    styleTagStr += styleString[s];
+                                }
+                                else if (brcsScope == 1) {
+                                    alert(styleTagStr);
+                                } 
+                            }
+                            parsingStyle = false;
+                        }
+                    }
+                }
+                else if (brktScope >= 1 || brcsScope >= 1) {
                     buffer += fileLines[x][y];
                 }
                 else {
@@ -76,9 +115,18 @@ function parseData() {
                         }
                         buffer = "";
                     }
+                    else {
+
+                    }
                 }
                 if (fileLines[x][y] == '[') {
-                    scope ++;
+                    brktScope ++;
+                }
+                if (fileLines[x][y] == '(') {
+                    pthScope ++;
+                }
+                if (fileLines[x][y] == '{') {
+                    brcsScope ++;
                 }
             }
         }
@@ -98,6 +146,7 @@ function parseData() {
     }
     doc.pipe(fs.createWriteStream('output.pdf'));
     doc.end();
+    alert(styleString);
 
     document.getElementById("display-pdf").style.display = "block";
 }
