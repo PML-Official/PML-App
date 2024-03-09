@@ -71,11 +71,23 @@ function parseData() {
                                 else if (styleString[s] == '(') {
                                     pthScope ++;
                                 }
+                                if (styleString[s] == '}') {
+                                    brcsScope ++;
+                                }
+                                else if (styleString[s] == '(') {
+                                    pthScope ++;
+                                }
                                 if (brcsScope == 0 && styleString[s] != " ") {
                                     styleTagName += styleString[s];
                                 }
                                 else if (brcsScope == 1) {
-                                    alert(styleTagName);
+                                    alert(pthScope);
+                                    if (pthScope >= 2) {
+                                        styleTagContent += styleString[s];
+                                    }
+                                    else if (styleTagContent != "") {
+                                        alert(styleTagContent);
+                                    }
                                 } 
                             }
                             parsingStyle = false;
