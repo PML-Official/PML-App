@@ -36,28 +36,29 @@
                             </div>
                             <div id="bttn1contain">
                                 <button id="open-button1" class="opening-screen-button" onclick="document.getElementById('file-searcher').click()">Open</button>
-                                <input type="file" id="file-searcher" style="display: none;" onchange="setFileData(this)"/>
+
                             </div>
                         </div>
                     </li>
-               <!--or-->
-                    <li><div id="or"><i>or</i></div></li>
-                <!--option 2-->
-           <li><div id="option2-container">
-        <span class="option2-text">Run & export existing .pml file</span>
-        <div class="description">
-        <p>Want to code PML in text editor of choice? <br> No problem! save file as .pml then run the file <br> to preview and export as pdf!</p>
-        </div>
-        <div id="bttn2contain">
-        <button id="open-button2" class="opening-screen-button" onclick="document.getElementById('file-searcher').click()">Run</button>
-        <input type="file" id="file-searcher" style="display: none;" onchange="setFileData(this)"/>
-        </div>
-            </div></li>
-            </ul>
-</div>
+            <input type="file" style="display: none;" id="file-searcher" onchange="setFileData(this)"/>
+                
+            </div>
 
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+    document.getElementById('file-searcher').addEventListener('change', function() {
+        var block = document.getElementById('opening-screen');
+        block.style.display = block.style.display === 'none' ? 'block' : 'none';
+        document.getElementById('main-page') .style.display = 'block';
+        document.getElementById('appversion-information').style.display = "none";
+    });
+
+});
+
+</script>
+<!--iframe testing area
         <div><iframe id="display-pdf" src="output.pdf" width="900" height="700" style="display: none;"></iframe></div>
-
+-->
         <script src="node_modules/pdfkit/js/pdfkit.standalone.js"></script>
 
         <script src="js/colors.js"></script>
@@ -65,6 +66,7 @@
         <script src="js/tags.js"></script>
         <script src="js/main.js"></script>
         </div>
+       
         <!--Bottom Bar-->
         <div class="bottom-bar">
             <img alt="pml logo" class="bottom-logo" src="images/PML White.png" href="https://stashey13.github.io">
@@ -132,9 +134,48 @@ document.addEventListener('DOMContentLoaded', function() {
 
 
 
+<!--Text Editor Section-->
 
 
 
+
+
+
+<div id="main-page" style="display:none;">
+
+
+
+
+<div class="editor-container">
+    <textarea id="editor" rows="10" cols="50"></textarea>
+</div>
+<div class="runbutton">
+    <button class="runbutton" id="runbutton" onclick="setTextEditor()">Run</button>
+</div>
+
+
+<div><iframe id="display-pdf" src="output.pdf" width="900" height="700" style="display: none;"></iframe></div>
+
+
+<script>
+// Get the textarea element
+const editor = document.getElementById('editor');
+
+// Event listener for changes in the textarea
+editor.addEventListener('input', function() {
+// Get the content of the textarea
+const content = editor.value;
+
+// Perform any additional processing here (if needed)
+// For example, you could save the content to local storage
+
+// Log the content to the console (for demonstration purposes)
+console.log(content);
+});
+
+</script>
+
+</div>
 
 
 

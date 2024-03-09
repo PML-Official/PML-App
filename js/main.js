@@ -5,11 +5,13 @@ var fileLines = [];
 var allPages = [];
 
 function setFileData(input) {
+
     const file = input.files[0];
     if (file) {
         const reader = new FileReader();
         reader.addEventListener('loadend', () => {
             fileLines = reader.result.split("\n");
+            document.getElementById("editor").value = reader.result;
             parseData();
         });
         reader.readAsText(file);
@@ -17,7 +19,7 @@ function setFileData(input) {
 }
 
 function setTextEditor() {
-    fileLines = document.getElementById("runbutton").value.split("\n");
+    fileLines = document.getElementById("editor").value.split("\n");
     parseData();
 }
 
@@ -161,6 +163,9 @@ function parseData() {
             pageY = pageStyle.topMargin;
         }
     }
+    fs.unlink('output.pdf', (err) => {
+        
+    });
     doc.pipe(fs.createWriteStream('output.pdf'));
     doc.end();
 

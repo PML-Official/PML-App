@@ -1,9 +1,47 @@
 <!DOCTYPE html>
 <html>
     <head>
+        <title>Text editor testing page</title>
+<link rel="stylesheet" type="text-css" src="styles.css">
+
+<!--parse data-->
+<script src="js/bases.js"></script>
+<script src="js/colors.js"></script>
+<script src="js/tags.js"></script>
+<script src="js/main.js"></script>
+
 
     </head>
     <body>
-        <!-- this is the text editor page-->
+        <div class="editor-container">
+            <textarea id="editor" rows="10" cols="50"></textarea>
+        </div>
+        <div class="runbutton">
+            <button class="runbutton" id="runbutton" onclick="setTextEditor()">Run</button>
+        </div>
+
+
+        <div><iframe id="display-pdf" src="output.pdf" width="900" height="700" style="display: none;"></iframe></div>
+
+
+<script>
+    // Get the textarea element
+const editor = document.getElementById('editor');
+
+// Event listener for changes in the textarea
+editor.addEventListener('input', function() {
+    // Get the content of the textarea
+    const content = editor.value;
+    
+    // Perform any additional processing here (if needed)
+    // For example, you could save the content to local storage
+    
+    // Log the content to the console (for demonstration purposes)
+    console.log(content);
+});
+
+</script>
+
+
     </body>
 </html>
