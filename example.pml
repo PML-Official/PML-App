@@ -1,3 +1,10 @@
+style (
+    h1 {
+        (width: 5px)
+        (height: 90px)
+    }
+)
+
 {-- Page 1}
 [h1: This is some text]
 [p: This is a big long paragraph about how boring this is. This paragraph serves no purpose, but to test PML's ability to display paragraph tags. Hopefully this is long enough.]
