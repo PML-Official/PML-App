@@ -8,11 +8,14 @@
         <link rel="preconnect" href="https://fonts.googleapis.com">
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
         <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap" rel="stylesheet">
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
 
     </head>
 
     <body>
-        <div id="opening-screen">
+<div id="opening-screen">
             <div id="logo"><img alt="pml logo" class="pml-logo" src="images/PML White.png"></div>
             <div id="welcome-contain">
             <div id="welcome">
@@ -43,7 +46,7 @@
            <li><div id="option2-container">
         <span class="option2-text">Run & export existing .pml file</span>
         <div class="description">
-        <p>Want to code PML in text editor of choice? <br> No problem! save file as .pml then run the file <br> to export as pdf!</p>
+        <p>Want to code PML in text editor of choice? <br> No problem! save file as .pml then run the file <br> to preview and export as pdf!</p>
         </div>
         <div id="bttn2contain">
         <button id="open-button2" class="opening-screen-button" onclick="document.getElementById('file-searcher').click()">Run</button>
@@ -62,6 +65,126 @@
         <script src="js/tags.js"></script>
         <script src="js/main.js"></script>
         </div>
+        <!--Bottom Bar-->
+        <div class="bottom-bar">
+            <img alt="pml logo" class="bottom-logo" src="images/PML White.png" href="https://stashey13.github.io">
+            <span class="pipe">|</span>
+            <!--Developer Guide-->
+            <div class="icon-1">   
+            <i class="material-symbols-outlined"> 
+                developer_guide
+            </i>
+        
+            <a href="https://stashey13.github.io" id="electron-shell">  
+                <span class="developer-text">Developer Guide</span>
+                </a>
+        </div>
+
+            <!--App Version-->
+            <div class="icon-2">
+                <i class="material-symbols-outlined">
+                    backup
+                </i>
+
+                <span id="app-version-text">App Version</span>
+            </div>    
+
+            <!--Note For Luke:
+            The Links are opening within the electron app - we need to find out a way to open them into browser            
+            -->
+            </div>      
+        </div>
+        <div id="appversion-information" class="hidden">
+            <span class="av-itext"><b>Version 0.0.1 &lpar;Beta&rpar;</b></span>
+            <i class="material-symbols-outlined" id="close-btn">
+                close
+            </i>
+            <br>
+            <span class="explanationtext">
+            Welcome to the very first version <br>of the app, 0.0.1! Right now, we're <br> in beta mode, which means we're <br> still ironing out the kinks and ad-<br>ding cool new features. We'd love <br> your help in making it even better!<br> If you come across any bugs or <br>have ideas on how we can impr-<br>ove, please let us know. Your fee-<br>dback is like gold to us! To Conta-<br>ct, go to PMLlanuguage.com or <br> click the contact button.
+            </span>
+
+        </div>
+        <script>
+document.addEventListener('DOMContentLoaded', function() {
+    document.getElementById('app-version-text').addEventListener('click', function() {
+        var block = document.getElementById('appversion-information');
+        block.style.display = block.style.display === 'none' ? 'block' : 'none';
+    });
+
+    document.getElementById('close-btn').addEventListener('click', function() {
+        var block = document.getElementById('appversion-information');
+        block.style.display = 'none';
+    });
+    setTimeout(function() {
+        document.getElementById('appversion-information').classList.remove('hidden');
+    }, 1000);
+});
+
+</script>            
+
     </body>
 
 </html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
