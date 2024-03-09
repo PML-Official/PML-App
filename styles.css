@@ -1,5 +1,5 @@
 /* opening screen */
-body {background-color: rgb(33, 33, 33);} #opening-screen {color: white; font-family: "Roboto", sans-serif; padding: 20px;} .opening-screen-button {padding: 8px; padding-left: 35px; padding-right: 35px; cursor: pointer; color: white; border: 1px solid rgb(223,27,27); background-color: rgb(223, 27, 27); border: none; border-radius: 14px; font-size: 1.2rem;}
+body {background-color: rgb(33, 33, 33); padding: 0 !important; margin: 0 !important; overflow-x: auto; overflow-y: auto; white-space: nowrap;} #opening-screen {color: white; font-family: "Roboto", sans-serif; padding: 20px;} .opening-screen-button {padding: 8px; padding-left: 35px; padding-right: 35px; cursor: pointer; color: white; border: 1px solid rgb(223,27,27); background-color: rgb(223, 27, 27); border: none; border-radius: 14px; font-size: 1.2rem;}
 .opening-screen-button:hover {background-color: rgba(223, 27, 27, 0.728); box-shadow: 0px 4px 8px rgba(0,0,0,0.1)} #welcome {font-size: 2.5rem;} #welcome-contain {max-width: 100%; width: 100%; display: flex; justify-content: center; align-items: center; margin-top: 30px;}
 #getstarted-contain {max-width: 100%; width: 100%; display: flex; justify-content: center; align-items: center; margin-top: 0px;} #getstarted {font-size: 1.4rem;}
 /* logo */
@@ -9,3 +9,12 @@ body {background-color: rgb(33, 33, 33);} #opening-screen {color: white; font-fa
 .option2-text {font-size: 1.5rem; white-space: nowrap;} #option2-container {max-width: 100%; width: fit-content; margin-left: 100px; margin-top: 30px; display: flex; flex-direction: column; justify-content: center; align-items: center;} #bttn2contain { max-width: 100%;  margin-top: 12px;} 
 /* option 1 */
 .option1-text {font-size: 1.5rem; white-space: nowrap;} #option1-container {max-width: 100%; width: fit-content; margin-right: 100px;  margin-top: 30px; display: flex; flex-direction: column; justify-content: center; align-items: center;} #bttn1contain {max-width: 100%;  margin-top: 12px;} 
+/* bottom bar */
+.bottom-bar {height: 50px; min-height: 50px; width: 100%; max-width: 100%; position: fixed; display: flex; align-items: center; bottom: 0; background-color: rgb(48, 48, 48);} .icon-1 {display: flex; align-items: center; margin-left: 30px;} .material-symbols-outlined {color: white; margin-right: 3px;}
+.icon-1 a {color: white; text-decoration: none;} .icon-1 a:hover {text-decoration: underline;} .developer-text {font-family: 'Roboto', sans-serif; font-size:small} .bottom-logo {max-height: 50px; height: 50px; margin-left: 3vh} .pipe { color: white; font-size: 2rem; margin-left: 30px; font-weight:100;}
+.icon-2 {display: flex; align-items: center; margin-left: 30px;} #app-version-text {font-family: 'Roboto', sans-serif; font-size:small; color: white; cursor: pointer;}
+
+/* app version info */
+#appversion-information {display:block; height: 250px; width: 200px; word-wrap: break-word; background-color:rgb(48, 48, 48); padding-left: 8px; padding-right: 8px; padding-bottom: 0; position: fixed; bottom: 60px; margin-left: 295px; box-shadow: 0px 10px, 20px rgba(0,0,0,20)} .av-itext {color: white; font-family: "Roboto", sans-serif; margin-left: 8px;}
+#appversion-information .material-symbols-outlined {margin-left: 25px; cursor: pointer;} .explanationtext {width: 180px; word-wrap: break-word !important; display: inline-block; margin-left: 8px; color: white; font-family: 'Roboto', sans-serif; margin-top: 30px; font-size:small} #close-btn:hover {color: rgb(226, 226, 226)} #app-version-text:hover {text-decoration: underline;}
+.hidden {display:none;}
