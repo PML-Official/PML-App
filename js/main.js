@@ -1,11 +1,24 @@
 const PDFDocument = require('pdfkit');
 const fs = require('fs');
+const path = require('path');
 
 var fileLines = [];
 var allPages = [];
+var fileInput = undefined;
 
-function setFileData(input) {
+function writeToFile(data) {
+    fs.writeFile(fileInput.files[0].path, data, (err) => {
+        if (err) {
+            alert("some weird random error happened");
+        }
+    });
+}
 
+function setFileData(input = fileInput) {
+    if (fileInput == undefined) {
+        fileInput = input;
+    }
+    
     const file = input.files[0];
     if (file) {
         const reader = new FileReader();
@@ -15,6 +28,9 @@ function setFileData(input) {
             parseData();
         });
         reader.readAsText(file);
+    }
+    else {
+        alert("invalid file selected");
     }
 }
 
@@ -83,12 +99,11 @@ function parseData() {
                                     styleTagName += styleString[s];
                                 }
                                 else if (brcsScope == 1) {
-                                    alert(pthScope);
                                     if (pthScope >= 2) {
                                         styleTagContent += styleString[s];
                                     }
                                     else if (styleTagContent != "") {
-                                        alert(styleTagContent);
+
                                     }
                                 } 
                             }
@@ -151,7 +166,9 @@ function parseData() {
         }
     }
     allPages.push(currentPage);
+    alert(allPages.length);
     for (let x = 0; x < allPages.length; x ++) {
+        alert("inloop")
         for (let y = 0; y < allPages[x].tags.length; y ++) {
             let currTag = allPages[x].tags[y];
             if (currTag.isText) {
@@ -159,13 +176,11 @@ function parseData() {
             }
         }
         if (x != allPages.length - 1) {
+            alert("adding page");
             doc.addPage({ margin: pageStyle.margin });
             pageY = pageStyle.topMargin;
         }
     }
-    fs.unlink('output.pdf', (err) => {
-        
-    });
     doc.pipe(fs.createWriteStream('output.pdf'));
     doc.end();
 

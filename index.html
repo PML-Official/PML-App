@@ -150,7 +150,7 @@ document.addEventListener('DOMContentLoaded', function() {
     <textarea id="editor" rows="10" cols="50"></textarea>
 </div>
 <div class="runbutton">
-    <button class="runbutton" id="runbutton" onclick="setTextEditor()">Run</button>
+    <button class="runbutton" id="runbutton" onclick="setFileData()">Run</button>
 </div>
 
 
@@ -165,6 +165,7 @@ const editor = document.getElementById('editor');
 editor.addEventListener('input', function() {
 // Get the content of the textarea
 const content = editor.value;
+writeToFile(content);
 
 // Perform any additional processing here (if needed)
 // For example, you could save the content to local storage
