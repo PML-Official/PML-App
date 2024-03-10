@@ -11,6 +11,7 @@
         <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
         <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
         <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
 
     </head>
 
@@ -71,6 +72,16 @@
         <div class="bottom-bar">
             <img alt="pml logo" class="bottom-logo" src="images/PML White.png" href="https://stashey13.github.io">
             <span class="pipe">|</span>
+
+            <!--Home icon-->
+            <div class="home-icon">
+                <i class="material-symbols-outlined">home</i>  
+            </div>
+
+            <a href="index.html">
+                <span class="home-text">Home</span>
+            </a>
+
             <!--Developer Guide-->
             <div class="icon-1">   
             <i class="material-symbols-outlined"> 
@@ -96,7 +107,7 @@
             -->
             </div>      
         </div>
-        <div id="appversion-information" class="hidden">
+        <div id="appversion-information" class="hidden" style="display: none;">
             <span class="av-itext"><b>Version 0.0.1 &lpar;Beta&rpar;</b></span>
             <i class="material-symbols-outlined" id="close-btn">
                 close
@@ -108,7 +119,6 @@
 
         </div>
         <script>
-document.addEventListener('DOMContentLoaded', function() {
     document.getElementById('app-version-text').addEventListener('click', function() {
         var block = document.getElementById('appversion-information');
         block.style.display = block.style.display === 'none' ? 'block' : 'none';
@@ -118,11 +128,6 @@ document.addEventListener('DOMContentLoaded', function() {
         var block = document.getElementById('appversion-information');
         block.style.display = 'none';
     });
-    setTimeout(function() {
-        document.getElementById('appversion-information').classList.remove('hidden');
-    }, 1000);
-});
-
 </script>            
 
     </body>
@@ -147,7 +152,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
 
 <div class="editor-container">
-    <textarea id="editor" rows="10" cols="50"></textarea>
+    <div class="content" id="editor" contenteditable="true"></div>
 </div>
 <div class="runbutton">
     <button class="runbutton" id="runbutton" onclick="setTextEditor()">Run</button>
@@ -156,22 +161,106 @@ document.addEventListener('DOMContentLoaded', function() {
 
 <div><iframe id="display-pdf" src="output.pdf" width="900" height="700" style="display: none;"></iframe></div>
 
-
+<style>
+    .keyword {color:rgb(223, 27, 27)}
+</style>
 <script>
-// Get the textarea element
-const editor = document.getElementById('editor');
+const contentDiv = document.querySelector('.content');
 
-// Event listener for changes in the textarea
-editor.addEventListener('input', function() {
-// Get the content of the textarea
-const content = editor.value;
+function getCaretCharacterOffsetWithin(element) {
+    const caretOffset = 0;
+    const doc = element.ownerDocument || element.document;
+    const win = doc.defaultView || doc.parentWindow;
+    let sel;
+    let range;
+    let preCaretRange;
+    let caretOffsetValue = 0;
+    if (typeof win.getSelection !== 'undefined') {
+        sel = win.getSelection();
+        if (sel.rangeCount > 0) {
+            range = win.getSelection().getRangeAt(0);
+            preCaretRange = range.cloneRange();
+            preCaretRange.selectNodeContents(element);
+            preCaretRange.setEnd(range.endContainer, range.endOffset);
+            caretOffsetValue = preCaretRange.toString().length;
+        }
+    }
+    return caretOffsetValue;
+}
 
-// Perform any additional processing here (if needed)
-// For example, you could save the content to local storage
+function setCaretPosition(element, offset) {
+    const range = document.createRange();
+    const sel = window.getSelection();
+    let currentNode;
+    let previousNode;
+    let count = 0;
+    range.setStart(element, 0);
+    range.collapse(true);
+    const textNodes = getTextNodesIn(element);
+    for (const textNode of textNodes) {
+        if (count + textNode.length >= offset) {
+            currentNode = textNode;
+            break;
+        }
+        count += textNode.length;
+        previousNode = textNode;
+    }
+    if (currentNode) {
+        range.setStart(currentNode, offset - count);
+        range.collapse(true);
+        sel.removeAllRanges();
+        sel.addRange(range);
+    }
+}
 
-// Log the content to the console (for demonstration purposes)
-console.log(content);
-});
+function getTextNodesIn(node) {
+    const textNodes = [];
+    if (node.nodeType === 3) {
+        textNodes.push(node);
+    } else {
+        const children = node.childNodes;
+        for (let i = 0; i < children.length; i++) {
+            textNodes.push(...getTextNodesIn(children[i]));
+        }
+    }
+    return textNodes;
+}
+
+// Define keywords and their corresponding colors
+const keywordColors = {
+    'h1': 'red',
+    'p': 'blue'
+};
+
+function highlightKeywords() {
+    const cursorOffset = getCaretCharacterOffsetWithin(contentDiv);
+    const text = contentDiv.innerText;
+
+    // Remove existing highlighting spans
+    contentDiv.querySelectorAll('.keyword').forEach(span => {
+        const textNode = document.createTextNode(span.textContent);
+        span.parentNode.replaceChild(textNode, span);
+    });
+
+    // Highlight keywords with different colors
+    Object.keys(keywordColors).forEach(keyword => {
+        const regex = new RegExp('\\b' + keyword + '\\b', 'g');
+        contentDiv.innerHTML = contentDiv.innerHTML.replace(regex, match => {
+            return `<span class="keyword" style="color: ${keywordColors[keyword]}">${match}</span>`;
+        });
+    });
+
+    // Restore cursor position
+    setCaretPosition(contentDiv, cursorOffset);
+}
+
+contentDiv.addEventListener('input', highlightKeywords);
+
+// Initial highlighting
+highlightKeywords();
+
+
+
 
 </script>
 
