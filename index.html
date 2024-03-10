@@ -229,7 +229,7 @@ function getTextNodesIn(node) {
 // Define keywords and their corresponding colors
 const keywordColors = {
     // Note for Luke:
-    // as you see, it is working as it is now. but when I add special charaters, i.e [h1:, then it stops working. chat gpt got stumped by this one.
+    // as you see, it is working as it is now. but when I add special charaters, i.e [h1:, then it stops working. chat gpt got stumped by this one. Line 249 is where the execution of pluses is being carried out. line 251 is were the acutall color changing of the text is being carried out. and line 233 is where the keywords are being declared.
     'h1': 'red',
     'p': 'blue'
 };
