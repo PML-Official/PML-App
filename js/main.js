@@ -3,45 +3,47 @@ const fs = require('fs');
 const path = require('path');
 
 var fileLines = [];
-var allPages = [];
 var fileInput = undefined;
+var filePath = "";
 
 function writeToFile(data) {
-    fs.writeFile(fileInput.files[0].path, data, (err) => {
+    alert(data);
+    fs.writeFileSync(filePath, data, (err) => {
         if (err) {
             alert("some weird random error happened");
         }
     });
 }
 
-function setFileData(input = fileInput) {
-    if (fileInput == undefined) {
-        fileInput = input;
-    }
-    
-    const file = input.files[0];
-    if (file) {
-        const reader = new FileReader();
-        reader.addEventListener('loadend', () => {
-            fileLines = reader.result.split("\n");
-            document.getElementById("editor").value = reader.result;
-            parseData();
-        });
-        reader.readAsText(file);
+function setFileData(input) {
+    if (input == undefined) {
+        const content = fs.readFileSync(filePath, 'utf8');
+        fileLines = content.split("\n");
+        parseData();
     }
     else {
-        alert("invalid file selected");
+        const file = input.files[0];
+        if (file) {
+            const reader = new FileReader();
+            reader.addEventListener('load', () => {
+                fileLines = reader.result.split("\n");
+                document.getElementById("editor").innerText = reader.result;
+                parseData();
+            });
+            reader.readAsText(file);
+            filePath = file.path;
+        }
+        else {
+            alert("invalid file selected");
+        }
     }
-}
-
-function setTextEditor() {
-    fileLines = document.getElementById("editor").value.split("\n");
-    parseData();
 }
 
 function parseData() {
     var currentPage = 0;
     var pageStyle = new Style();
+    var allPages = [];
+
     pageStyle.margin = 40;
     const doc = new PDFDocument();
 
@@ -166,9 +168,7 @@ function parseData() {
         }
     }
     allPages.push(currentPage);
-    alert(allPages.length);
     for (let x = 0; x < allPages.length; x ++) {
-        alert("inloop")
         for (let y = 0; y < allPages[x].tags.length; y ++) {
             let currTag = allPages[x].tags[y];
             if (currTag.isText) {
@@ -181,8 +181,19 @@ function parseData() {
             pageY = pageStyle.topMargin;
         }
     }
-    doc.pipe(fs.createWriteStream('output.pdf'));
+
+    const writeStream = fs.createWriteStream('output.pdf');
+    doc.pipe(writeStream);
     doc.end();
 
-    document.getElementById("display-pdf").style.display = "block";
+    writeStream.addListener('finish', () => {
+        document.getElementById("display-pdf").remove();
+        const iframe = document.createElement('iframe');
+        iframe.width = "800px";
+        iframe.height = "600px";
+        iframe.id = "display-pdf";
+        iframe.src = "output.pdf";
+        document.body.appendChild(iframe);
+    });
+
 }

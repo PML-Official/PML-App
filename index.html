@@ -257,10 +257,10 @@ function highlightKeywords() {
 }
 
 contentDiv.addEventListener('input', highlightKeywords);
+contentDiv.addEventListener('input', () => {writeToFile(contentDiv.innerText)});
 
 // Initial highlighting
 highlightKeywords();
-
 
 
 
