@@ -57,9 +57,6 @@
 });
 
 </script>
-<!--iframe testing area
-        <div><iframe id="display-pdf" src="output.pdf" width="900" height="700" style="display: none;"></iframe></div>
--->
         <script src="node_modules/pdfkit/js/pdfkit.standalone.js"></script>
 
         <script src="js/colors.js"></script>
@@ -78,7 +75,7 @@
                 <i class="material-symbols-outlined">home</i>  
             </div>
 
-            <a href="index.html">
+            <a class="homelink"href="index.html">
                 <span class="home-text">Home</span>
             </a>
 
@@ -150,22 +147,31 @@
 
 
 
-
+<ul>
+    <li>
+        <div class="iframe-contain"><iframe id="display-pdf" src="output.pdf" width="900" height="700" style="display: none;"></iframe></div>
+    </li>
+    <li id="li1">
 <div class="editor-container">
-    <div class="content" id="editor" contenteditable="true"></div>
+    <div class="line-numbers-container">
+    <div class="line-numbers"></div>
+    </div>
+    <div class="contenteditable-div" id="editor" contenteditable="true"></div>
 </div>
-<div class="runbutton">
+    
+
+<div class="runbutton-contain">
     <button class="runbutton" id="runbutton" onclick="setTextEditor()">Run</button>
 </div>
 
-
-<div><iframe id="display-pdf" src="output.pdf" width="900" height="700" style="display: none;"></iframe></div>
-
+    </li>
+</ul>
 <style>
     .keyword {color:rgb(223, 27, 27)}
 </style>
+<!--for changing colors-->
 <script>
-const contentDiv = document.querySelector('.content');
+const contentDiv = document.querySelector('.contenteditable-div');
 
 function getCaretCharacterOffsetWithin(element) {
     const caretOffset = 0;
@@ -258,13 +264,98 @@ function highlightKeywords() {
 
 contentDiv.addEventListener('input', highlightKeywords);
 
+
 // Initial highlighting
 highlightKeywords();
 
+</script>
+
+
+<!--this is the script for pressing enter-->
+
+
+   <script>
+  // Function to handle keydown event
+function handleKeyDown(event) {
+    // Check if the Enter key is pressed
+    if (event.keyCode === 13) {
+        // Get the selection and range objects
+        const selection = window.getSelection();
+        const range = selection.getRangeAt(0);
+
+        // Create a new line break node
+        const br = document.createElement('br');
+
+        // Insert the line break at the current cursor position
+        range.insertNode(br);
+
+        // Move the cursor to the end of the newly created line
+        range.setStartAfter(br);
+        range.setEndAfter(br);
+
+        // Collapse the range and set the selection
+        range.collapse(false);
+        selection.removeAllRanges();
+        selection.addRange(range);
+
+        // Prevent the default behavior of the Enter key
+        event.preventDefault();
+    }
+
+    // Check if the Backspace key is pressed
+    if (event.keyCode === 8) {
+        // Get the selection and range objects
+        const selection = window.getSelection();
+        const range = selection.getRangeAt(0);
+
+        // Get the current line text
+        const currentLineText = range.startContainer.textContent;
+        const currentLineOffset = range.startOffset;
+
+        // Check if the cursor is at the beginning of the line and the line is empty
+        if (currentLineOffset === 0 && currentLineText.trim() === '') {
+            // Get the previous sibling node
+            const prevNode = range.startContainer.previousSibling;
+
+            // Remove the empty line
+            if (prevNode && prevNode.nodeName === 'BR') {
+                prevNode.parentNode.removeChild(prevNode);
+            }
+
+            // Prevent the default behavior of the Backspace key
+            event.preventDefault();
+        }
+    }
+}
+
+// Function to handle input event
+function handleInput(event) {
+    // Check if the last character is a line break
+    const content = event.target.textContent;
+    if (content.endsWith('<br>') || content.endsWith('<br><br>')) {
+        // Move the cursor to the end
+        const range = document.createRange();
+        const selection = window.getSelection();
+        range.selectNodeContents(event.target);
+        range.collapse(false);
+        selection.removeAllRanges();
+        selection.addRange(range);
+    }
+}
+
+// Add event listener for the keydown event on the contentDiv
+contentDiv.addEventListener('keydown', handleKeyDown);
+
+// Add event listener for the input event on the contentDiv
+contentDiv.addEventListener('input', handleInput);
 
 
 
 </script>
+
+
+
+
 
 </div>
 
