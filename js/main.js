@@ -1,31 +1,49 @@
 const PDFDocument = require('pdfkit');
 const fs = require('fs');
+const path = require('path');
 
 var fileLines = [];
-var allPages = [];
+var fileInput = undefined;
+var filePath = "";
 
-function setFileData(input) {
-
-    const file = input.files[0];
-    if (file) {
-        const reader = new FileReader();
-        reader.addEventListener('loadend', () => {
-            fileLines = reader.result.split("\n");
-            document.getElementById("editor").value = reader.result;
-            parseData();
-        });
-        reader.readAsText(file);
-    }
+function writeToFile(data) {
+    alert(data);
+    fs.writeFileSync(filePath, data, (err) => {
+        if (err) {
+            alert("some weird random error happened");
+        }
+    });
 }
 
-function setTextEditor() {
-    fileLines = document.getElementById("editor").value.split("\n");
-    parseData();
+function setFileData(input) {
+    if (input == undefined) {
+        const content = fs.readFileSync(filePath, 'utf8');
+        fileLines = content.split("\n");
+        parseData();
+    }
+    else {
+        const file = input.files[0];
+        if (file) {
+            const reader = new FileReader();
+            reader.addEventListener('load', () => {
+                fileLines = reader.result.split("\n");
+                document.getElementById("editor").innerText = reader.result;
+                parseData();
+            });
+            reader.readAsText(file);
+            filePath = file.path;
+        }
+        else {
+            alert("invalid file selected");
+        }
+    }
 }
 
 function parseData() {
     var currentPage = 0;
     var pageStyle = new Style();
+    var allPages = [];
+
     pageStyle.margin = 40;
     const doc = new PDFDocument();
 
@@ -73,11 +91,22 @@ function parseData() {
                                 else if (styleString[s] == '(') {
                                     pthScope ++;
                                 }
+                                if (styleString[s] == '}') {
+                                    brcsScope ++;
+                                }
+                                else if (styleString[s] == '(') {
+                                    pthScope ++;
+                                }
                                 if (brcsScope == 0 && styleString[s] != " ") {
                                     styleTagName += styleString[s];
                                 }
                                 else if (brcsScope == 1) {
-                                    
+                                    if (pthScope >= 2) {
+                                        styleTagContent += styleString[s];
+                                    }
+                                    else if (styleTagContent != "") {
+
+                                    }
                                 } 
                             }
                             parsingStyle = false;
@@ -147,15 +176,24 @@ function parseData() {
             }
         }
         if (x != allPages.length - 1) {
+            alert("adding page");
             doc.addPage({ margin: pageStyle.margin });
             pageY = pageStyle.topMargin;
         }
     }
-    fs.unlink('output.pdf', (err) => {
-        
-    });
-    doc.pipe(fs.createWriteStream('output.pdf'));
+
+    const writeStream = fs.createWriteStream('output.pdf');
+    doc.pipe(writeStream);
     doc.end();
 
-    document.getElementById("display-pdf").style.display = "block";
+    writeStream.addListener('finish', () => {
+        document.getElementById("display-pdf").remove();
+        const iframe = document.createElement('iframe');
+        iframe.width = "800px";
+        iframe.height = "600px";
+        iframe.id = "display-pdf";
+        iframe.src = "output.pdf";
+        document.body.appendChild(iframe);
+    });
+
 }
