@@ -5,7 +5,7 @@ NOTE: This Project is under construction.
 
 ## About PDF Markup Language
 
-PDF Markup Language (PML) is an easy-to-use markup language developed specifically for PDFs. The Parser is created using JavaScript, also using a PDF Library called PDFKit
+PDF Markup Language (PML) is an easy-to-use markup language developed specifically for PDFs. The Parser is created using JavaScript, also using a PDF Library called PDFKit.
 PML is currently under construction; i.e., it is not actually a thing yet.
 
 ## About PML App
