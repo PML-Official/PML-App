@@ -1,5 +1,5 @@
 /* opening screen */
-body {background-color: rgb(33, 33, 33); padding: 0 !important; margin: 0 !important; overflow-x: auto; overflow-y: auto; white-space: nowrap;} #opening-screen {color: white; font-family: "Roboto", sans-serif; padding: 20px;} .opening-screen-button {padding: 8px; padding-left: 35px; padding-right: 35px; cursor: pointer; color: white; border: 1px solid rgb(223,27,27); background-color: rgb(223, 27, 27); border: none; border-radius: 14px; font-size: 1.2rem;}
+body {background-color: rgb(34, 34, 34); padding: 0 !important; margin: 0 !important; overflow-x: auto; overflow-y: auto; white-space: nowrap;} #opening-screen {color: white; font-family: "Roboto", sans-serif; padding: 20px;} .opening-screen-button {padding: 8px; padding-left: 35px; padding-right: 35px; cursor: pointer; color: white; border: 1px solid rgb(223,27,27); background-color: rgb(223, 27, 27); border: none; border-radius: 14px; font-size: 1.2rem;}
 .opening-screen-button:hover {background-color: rgba(223, 27, 27, 0.728); box-shadow: 0px 4px 8px rgba(0,0,0,0.1)} #welcome {font-size: 2.5rem;} #welcome-contain {max-width: 100%; width: 100%; display: flex; justify-content: center; align-items: center; margin-top: 30px;}
 #getstarted-contain {max-width: 100%; width: 100%; display: flex; justify-content: center; align-items: center; margin-top: 0px;} #getstarted {font-size: 1.4rem;}
 /* logo */
@@ -20,27 +20,30 @@ body {background-color: rgb(33, 33, 33); padding: 0 !important; margin: 0 !impor
 
 
 /* text editor */
-/*
-.keyword {color:rgb(223, 27, 27); font-weight: bold;} .content {padding: 10px;} .line-number {counter-increment: line-number; width: 30px; display: inline-block; text-align: right; user-select: none;} 
-.line-numbers-container {display: flex; flex-direction: column; align-items: flex-end; padding-right: 10px; margin-top: 10px; font-family: Arial, sans-serif; font-size: 16px; line-height: 1.5; color: #FFF;} #display-pdf {width: 500px; border: none; margin: 0; padding: 0;}
+.editing-area {background-color: rgba(16, 16, 16, 0.842); width: 895px;} #main-page {overflow-y: none;}
+.keyword {color:rgb(223, 27, 27); font-weight: bold;} .content {padding: 10px;} .line-number {counter-increment: line-number; width: 30px; display: inline-block; text-align: right; user-select: none;} .iframe-contain {margin: 0; }
+.line-numbers-container {display: flex; flex-direction: column; align-items: flex-end; padding-right: 10px; margin-top: 10px; font-family: Arial, sans-serif; font-size: 16px; line-height: 1.5; color: #FFF;} #display-pdf {width: 700px; border: none; margin: 0; padding: 0; height: 900px;}
+.runbutton {padding-top: 8px; padding-bottom: 8px; padding-left: 24px; padding-right: 24px; border: none; background-color: rgb(0, 110, 255); border-radius: 4px; color: white;} .runbutton:hover {cursor: pointer; background-color: rgb(38, 131, 252);}
 /* page orginization */
-#main-page ul {list-style-type: none;} #main-page ul li {display: inline-block;}
+#main-page ul {list-style-type: none; margin: 0; padding: 0;} #main-page ul li {display: inline-block;}
 #editor {
-    min-height: 100px; /* Adjust height as needed */
+    min-height: 880px; /* Adjust height as needed */
+    height: 880px;
+    width: 600px;
     outline: none;
+    overflow-x: auto;
     overflow-y: auto;
     white-space: pre-wrap;
-    font-family: inherit;
+    font-family: monospace;
     font-size: inherit;
     line-height: inherit;
-    padding: 0;
     margin: 0;
     border: none;
     resize: none;
     display: block;
     color: white;
     background-color:rgb(48, 48, 48) ;
+    padding-left: 5px;
+    padding-top: 5px;
   }
-  
-
-  .editor-container {padding: 5px; width: 300px;}
+.editor-container {padding: 5px; width: 300px;}
