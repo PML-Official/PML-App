@@ -228,9 +228,7 @@ function parseData() {
             if (currTag.isText) {
                 if (currTag.hyperlinks != []) {
                     for (let z = 0; z < currTag.hyperlinkPoses.length; z ++) {
-                        for (let i = currTag.hyperlinkPoses[z]; i < currTag.text.length; i ++) {
-
-                        }
+                        currTag.text = currTag.text.slice(0, currTag.hyperlinkPoses[z]) + currTag.hyperlinks[z].nickname + currTag.text.slice(nextOccurance(currTag.text, currTag.hyperlinkPoses[z], ")"))
                     }
                     let prevLinkPos = 0;
                     let lBreak = false;
