@@ -7,7 +7,6 @@ var fileInput = undefined;
 var filePath = "";
 
 function writeToFile(data) {
-    alert(data);
     fs.writeFileSync(filePath, data, (err) => {
         if (err) {
             alert("some weird random error happened");
@@ -35,6 +34,25 @@ function setFileData(input) {
         }
         else {
             alert("invalid file selected");
+        }
+    }
+}
+
+// thanks internet
+function getAllIndexes(str, substring) {
+    const indexes = [];
+    let index = str.indexOf(substring);
+    while (index !== -1) {
+        indexes.push(index);
+        index = str.indexOf(substring, index + 1);
+    }
+    return indexes;
+}
+
+function nextOccurance(str, ind, c) {
+    for (let x = ind; x < str.length; x ++) {
+        if (str[x] == c) {
+            return x;
         }
     }
 }
@@ -76,6 +94,7 @@ function parseData() {
                     parsingStyle = true;
                 }
                 else if (parsingStyle) {
+                    parsingStyle = false;
                     if (pthScope != 0) {
                         styleString += fileLines[x][y];
                     }
@@ -92,24 +111,26 @@ function parseData() {
                                     pthScope ++;
                                 }
                                 if (styleString[s] == '}') {
-                                    brcsScope ++;
+                                    brcsScope --;
                                 }
-                                else if (styleString[s] == '(') {
-                                    pthScope ++;
+                                else if (styleString[s] == ')') {
+                                    pthScope --;
                                 }
+                                
                                 if (brcsScope == 0 && styleString[s] != " ") {
                                     styleTagName += styleString[s];
                                 }
                                 else if (brcsScope == 1) {
+                                    /*alert(styleTagName);
                                     if (pthScope >= 2) {
                                         styleTagContent += styleString[s];
                                     }
                                     else if (styleTagContent != "") {
-
-                                    }
+                                        alert(styleTagContent);
+                                        parsingStyle = false;
+                                    }*/
                                 } 
                             }
-                            parsingStyle = false;
                         }
                     }
                 }
@@ -133,20 +154,52 @@ function parseData() {
                             else {
                                 let tagName = buffer.split(":")[0];
                                 let tagContent = buffer.split(":")[1];
+                                for (let z = 1; z < buffer.split(":").length-1; z ++) {
+                                    tagContent += ":" + buffer.split(":")[z+1];
+                                }
+                                alert("cpmt: "+ tagContent)
                                 
                                 if (currentPage == 0) {
                                     alert("page not created yet");
                                 }
                                 else {
+                                    let links = [];
+                                    let linkBuffer = "";
+                                    let pushTag = new Tag();
+                                    if (tagContent.includes("link(")) {
+                                        for (let s = 0; s < getAllIndexes(tagContent, "link(").length; s ++) {
+                                            for (let z = getAllIndexes(tagContent, "link(")[s] + 5; z < tagContent.length; z ++) {
+                                                if (tagContent[z] == ")") {
+                                                    break;
+                                                }
+                                                linkBuffer += tagContent[z];
+                                            }
+                                            links.push(new Link(linkBuffer.substring(5).split(", ")[0], linkBuffer.substring(5).split(", ")[1], doc.x, doc.y));
+                                            linkBuffer = "";
+                                        }
+                                    }
                                     if (tagName == "h1") {
-                                        currentPage.tags.push(new Header1(tagContent));
-                                        
+                                        pushTag = new Header1(tagContent);
+                                        pushTag.hyperlinks = links;
+                                        pushTag.hyperlinkPoses = getAllIndexes(tagContent, "link(");
+                                    }
+                                    else if (tagName == "h2") {
+                                        pushTag = new Header2(tagContent);
+                                        pushTag.hyperlinks = links;
+                                        pushTag.hyperlinkPoses = getAllIndexes(tagContent, "link(");
+                                    }
+                                    else if (tagName == "h3") {
+                                        pushTag = new Header3(tagContent);
+                                        pushTag.hyperlinks = links;
+                                        pushTag.hyperlinkPoses = getAllIndexes(tagContent, "link(");
                                     }
                                     else if (tagName == "p") {
-                                        currentPage.tags.push(new P(tagContent));
+                                        pushTag = new P(tagContent);
+                                        pushTag.hyperlinks = links;
+                                        pushTag.hyperlinkPoses = getAllIndexes(tagContent, "link(");
                                     }
+                                    currentPage.tags.push(pushTag);
                                 }
-
                             }
                         }
                         buffer = "";
@@ -167,16 +220,37 @@ function parseData() {
             }
         }
     }
+
     allPages.push(currentPage);
     for (let x = 0; x < allPages.length; x ++) {
         for (let y = 0; y < allPages[x].tags.length; y ++) {
             let currTag = allPages[x].tags[y];
             if (currTag.isText) {
-                doc.lineGap(currTag.style.lineGap).fontSize(currTag.style.fontSize).text(currTag.text);
+                if (currTag.hyperlinks != []) {
+                    for (let z = 0; z < currTag.hyperlinkPoses.length; z ++) {
+                        for (let i = currTag.hyperlinkPoses[z]; i < currTag.text.length; i ++) {
+
+                        }
+                    }
+                    let prevLinkPos = 0;
+                    let lBreak = false;
+                    doc.lineGap(currTag.style.lineGap).fontSize(currTag.style.fontSize).text("", {lineBreak: lBreak});
+                    for (let s = 0; s < currTag.hyperlinks.length; s ++) {
+                        //doc.lineGap(currTag.style.lineGap).fontSize(currTag.style.fontSize).text(currTag.text.substring(s == 0 ? 0 : currTag.hyperlinkPoses[s], s == currTag.hyperlinks.length ? currTag.text.length : currTag.hyperlinkPoses[s+1]));
+                        doc.text(currTag.text.substring(prevLinkPos, currTag.hyperlinkPoses[s]), {lineBreak: s == currTag.hyperlinks.length-1 ? true : false});
+                        doc.link(doc.x, doc.y, 50, 50, currTag.hyperlinks[s].content);
+                        prevLinkPos = currTag.hyperlinkPoses[s];
+                    }
+                    doc.lineGap(currTag.style.lineGap).fontSize(currTag.style.fontSize).text(currTag.text.substring(prevLinkPos, currTag.text.length-1));
+                }
+                else {
+                    alert("addin " + currTag.text);
+                    doc.lineGap(currTag.style.lineGap).fontSize(currTag.style.fontSize).text(currTag.text);
+                }
+                
             }
         }
         if (x != allPages.length - 1) {
-            alert("adding page");
             doc.addPage({ margin: pageStyle.margin });
             pageY = pageStyle.topMargin;
         }
@@ -193,7 +267,6 @@ function parseData() {
         iframe.height = "600px";
         iframe.id = "display-pdf";
         iframe.src = "output.pdf";
-        document.body.appendChild(iframe);
+        document.getElementsByClassName("iframe-contain")[0].appendChild(iframe);
     });
-
 }

@@ -29,11 +29,25 @@ class Tag {
     }
 }
 
-class TextTag {
+class Link extends Tag {
+    constructor(hyperlink, nickname, x, y) {
+        super();
+        this.name = "link";
+        this.nickname = nickname;
+        this.content = hyperlink;
+        this.x = x;
+        this.y = y;
+        this.isLink = true;
+    }
+}
+
+class TextTag extends Tag {
     constructor() {
+        super();
         this.style = new Style();
         this.text = "";
-        this.hyperlink = "";
         this.isText = true;
+        this.hyperlinks = [];
+        this.hyperlinkPoses = [];
     }
 }

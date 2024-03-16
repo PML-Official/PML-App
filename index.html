@@ -169,6 +169,10 @@
 </style>
 <!--for changing colors-->
 <script>
+document.getElementsByClassName("contenteditable-div")[0].addEventListener('input', () => {
+    writeToFile(document.getElementsByClassName("contenteditable-div")[0].innerText);
+});
+
 const contentDiv = document.querySelector('.contenteditable-div');
 
 function getCaretCharacterOffsetWithin(element) {
