@@ -157,13 +157,12 @@ function parseData() {
                                 for (let z = 1; z < buffer.split(":").length-1; z ++) {
                                     tagContent += ":" + buffer.split(":")[z+1];
                                 }
-                                alert("cpmt: "+ tagContent)
                                 
                                 if (currentPage == 0) {
                                     alert("page not created yet");
                                 }
                                 else {
-                                    let links = [];
+                                    var links = [];
                                     let linkBuffer = "";
                                     let pushTag = new Tag();
                                     if (tagContent.includes("link(")) {
@@ -226,23 +225,24 @@ function parseData() {
         for (let y = 0; y < allPages[x].tags.length; y ++) {
             let currTag = allPages[x].tags[y];
             if (currTag.isText) {
-                if (currTag.hyperlinks != []) {
+                if (currTag.hyperlinks.length != 0) {
                     for (let z = 0; z < currTag.hyperlinkPoses.length; z ++) {
-                        //currTag.text = currTag.text.slice(0, currTag.hyperlinkPoses[z]) + currTag.hyperlinks[z].nickname + currTag.text.slice(nextOccurance(currTag.text, currTag.hyperlinkPoses[z], ")"))
+                        currTag.text = currTag.text.slice(0, currTag.hyperlinkPoses[z]) + currTag.hyperlinks[z].nickname + currTag.text.slice(nextOccurance(currTag.text, currTag.hyperlinkPoses[z], ")"))
                     }
-                    let prevLinkPos = 0;
+                    let prevLinkPos = currTag.hyperlinkPoses[0];
                     let lBreak = false;
-                    doc.lineGap(currTag.style.lineGap).fontSize(currTag.style.fontSize).text("", {lineBreak: lBreak});
-                    for (let s = 0; s < currTag.hyperlinks.length; s ++) {
+                    doc.lineGap(currTag.style.lineGap).fontSize(currTag.style.fontSize).text(currTag.text.substring(0, currTag.hyperlinkPoses[0]), {lineBreak: false});
+                    currTag.hyperlinkPoses.push(nextOccurance(currTag.text, currTag.hyperlinkPoses[currTag.hyperlinkPoses.length-1], ")"));
+                    for (let s = 1; s < currTag.hyperlinks.length+1; s ++) {
+                        
                         //doc.lineGap(currTag.style.lineGap).fontSize(currTag.style.fontSize).text(currTag.text.substring(s == 0 ? 0 : currTag.hyperlinkPoses[s], s == currTag.hyperlinks.length ? currTag.text.length : currTag.hyperlinkPoses[s+1]));
-                        doc.text(currTag.text.substring(prevLinkPos, currTag.hyperlinkPoses[s]), {lineBreak: s == currTag.hyperlinks.length-1 ? true : false});
-                        doc.link(doc.x, doc.y, 50, 50, currTag.hyperlinks[s].content);
+                        doc.text(currTag.text.substring(prevLinkPos, currTag.hyperlinkPoses[s]), { link: "https://stashey13.github.io" });
+                            //doc.link(doc.x, doc.y, 50, 50, currTag.hyperlinks[s].content);
                         prevLinkPos = currTag.hyperlinkPoses[s];
                     }
                     doc.lineGap(currTag.style.lineGap).fontSize(currTag.style.fontSize).text(currTag.text.substring(prevLinkPos, currTag.text.length-1));
                 }
                 else {
-                    alert("addin " + currTag.text);
                     doc.lineGap(currTag.style.lineGap).fontSize(currTag.style.fontSize).text(currTag.text);
                 }
                 
