@@ -1,7 +1,7 @@
 //import { PDFDocument, StandardFonts, rgb } from 'pdf-lib';
 
 const fs = require('fs');
-const { app, BrowserWindow } = require('electron');
+const { app, BrowserWindow, shell } = require('electron');
 
 function createWindow() {
   const win = new BrowserWindow({
@@ -13,6 +13,10 @@ function createWindow() {
     },
   });
   win.openDevTools();
+  win.webContents.on('will-navigate', (event, url) => {
+    event.preventDefault(); // Prevent default navigation behavior
+    shell.openExternal(url); // Open the link in the default system browser
+  });
 
   // Load your HTML file (e.g., index.html)
   win.loadFile('index.html');

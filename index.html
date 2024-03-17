@@ -136,6 +136,11 @@
 
         </div>
         <script>
+    function openLinkExternally(event) {
+        event.preventDefault();
+        const link = event.target.href;
+        shell.openExternal(link);
+    }
     document.getElementById('app-version-text').addEventListener('click', function() {
         var block = document.getElementById('appversion-information');
         block.style.display = block.style.display === 'none' ? 'block' : 'none';
