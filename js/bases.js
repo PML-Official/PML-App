@@ -3,14 +3,15 @@ class Style {
         this.width = 0;
         this.color = black;
         this.size = 0;
-        this.fontSize = 0;
+        this.fontSize = undefined;
         this.height = 0;
         this.opacity = 0;
         this.backgroundColor = white;
         this.margin = 1;
         this.topMargin = 20;
         this.botMargin = 20;
-        this.lineGap = 10;
+        this.lineGap = undefined;
+        this.underlined = false;
     }
 }
 
@@ -38,6 +39,9 @@ class Link extends Tag {
         this.x = x;
         this.y = y;
         this.isLink = true;
+        this.style = new Style();
+        this.style.color = blue;
+        this.style.underlined = true;
     }
 }
 
