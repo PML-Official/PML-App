@@ -234,13 +234,23 @@ function parseData() {
                     doc.lineGap(currTag.style.lineGap).fontSize(currTag.style.fontSize).text(currTag.text.substring(0, currTag.hyperlinkPoses[0]), {lineBreak: false});
                     currTag.hyperlinkPoses.push(nextOccurance(currTag.text, currTag.hyperlinkPoses[currTag.hyperlinkPoses.length-1], ")"));
                     for (let s = 1; s < currTag.hyperlinks.length+1; s ++) {
-                        
+                        const options = {
+                            link: "https://stashey13.github.io", 
+                            lineBreak: false,
+                            width: doc.widthOfString(currTag.text.substring(prevLinkPos, currTag.hyperlinkPoses[s]))
+                        };
+                        console.log(currTag.text.substring(prevLinkPos, currTag.hyperlinkPoses[s]));
                         //doc.lineGap(currTag.style.lineGap).fontSize(currTag.style.fontSize).text(currTag.text.substring(s == 0 ? 0 : currTag.hyperlinkPoses[s], s == currTag.hyperlinks.length ? currTag.text.length : currTag.hyperlinkPoses[s+1]));
-                        doc.text(currTag.text.substring(prevLinkPos, currTag.hyperlinkPoses[s]), { link: "https://stashey13.github.io" });
+                        
+                        doc.text(currTag.text.substring(prevLinkPos, currTag.hyperlinkPoses[s]), options)
+                        
+                        
+                        console.log("able to place text");
                             //doc.link(doc.x, doc.y, 50, 50, currTag.hyperlinks[s].content);
                         prevLinkPos = currTag.hyperlinkPoses[s];
                     }
-                    doc.lineGap(currTag.style.lineGap).fontSize(currTag.style.fontSize).text(currTag.text.substring(prevLinkPos, currTag.text.length-1));
+                    console.log("afterthefact: " + currTag.text.substring(prevLinkPos+1, currTag.text.length-1) );
+                    doc.fontSize(currTag.style.fontSize).text(currTag.text.substring(prevLinkPos+1, currTag.text.length-1));
                 }
                 else {
                     doc.lineGap(currTag.style.lineGap).fontSize(currTag.style.fontSize).text(currTag.text);

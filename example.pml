@@ -4,4 +4,4 @@
 {-- Page 2}
 [h1: this is a link(https://stashey13.github.io, yomather)]
 {-- Page 3}
-[h1: hic est an un link(https://linuxrocks2000.github.io, tyler's site) and this is some mor]
+[h1: hic est an un link(https://linuxrocks2000.github.io, tyler's site) and this is some more]
