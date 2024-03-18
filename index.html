@@ -17,7 +17,7 @@
     </head>
 
     <body>
-<div id="opening-screen">
+<div id="opening-screen" style="display: block">
             <div id="logo"><img alt="pml logo" class="pml-logo" src="images/PML White.png"></div>
             <div id="welcome-contain">
             <div id="welcome">
@@ -58,7 +58,7 @@
         </div>
 <!--End Parsing Script-->
        
-
+    </div>
         <!--Bottom Bar-->
         <div class="bottom-bar">
             <img alt="pml logo" class="bottom-logo" src="images/PML White.png" href="https://stashey13.github.io">
@@ -132,7 +132,7 @@
             </span>
         </div>
 
-    </div>
+    
 
 
         <script>
@@ -305,57 +305,44 @@ highlightKeywords();
    <script>
   // Function to handle keydown event
 function handleKeyDown(event) {
-    // Check if the Enter key is pressed
-    if (event.keyCode === 13) {
-        // Get the selection and range objects
-        const selection = window.getSelection();
-        const range = selection.getRangeAt(0);
-
-        // Create a new line break node
+// Check if the Enter key is pressed
+if (event.keyCode === 13) {
+// Get the selection and range objects
+const selection = window.getSelection();
+const range = selection.getRangeAt(0);
+// Create a new line break node
         const br = document.createElement('br');
-
-        // Insert the line break at the current cursor position
+// Insert the line break at the current cursor position
         range.insertNode(br);
-
-        // Move the cursor to the end of the newly created line
+// Move the cursor to the end of the newly created line
         range.setStartAfter(br);
         range.setEndAfter(br);
-
-        // Collapse the range and set the selection
+// Collapse the range and set the selection
         range.collapse(false);
         selection.removeAllRanges();
         selection.addRange(range);
-
-        // Prevent the default behavior of the Enter key
+// Prevent the default behavior of the Enter key
         event.preventDefault();
     }
-
-    // Check if the Backspace key is pressed
+// Check if the Backspace key is pressed
     if (event.keyCode === 8) {
         // Get the selection and range objects
         const selection = window.getSelection();
         const range = selection.getRangeAt(0);
-
-        // Get the current line text
+// Get the current line text
         const currentLineText = range.startContainer.textContent;
         const currentLineOffset = range.startOffset;
-
-        // Check if the cursor is at the beginning of the line and the line is empty
+// Check if the cursor is at the beginning of the line and the line is empty
         if (currentLineOffset === 0 && currentLineText.trim() === '') {
             // Get the previous sibling node
             const prevNode = range.startContainer.previousSibling;
-
-            // Remove the empty line
+// Remove the empty line
             if (prevNode && prevNode.nodeName === 'BR') {
                 prevNode.parentNode.removeChild(prevNode);
             }
-
-            // Prevent the default behavior of the Backspace key
+// Prevent the default behavior of the Backspace key
             event.preventDefault();
-        }
-    }
-}
-
+        }}}
 // Function to handle input event
 function handleInput(event) {
     // Check if the last character is a line break
@@ -368,24 +355,29 @@ function handleInput(event) {
         range.collapse(false);
         selection.removeAllRanges();
         selection.addRange(range);
-    }
-}
-
+    }}
 // Add event listener for the keydown event on the contentDiv
 contentDiv.addEventListener('keydown', handleKeyDown);
-
 // Add event listener for the input event on the contentDiv
 contentDiv.addEventListener('input', handleInput);
-
-
-
 </script>
 
 
+
+<!--Command Q-->
 <script>
-    
-</script>
+    const {ipcRenderer } = require('electron');
 
+    ipcRenderer.on('togglePageVisibilityTest', () => {
+    const block = document.getElementById('appversion-information');
+
+    if (block.style.display === 'block') {
+        block.style.display = 'none';
+    }  else {
+        block.style.display = 'block';
+    }
+});
+</script>
 
 </div>
 
@@ -393,51 +385,3 @@ contentDiv.addEventListener('input', handleInput);
 
 
 </html>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
