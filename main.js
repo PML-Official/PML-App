@@ -1,7 +1,6 @@
 //import { PDFDocument, StandardFonts, rgb } from 'pdf-lib';
 
-const fs = require('fs');
-const { app, BrowserWindow, shell } = require('electron');
+const { app, BrowserWindow, shell, globalShortcut, dialog } = require('electron');
 
 function createWindow() {
   const win = new BrowserWindow({
@@ -18,21 +17,63 @@ function createWindow() {
     shell.openExternal(url); // Open the link in the default system browser
   });
 
-  // Load your HTML file (e.g., index.html)
+  
   win.loadFile('index.html');
 }
 
-app.whenReady().then(createWindow);
-
-// Quit when all windows are closed
+// Quit app when all windows are closed
 app.on('window-all-closed', () => {
   if (process.platform !== 'darwin') {
     app.quit();
   }
 });
 
+// Create window once app is opened
 app.on('activate', () => {
   if (BrowserWindow.getAllWindows().length === 0) {
     createWindow();
   }
+});
+
+
+// Keyboard shortcuts
+
+// ctrl/cmnd Q
+
+app.whenReady().then(() => {
+  createWindow();
+
+  globalShortcut.register('CommandOrControl+Q', () => {
+    console.log('CommandOrControl+Q was pressed');
+    dialog.showMessageBox({
+      type: 'error',
+      message: 'Keyboard Shortcut Pressed',
+      detail: 'Command Q was pressed.',
+      buttons: ['OK']
+    });
+  });
+});
+
+// ctrl/cmnd H
+
+app.whenReady().then(() => {
+  createWindow();
+
+  globalShortcut.register('CommandOrControl+H', () => {
+    console.log('CommandOrControl+H was pressed');
+  });
+
+  mainWindow.loadURL(`file://${path.join(__dirname,'../../Desktop/PML-App/index.html')}`)
+
+});
+
+
+
+
+
+
+
+// Unregister all shortcuts when the app is about to quit
+app.on('will-quit', () => {
+  globalShortcut.unregisterAll();
 });

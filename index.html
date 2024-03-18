@@ -44,18 +44,11 @@
                 
             </div>
 
-<script>
-    document.addEventListener('DOMContentLoaded', function() {
-    document.getElementById('file-searcher').addEventListener('change', function() {
-        var block = document.getElementById('opening-screen');
-        block.style.display = block.style.display === 'none' ? 'block' : 'none';
-        document.getElementById('main-page') .style.display = 'block';
-        document.getElementById('appversion-information').style.display = "none";
-    });
 
-});
+<!--Script for Changing to main page-->
+<script>document.addEventListener('DOMContentLoaded', function() {document.getElementById('file-searcher').addEventListener('change', function() {var block = document.getElementById('opening-screen');block.style.display = block.style.display === 'none' ? 'block' : 'none';document.getElementById('main-page') .style.display = 'block';document.getElementById('appversion-information').style.display = "none"; });});</script>
 
-</script>
+<!--Parsing Script-->
         <script src="node_modules/pdfkit/js/pdfkit.standalone.js"></script>
 
         <script src="js/colors.js"></script>
@@ -63,7 +56,9 @@
         <script src="js/tags.js"></script>
         <script src="js/main.js"></script>
         </div>
+<!--End Parsing Script-->
        
+
         <!--Bottom Bar-->
         <div class="bottom-bar">
             <img alt="pml logo" class="bottom-logo" src="images/PML White.png" href="https://stashey13.github.io">
@@ -109,8 +104,6 @@
 
             <!--Contact-->
 
-<!--Note: Create Section for contact like the App Version section-->
-
 
         <div class="icon-4">
             <i class="material-symbols-outlined">
@@ -118,11 +111,16 @@
             </i>
             
             <span id="contact-text">Contact</span>
-        </div>    
+        </div> 
+        
+        
 
             
             </div>      
         </div>
+
+
+        <!--appversion-block-->
         <div id="appversion-information" class="hidden" style="display: none;">
             <span class="av-itext"><b>Version 0.1 &lpar;Beta&rpar;</b></span>
             <i class="material-symbols-outlined" id="close-btn">
@@ -134,7 +132,9 @@
             </span>
         </div>
 
-        </div>
+    </div>
+
+
         <script>
     function openLinkExternally(event) {
         event.preventDefault();
@@ -169,15 +169,15 @@
 
 
 <ul>
+    <!--
     <li>
         <div class="iframe-contain"><iframe id="display-pdf" src="output.pdf" width="900" height="700" style="display: none;"></iframe></div>
     </li>
+    -->
     <li id="li1">
 <div class="editing-area" id="resizable">
 <div class="editor-container">
-    <div class="line-numbers-container">
-    <div class="line-numbers"></div>
-    </div>
+
     <div class="contenteditable-div" id="editor" contenteditable="true"></div>
 </div>
 <div class="runbutton-contain">
@@ -187,8 +187,6 @@
     </li>
 </ul>
 </div>
-
-
 <style>
     .keyword {color:rgb(223, 27, 27)}
 </style>
@@ -384,7 +382,9 @@ contentDiv.addEventListener('input', handleInput);
 </script>
 
 
-
+<script>
+    
+</script>
 
 
 </div>
