@@ -23,6 +23,8 @@ function setFileData(input) {
     else {
         const file = input.files[0];
         if (file) {
+            const allowedTypes = ['application/octet-stream'];
+            if (allowedTypes.includes(file.type) || file.name.endsWith('.pml')) {
             const reader = new FileReader();
             reader.addEventListener('load', () => {
                 fileLines = reader.result.split("\n");
@@ -33,11 +35,14 @@ function setFileData(input) {
             filePath = file.path;
         }
         else {
-            alert("invalid file selected");
+            alert("invalid file type selected. Please select a .pml file.");
+            window.location.href = "index.html";
         }
-    }
-}
+    } else {
+        alert("No File Selected");
+    }}}
 
+    
 // thanks internet
 function getAllIndexes(str, substring) {
     const indexes = [];

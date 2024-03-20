@@ -20,8 +20,10 @@ function createWindow() {
     mainWindow.webContents.openDevTools();
 
     mainWindow.webContents.on('will-navigate', (event, url) => {
-        event.preventDefault();
-        shell.openExternal(url);
+        if (!url.includes("index.html")) {
+            event.preventDefault();
+            shell.openExternal(url);
+        }
     });
 
     mainWindow.loadFile('index.html');
@@ -47,16 +49,7 @@ app.on('activate', () => {
 
 
 
-
-
-
-
-
 // Keyboard Shortcuts
-
-
-
-
 
 // Command + Q
 app.on('ready', () => {
@@ -78,13 +71,6 @@ app.on('ready', () => {
 
     console.log(globalShortcut.isRegistered('CommandOrControl+Q'));
 });
-
-
-
-
-
-
-
 
 
 // Unregister all shortcuts when the app is about to quit
