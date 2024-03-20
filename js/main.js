@@ -42,7 +42,7 @@ function setFileData(input) {
         alert("No File Selected");
     }}}
 
-    
+
 // thanks internet
 function getAllIndexes(str, substring) {
     const indexes = [];
@@ -197,8 +197,28 @@ function parseData() {
                                         pushTag.hyperlinks = links;
                                         pushTag.hyperlinkPoses = getAllIndexes(tagContent, "link(");
                                     }
+                                    else if (tagName == "h4") {
+                                        pushTag = new Header4(tagContent);
+                                        pushTag.hyperlinks = links;
+                                        pushTag.hyperlinkPoses = getAllIndexes(tagContent, "link(");
+                                    }
+                                    else if (tagName == "h5") {
+                                        pushTag = new Header5(tagContent);
+                                        pushTag.hyperlinks = links;
+                                        pushTag.hyperlinkPoses = getAllIndexes(tagContent, "link(");
+                                    }
+                                    else if (tagName == "h6") {
+                                        pushTag = new Header6(tagContent);
+                                        pushTag.hyperlinks = links;
+                                        pushTag.hyperlinkPoses = getAllIndexes(tagContent, "link(");
+                                    }
                                     else if (tagName == "p") {
                                         pushTag = new P(tagContent);
+                                        pushTag.hyperlinks = links;
+                                        pushTag.hyperlinkPoses = getAllIndexes(tagContent, "link(");
+                                    }
+                                    else if (tagName == "text") {
+                                        pushTag = new Text(tagContent);
                                         pushTag.hyperlinks = links;
                                         pushTag.hyperlinkPoses = getAllIndexes(tagContent, "link(");
                                     }
