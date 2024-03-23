@@ -63,6 +63,7 @@ function nextOccurance(str, ind, c) {
 }
 
 function parseData() {
+
     var currentPage = 0;
     var pageStyle = new Style();
     var allPages = [];
@@ -295,8 +296,6 @@ function parseData() {
     writeStream.addListener('finish', () => {
         document.getElementById("display-pdf").remove();
         const iframe = document.createElement('iframe');
-        iframe.width = "800px";
-        iframe.height = "600px";
         iframe.id = "display-pdf";
         iframe.src = "output.pdf";
         document.getElementsByClassName("iframe-contain")[0].appendChild(iframe);

@@ -60,6 +60,7 @@
        
     </div>
         <!--Bottom Bar-->
+        
         <div class="bottom-bar">
             <img alt="pml logo" class="bottom-logo" src="images/PML White.png" href="https://stashey13.github.io">
             <span class="pipe">|</span>
@@ -132,8 +133,6 @@
             </span>
         </div>
 
-    
-
 
         <script>
     function openLinkExternally(event) {
@@ -170,26 +169,28 @@
 
 <ul>
     
+    <li id="li1">
+<div class="editing-area" id="resizable">
+<div class="editor-container">
+<div class="textovereditor">Edit PDF Markup Language</div>
+    <div class="contenteditable-div" id="editor" contenteditable="true"></div>
+    <div class="runbutton-contain">
+        <button class="runbutton" id="runbutton" onclick="setFileData()">Run Code</button>
+    </div>
+</div>
+</div>
+    </li>
+    
     <li>
         <div class="iframe-contain"><iframe id="display-pdf" src="output.pdf" width="900" height="700" style="display: none;"></iframe></div>
     </li>
 
-    <li id="li1">
-<div class="editing-area" id="resizable">
-<div class="editor-container">
-
-    <div class="contenteditable-div" id="editor" contenteditable="true"></div>
-</div>
-<div class="runbutton-contain">
-    <button class="runbutton" id="runbutton" onclick="setFileData()">Run</button>
-</div>
-</div>
-    </li>
 </ul>
 </div>
 <style>
     .keyword {color:rgb(223, 27, 27)}
 </style>
+
 
 
 
@@ -268,6 +269,7 @@ const keywordColors = {
     'p': 'blue'
 };
 
+
 function highlightKeywords() {
     const cursorOffset = getCaretCharacterOffsetWithin(contentDiv);
     const text = contentDiv.innerText;
@@ -330,7 +332,7 @@ const range = selection.getRangeAt(0);
         const selection = window.getSelection();
         const range = selection.getRangeAt(0);
 // Get the current line text
-        const currentLineText = range.startContainer.textContent;
+const currentLineText = range.startContainer.textContent;
         const currentLineOffset = range.startOffset;
 // Check if the cursor is at the beginning of the line and the line is empty
         if (currentLineOffset === 0 && currentLineText.trim() === '') {
