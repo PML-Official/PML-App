@@ -1,5 +1,5 @@
 /* opening screen */
-body {background-color: rgb(34, 34, 34); padding: 0 !important; margin: 0 !important; overflow-x: auto; overflow-y: auto; white-space: nowrap;} #opening-screen {color: white; font-family: "Roboto", sans-serif; padding: 20px;} .opening-screen-button {padding: 8px; padding-left: 35px; padding-right: 35px; cursor: pointer; color: white; border: 1px solid rgb(223,27,27); background-color: rgb(223, 27, 27); border: none; border-radius: 14px; font-size: 1.2rem;}
+body {background-color: rgb(34, 34, 34); padding: 0 !important; margin: 0 !important; overflow-x: none !important; overflow-y: none !important; white-space: nowrap; max-width: 100%;} #opening-screen {color: white; font-family: "Roboto", sans-serif; padding: 20px;} .opening-screen-button {padding: 8px; padding-left: 35px; padding-right: 35px; cursor: pointer; color: white; border: 1px solid rgb(223,27,27); background-color: rgb(223, 27, 27); border: none; border-radius: 14px; font-size: 1.2rem;}
 .opening-screen-button:hover {background-color: rgba(223, 27, 27, 0.728); box-shadow: 0px 4px 8px rgba(0,0,0,0.1)} #welcome {font-size: 2.5rem;} #welcome-contain {max-width: 100%; width: 100%; display: flex; justify-content: center; align-items: center; margin-top: 30px;}
 #getstarted-contain {max-width: 100%; width: 100%; display: flex; justify-content: center; align-items: center; margin-top: 0px;} #getstarted {font-size: 1.4rem;}
 /* logo */
@@ -8,7 +8,7 @@ body {background-color: rgb(34, 34, 34); padding: 0 !important; margin: 0 !impor
 /* option 1 */
 .option1-text {font-size: 1.3rem; white-space: nowrap;} #option1-container {max-width: 100%; margin-right: 46px; width: fit-content; margin-top: 30px; display: flex; flex-direction: column; justify-content: center; align-items: center;} #bttn1contain {max-width: 100%;  margin-top: 12px;} 
 /* bottom bar */
-.bottom-bar {height: 50px; min-height: 50px; width: 100%; max-width: 100%; position: fixed; display: flex; align-items: center; bottom: 0; background-color: rgb(48, 48, 48);} .icon-1 {display: flex; align-items: center; margin-left: 30px;} .material-symbols-outlined {color: white; margin-right: 3px; cursor: default;}
+.bottom-bar {height: 50px; min-height: 50px; width: 100%; max-width: 100%; left: 0; position: fixed; display: flex; align-items: center; bottom: 0; background-color: rgb(48, 48, 48);} .icon-1 {display: flex; align-items: center; margin-left: 30px;} .material-symbols-outlined {color: white; margin-right: 3px; cursor: default;}
 .icon-1 a {color: white; text-decoration: none;} .developer-text {font-family: 'Roboto', sans-serif; font-size:small} .bottom-logo {max-height: 50px; height: 50px; margin-left: 3vh} .pipe { color: white; font-size: 2rem; margin-left: 30px; font-weight:100;}
 .icon-2 {display: flex; align-items: center; margin-left: 30px;} #app-version-text {font-family: 'Roboto', sans-serif; font-size:small; color: white; cursor: pointer;}
 .home-icon {display: flex; align-items: center; margin-left: 30px;} .home-text {font-family: 'Roboto', sans-serif; font-size:small; color: white; cursor: pointer;} .home-text:hover { cursor: pointer;} .homelink {text-decoration: none;}
@@ -16,42 +16,45 @@ body {background-color: rgb(34, 34, 34); padding: 0 !important; margin: 0 !impor
 .icon-4 {display: flex; align-items: center; margin-left: 30px;} #contact-text {font-family: 'Roboto', sans-serif; font-size:small; color: white; cursor: pointer;}
 
 /* app version info */
-#appversion-information {display:block; height: 250px; width: 200px; word-wrap: break-word; background-color:rgb(48, 48, 48); padding-left: 8px; padding-right: 8px; padding-bottom: 0; position: fixed; bottom: 60px; margin-left: 390px; box-shadow: 0px 10px, 20px rgba(0,0,0,20)} .av-itext {color: white; font-family: "Roboto", sans-serif; margin-left: 8px;}
-#appversion-information .material-symbols-outlined {margin-left: 25px; cursor: pointer;} .explanationtext {width: 180px; word-wrap: break-word !important; display: inline-block; margin-left: 8px; color: white; font-family: 'Roboto', sans-serif; margin-top: 30px; font-size:small} #close-btn:hover {color: rgb(226, 226, 226)} 
+#appversion-information {display:block; height: 250px; width: 200px; word-wrap: break-word; background-color:rgb(48, 48, 48); padding-left: 8px; box-shadow: 2px 2px 2px 2px  rgba(0, 0, 0, 0.525); padding-right: 8px; padding-bottom: 0; position: fixed; bottom: 60px; margin-left: 390px; box-shadow: 0px 10px, 20px rgba(0,0,0,20)} .av-itext {color: white; font-family: "Roboto", sans-serif; margin-left: 8px;}
+#appversion-information .material-symbols-outlined {margin-left: 30px; cursor: pointer; margin-top: 5px; } .explanationtext {width: 180px; word-wrap: break-word !important; display: inline-block; margin-left: 8px; color: white; font-family: 'Roboto', sans-serif; margin-top: 30px; font-size:small} #close-btn:hover {color: rgb(226, 226, 226)} 
 .hidden {display:none;} 
 
 
 
 /* text editor */
-.editing-area {background-color: rgba(16, 16, 16, 0.842); width: 100vw; resize: horizontal; height: 100vh;} #main-page {overflow-y: none; width: 100%; min-height: 100vh; display: flex; flex-direction: column;} #main-page-content {flex: 1;}
-.keyword {color:rgb(223, 27, 27); font-weight: bold;} .content {padding: 10px;} .line-number {counter-increment: line-number; width: 30px; display: inline-block; text-align: right; user-select: none;}/* .iframe-contain {margin: 0; } */  #display-pdf {display: none; visibility: hidden;}
-.line-numbers-container {display: flex; flex-direction: column; align-items: flex-end; padding-right: 10px; margin-top: 10px; font-family: Arial, sans-serif; font-size: 16px; line-height: 1.5; color: #FFF;}/* #display-pdf {width: 500px; border: none; margin: 0; padding: 0; height: 900px;} */
-.runbutton {padding-top: 8px; padding-bottom: 8px; padding-left: 24px; padding-right: 24px; margin-left: 235px; border: none; background-color: rgb(0, 110, 255); border-radius: 4px; color: white;} .runbutton:hover {cursor: pointer; background-color: rgb(38, 131, 252);}
+.editing-area {width: 73.64vw; resize: horizontal; height: 95vh; margin-top: 0;} #main-page {overflow-y: none; max-width: 100%; min-height: calc(100vh - bottom-bar); overflow-x: none; width: 100vw; min-height: 100vh;} #main-page-content {flex: 1;}
+.keyword {color:rgb(223, 27, 27); font-weight: bold;} .content {padding: 10px;} .line-number {counter-increment: line-number; width: 30px; display: inline-block; text-align: right; user-select: none;} .iframe-contain {margin: 0; padding: 0; margin-bottom: 900px; margin-right: 100px;} /* #display-pdf {display: none; visibility: hidden;}*/
+/* .line-numbers-container {display: flex; flex-direction: column; align-items: flex-end; padding-right: 10px; margin-top: 10px; font-family: Arial, sans-serif; font-size: 16px; line-height: 1.5; color: #FFF;}*/ #display-pdf {width: 500px; border: none; position:absolute; display: block; margin: 0; padding: 0; height: 800px;} 
+.runbutton {padding-top: 8px; padding-bottom: 8px; padding-left: 24px; padding-right: 24px; margin-left:0; margin-top: 10px; border: none; background-color: rgb(0, 110, 255); border-radius: 4px; color: white; height: 50px; width: 900px; } .runbutton:hover {cursor: pointer; background-color: rgb(38, 131, 252);}
+.textovereditor {color: white; font-family: 'Roboto', sans-serif; width: 900px; margin-top: 5px; background-color: rgba(69, 69, 69, 0.815);  z-index: 9999; padding-top: 8px; padding-left: 5px; padding-bottom: 8px; font-size: 1.5rem;  }
+.runbuttoncontain {display: flex; flex-direction: column; justify-content: center; align-items: center;}
 /* page orginization */
 #main-page ul {list-style-type: none; margin: 0; padding: 0;} #main-page ul li {display: inline-block; margin: 0; padding: 0;}
 #editor {
-    min-height: 800px; /* Adjust height as needed */
-    height: 850px;
-    width: 1200px;
+    min-height: 800px; /* Adjust height as needed */ 
+    height: 80vh;
+    width: 900px;
     outline: none;
     overflow-x: auto;
     overflow-y: auto;
     font-family: monospace;
     font-size: inherit;
     line-height: inherit;
-    margin-left: 230px;
     border: none;
     resize: none;
     display: block;
     color: white;
-    background-color:rgb(48, 48, 48) ;
+    background-color:rgb(58, 58, 58) ;
     padding-left: 5px;
-    padding-top: 5px;
-    margin-top: 0;
+    padding-top: 10px;
+    z-index: -1;
+    margin-right: 0;
   }
-.editor-container {padding: 5px; width: 300px;}
+.editor-container {padding: 2px; margin-left: 5px; max-width: fit-content; max-height: fit-content; margin-bottom: 0; margin-right: 0; resize: horizontal;}
 
 
+/*
 .line-numbers {
   position: absolute;
   left: 0;
@@ -64,4 +67,8 @@ body {background-color: rgb(34, 34, 34); padding: 0 !important; margin: 0 !impor
   text-align: right;
   pointer-events: none;
   padding-top: 2px;
+  color: white;
 }
+
+.tag1 {color: red;} .tag2 {color: blue;}
+*/
