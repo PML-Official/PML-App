@@ -25,9 +25,16 @@ function setFileData(input) {
         if (file) {
             const reader = new FileReader();
             reader.addEventListener('load', () => {
-                fileLines = reader.result.split("\n");
-                document.getElementById("editor").innerText = reader.result;
-                parseData();
+                if (file.path.split(".")[1] != "pml") {
+                    alert("a non-pml file was selected");
+                    window.location.href = "index.html";
+                }
+                else {
+                    fileLines = reader.result.split("\n");
+                    document.getElementById("editor").innerText = reader.result;
+                    parseData();
+                }
+
             });
             reader.readAsText(file);
             filePath = file.path;
@@ -36,6 +43,32 @@ function setFileData(input) {
             alert("invalid file selected");
         }
     }
+}
+
+function getIdFromTagName(s) {
+    let tags = ["p", "h1", "h2", "h3", "img"];
+    return tags.indexOf(s);
+}
+
+function getStyleFromId(id) {
+    let styles = [pStyle, h1Style, h2Style, h3Style, imgStyle, linkStyle];
+    return styles[id];
+}
+
+// checks all the undefined styles in main and overwrites them with sub
+function mergeStyle(main, sub) {
+    var ret = structuredClone(main);
+    if (ret.fontSize == undefined) {
+        ret.fontSize = sub.fontSize;
+    }
+    if (ret.lineGap == undefined) {
+        ret.lineGap = sub.lineGap;
+    }
+    return ret;
+}
+
+function placeText(d, text, style, opt) {
+    d.fontSize(style.fontSize).lineGap(style.lineGap).fillColor(style.color.name).text(text, options=opt);
 }
 
 // thanks internet
@@ -49,12 +82,49 @@ function getAllIndexes(str, substring) {
     return indexes;
 }
 
+// returns the index of the next char seen at an index
 function nextOccurance(str, ind, c) {
     for (let x = ind; x < str.length; x ++) {
         if (str[x] == c) {
             return x;
         }
     }
+}
+
+// nextOccurance, but relative position
+function nextOccuranceRelative(str, ind, c) {
+    return nextOccurance(str, ind, c) - ind;
+}
+
+// removes all blank spaces at the beginning of a string
+function trim(str) {
+    let ret = 0;
+    for (let x = 0; x < str.length; x ++) {
+        if (str[x] != " ") {
+            return str.substring(x);
+        } 
+    }
+    return str;
+}
+
+function isHttps(str) {
+    return str.substring(0, 7) == "https://" || str.substring(0, 6) == "http://";
+}
+
+function directoryOfFile(str) {
+    if (isHttps(str)) {
+        return str;
+    }
+    let ret = "";
+    let buffer = "";
+    str.split("").forEach(char => {
+        buffer += char;
+        if (char == "\\") {
+            ret += buffer;
+            buffer = "";
+        }
+    });
+    return ret;
 }
 
 function parseData() {
@@ -152,8 +222,8 @@ function parseData() {
                                 alert("error at " + parseInt(x) + ":" + parseInt(y));
                             }
                             else {
-                                let tagName = buffer.split(":")[0];
-                                let tagContent = buffer.split(":")[1];
+                                let tagName = trim(buffer.split(":")[0]);
+                                let tagContent = trim(buffer.split(":")[1]);
                                 for (let z = 1; z < buffer.split(":").length-1; z ++) {
                                     tagContent += ":" + buffer.split(":")[z+1];
                                 }
@@ -162,42 +232,33 @@ function parseData() {
                                     alert("page not created yet");
                                 }
                                 else {
-                                    var links = [];
-                                    let linkBuffer = "";
-                                    let pushTag = new Tag();
-                                    if (tagContent.includes("link(")) {
-                                        for (let s = 0; s < getAllIndexes(tagContent, "link(").length; s ++) {
-                                            for (let z = getAllIndexes(tagContent, "link(")[s] + 5; z < tagContent.length; z ++) {
-                                                if (tagContent[z] == ")") {
-                                                    break;
-                                                }
-                                                linkBuffer += tagContent[z];
+                                    if (textTagNames.includes(tagName)) {
+                                        var line = [];
+                                        var linkPoses = getAllIndexes(tagContent, "link(");
+                                        var textBuffer = "";
+                                        var linkBuffer = "";
+                                        for (let z = 0; z < tagContent.length; z ++) {
+                                            if (linkPoses.includes(z)) {
+                                                line.push(new TextTag(getIdFromTagName(tagName), textBuffer));
+                                                linkBuffer = tagContent.substring(z+5, nextOccurance(tagContent, z+5, ")"));
+                                                line.push(new Link(linkBuffer.split(", ")[0], linkBuffer.split(", ")[1]));
+                                                textBuffer = "";
+                                                z += nextOccuranceRelative(tagContent, z, ")");
                                             }
-                                            links.push(new Link(linkBuffer.split(", ")[0], linkBuffer.split(", ")[1], doc.x, doc.y));
-                                            linkBuffer = "";
+                                            else {
+                                                textBuffer += tagContent[z];
+                                            }
+                                        }
+                                        if (textBuffer != "") {
+                                            line.push(new TextTag(getIdFromTagName(tagName), textBuffer));
+                                        }
+                                        currentPage.tags.push(new TextLine(line));
+                                    }
+                                    else {
+                                        if (tagName == "img") {
+                                            currentPage.tags.push(new Img(tagContent))
                                         }
                                     }
-                                    if (tagName == "h1") {
-                                        pushTag = new Header1(tagContent);
-                                        pushTag.hyperlinks = links;
-                                        pushTag.hyperlinkPoses = getAllIndexes(tagContent, "link(");
-                                    }
-                                    else if (tagName == "h2") {
-                                        pushTag = new Header2(tagContent);
-                                        pushTag.hyperlinks = links;
-                                        pushTag.hyperlinkPoses = getAllIndexes(tagContent, "link(");
-                                    }
-                                    else if (tagName == "h3") {
-                                        pushTag = new Header3(tagContent);
-                                        pushTag.hyperlinks = links;
-                                        pushTag.hyperlinkPoses = getAllIndexes(tagContent, "link(");
-                                    }
-                                    else if (tagName == "p") {
-                                        pushTag = new P(tagContent);
-                                        pushTag.hyperlinks = links;
-                                        pushTag.hyperlinkPoses = getAllIndexes(tagContent, "link(");
-                                    }
-                                    currentPage.tags.push(pushTag);
                                 }
                             }
                         }
@@ -224,37 +285,37 @@ function parseData() {
     for (let x = 0; x < allPages.length; x ++) {
         for (let y = 0; y < allPages[x].tags.length; y ++) {
             let currTag = allPages[x].tags[y];
-            if (currTag.isText) {
-                if (currTag.hyperlinks.length != 0) {
-                    for (let z = 0; z < currTag.hyperlinkPoses.length; z ++) {
-                        currTag.text = currTag.text.slice(0, currTag.hyperlinkPoses[z]) + currTag.hyperlinks[z].nickname + currTag.text.slice(nextOccurance(currTag.text, currTag.hyperlinkPoses[z], ")"))
-                    }
-                    let prevLinkPos = currTag.hyperlinkPoses[0];
-                    doc.lineGap(currTag.style.lineGap).fontSize(currTag.style.fontSize).text(currTag.text.substring(0, currTag.hyperlinkPoses[0]), {lineBreak: false});
-                    currTag.hyperlinkPoses.push(nextOccurance(currTag.text, currTag.hyperlinkPoses[currTag.hyperlinkPoses.length-1], ")"));
-                    for (let s = 1; s < currTag.hyperlinks.length+1; s ++) {
-                        var currLink = currTag.hyperlinks[s-1];
-                        const options = {
-                            link: currLink.content,
-                            continued: true,
-                            underline: currLink.style.underlined
-                        };
-                        doc.lineGap(currLink.style.lineGap == undefined ? currTag.style.lineGap : currLink.style.lineGap).fontSize(currLink.style.fontSize == undefined ? currTag.style.fontSize : currLink.style.fontSize).fillColor(currLink.style.color.name).text(currTag.text.substring(prevLinkPos, currTag.hyperlinkPoses[s]), options);
-
-                        prevLinkPos = currTag.hyperlinkPoses[s];
-                    }
-                    
-                    doc.lineGap(currTag.style.lineGap).fontSize(currTag.style.fontSize).fillColor(currTag.style.color.name).text(currTag.text.substring(prevLinkPos+1, currTag.text.length), {link: null, underline: currTag.style.underlined});
-                }
-                else {
-                    const options = {    
+            if (currTag.lineOfText) {
+                let overrideId = undefined;
+                for (let z = 0; z < currTag.elements.length; z ++) {
+                    let s = new Style();
+                    const options = {
                         link: null,
-                        continued: false,
-                        underline: currTag.style.underlined
+                        continued: z != (currTag.elements.length - 1),
+                        underline: false
                     };
-                    doc.lineGap(currTag.style.lineGap).fontSize(currTag.style.fontSize).text(currTag.text, options).fillColor("rgb(" + currTag.style.color.r + ", " + currTag.style.color.g + ", " + currTag.style.color.b + ")");
+                    if (currTag.elements[z].id == LINK) {
+                        options.link = currTag.elements[z].hyperlink;
+                        s = mergeStyle(linkStyle, (overrideId == undefined ? pStyle : getStyleFromId(overrideId)));
+                    }
+                    else {
+                        overrideId = currTag.elements[z].id;
+                        s = getStyleFromId(currTag.elements[z].id);
+                    }
+                    options.underline = s.underlined;
+
+                    placeText(doc, currTag.elements[z].text, s, options);
                 }
-                
+            }
+            else {
+                if (currTag.id == IMG) {
+                    if (fs.existsSync(directoryOfFile(filePath) + currTag.text)) {
+                        doc.image(directoryOfFile(filePath) + currTag.text, pageStyle.margin, doc.y, { width: 200 });
+                    }
+                    else {
+                        alert("invalid img selected");
+                    }
+                }
             }
         }
         if (x != allPages.length - 1) {

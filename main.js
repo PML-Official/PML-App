@@ -14,8 +14,11 @@ function createWindow() {
   });
   win.openDevTools();
   win.webContents.on('will-navigate', (event, url) => {
-    event.preventDefault(); // Prevent default navigation behavior
-    shell.openExternal(url); // Open the link in the default system browser
+    if (url.substring(0, 4) != "file") {
+      event.preventDefault(); // Prevent default navigation behavior
+      shell.openExternal(url); // Open the link in the default system browser
+    }
+
   });
 
   // Load your HTML file (e.g., index.html)
