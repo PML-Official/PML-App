@@ -12,11 +12,12 @@
         <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
         <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
         <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
-
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
     </head>
 
     <body>
-<div id="opening-screen">
+<div id="opening-screen" style="display: block">
             <div id="logo"><img alt="pml logo" class="pml-logo" src="images/PML White.png"></div>
             <div id="welcome-contain">
             <div id="welcome">
@@ -43,18 +44,11 @@
                 
             </div>
 
-<script>
-    document.addEventListener('DOMContentLoaded', function() {
-    document.getElementById('file-searcher').addEventListener('change', function() {
-        var block = document.getElementById('opening-screen');
-        block.style.display = block.style.display === 'none' ? 'block' : 'none';
-        document.getElementById('main-page') .style.display = 'block';
-        document.getElementById('appversion-information').style.display = "none";
-    });
 
-});
+<!--Script for Changing to main page-->
+<script>document.addEventListener('DOMContentLoaded', function() {document.getElementById('file-searcher').addEventListener('change', function() {var block = document.getElementById('opening-screen');block.style.display = block.style.display === 'none' ? 'block' : 'none';document.getElementById('main-page') .style.display = 'block';document.getElementById('appversion-information').style.display = "none"; });});</script>
 
-</script>
+<!--Parsing Script-->
         <script src="node_modules/pdfkit/js/pdfkit.standalone.js"></script>
 
         <script src="js/colors.js"></script>
@@ -63,21 +57,24 @@
         <script src="js/styles.js"></script>
         <script src="js/main.js"></script>
         </div>
+<!--End Parsing Script-->
        
+    </div>
         <!--Bottom Bar-->
+        
         <div class="bottom-bar">
             <img alt="pml logo" class="bottom-logo" src="images/PML White.png" href="https://stashey13.github.io">
             <span class="pipe">|</span>
 
             <!--Home icon-->
+            
             <div class="home-icon">
                 <i class="material-symbols-outlined">home</i>  
-            </div>
 
-            <a class="homelink"href="index.html">
+                <a class="homelink" href="index.html">
                 <span class="home-text">Home</span>
             </a>
-
+            </div>
             <!--Developer Guide-->
             <div class="icon-1">   
             <i class="material-symbols-outlined"> 
@@ -94,26 +91,50 @@
                 <i class="material-symbols-outlined">
                     backup
                 </i>
-
+            
                 <span id="app-version-text">App Version</span>
             </div>    
 
-            <!--Note For Luke:
-            The Links are opening within the electron app - we need to find out a way to open them into browser            
-            -->
+            <!--Settings-->
+        <div class="icon-3">
+            <i class="material-symbols-outlined">
+                settings
+            </i>
+
+            <span id="settings-text">Settings</span>
+        </div>
+
+            <!--Contact-->
+
+
+        <div class="icon-4">
+            <i class="material-symbols-outlined">
+                contact_page
+            </i>
+            
+            <span id="contact-text">Contact</span>
+        </div> 
+        
+        
+
+            
             </div>      
         </div>
+
+
+        <!--appversion-block-->
         <div id="appversion-information" class="hidden" style="display: none;">
-            <span class="av-itext"><b>Version 0.0.1 &lpar;Beta&rpar;</b></span>
+            <span class="av-itext"><b>Version 0.1 &lpar;Beta&rpar;</b></span>
             <i class="material-symbols-outlined" id="close-btn">
                 close
             </i>
             <br>
             <span class="explanationtext">
-            Welcome to the very first version <br>of the app, 0.0.1! Right now, we're <br> in beta mode, which means we're <br> still ironing out the kinks and ad-<br>ding cool new features. We'd love <br> your help in making it even better!<br> If you come across any bugs or <br>have ideas on how we can impr-<br>ove, please let us know. Your fee-<br>dback is like gold to us! To Conta-<br>ct, go to PMLlanuguage.com or <br> click the contact button.
+            Welcome to the very first version <br>of the app, 0.1! Right now, we're <br> in beta mode, which means we're <br> still ironing out the kinks and ad-<br>ding cool new features. We'd love <br> your help in making it even better!<br> If you come across any bugs or <br>have ideas on how we can impr-<br>ove, please let us know. Your fee-<br>dback is like gold to us! To Conta-<br>ct, go to PMLlanuguage.com or <br> click the contact button.
             </span>
-
         </div>
+
+
         <script>
     function openLinkExternally(event) {
         event.preventDefault();
@@ -131,10 +152,6 @@
     });
 </script>            
 
-    </body>
-
-</html>
-
 
 
 
@@ -148,29 +165,36 @@
 
 
 <div id="main-page" style="display:none;">
-
+<div id="main-page-content">
 
 
 <ul>
+    
+    <li id="li1">
+<div class="editing-area" id="resizable">
+<div class="editor-container">
+<div class="textovereditor">Edit PDF Markup Language</div>
+    <div class="contenteditable-div" id="editor" contenteditable="true"></div>
+    <div class="runbutton-contain">
+        <button class="runbutton" id="runbutton" onclick="setFileData()">Run Code</button>
+    </div>
+</div>
+</div>
+    </li>
+    
     <li>
         <div class="iframe-contain"><iframe id="display-pdf" src="output.pdf" width="900" height="700" style="display: none;"></iframe></div>
     </li>
-    <li id="li1">
-<div class="editor-container">
-    <div class="line-numbers-container">
-    <div class="line-numbers"></div>
-    </div>
-    <div class="contenteditable-div" id="editor" contenteditable="true"></div>
-</div>
-<div class="runbutton">
-    <button class="runbutton" id="runbutton" onclick="setFileData()">Run</button>
-</div>
 
-    </li>
 </ul>
+</div>
 <style>
     .keyword {color:rgb(223, 27, 27)}
 </style>
+
+
+
+
 <!--for changing colors-->
 <script>
 document.getElementsByClassName("contenteditable-div")[0].addEventListener('input', () => {
@@ -246,6 +270,7 @@ const keywordColors = {
     'p': 'blue'
 };
 
+
 function highlightKeywords() {
     const cursorOffset = getCaretCharacterOffsetWithin(contentDiv);
     const text = contentDiv.innerText;
@@ -283,57 +308,44 @@ highlightKeywords();
    <script>
   // Function to handle keydown event
 function handleKeyDown(event) {
-    // Check if the Enter key is pressed
-    if (event.keyCode === 13) {
-        // Get the selection and range objects
-        const selection = window.getSelection();
-        const range = selection.getRangeAt(0);
-
-        // Create a new line break node
+// Check if the Enter key is pressed
+if (event.keyCode === 13) {
+// Get the selection and range objects
+const selection = window.getSelection();
+const range = selection.getRangeAt(0);
+// Create a new line break node
         const br = document.createElement('br');
-
-        // Insert the line break at the current cursor position
+// Insert the line break at the current cursor position
         range.insertNode(br);
-
-        // Move the cursor to the end of the newly created line
+// Move the cursor to the end of the newly created line
         range.setStartAfter(br);
         range.setEndAfter(br);
-
-        // Collapse the range and set the selection
+// Collapse the range and set the selection
         range.collapse(false);
         selection.removeAllRanges();
         selection.addRange(range);
-
-        // Prevent the default behavior of the Enter key
+// Prevent the default behavior of the Enter key
         event.preventDefault();
     }
-
-    // Check if the Backspace key is pressed
+// Check if the Backspace key is pressed
     if (event.keyCode === 8) {
         // Get the selection and range objects
         const selection = window.getSelection();
         const range = selection.getRangeAt(0);
-
-        // Get the current line text
-        const currentLineText = range.startContainer.textContent;
+// Get the current line text
+const currentLineText = range.startContainer.textContent;
         const currentLineOffset = range.startOffset;
-
-        // Check if the cursor is at the beginning of the line and the line is empty
+// Check if the cursor is at the beginning of the line and the line is empty
         if (currentLineOffset === 0 && currentLineText.trim() === '') {
             // Get the previous sibling node
             const prevNode = range.startContainer.previousSibling;
-
-            // Remove the empty line
+// Remove the empty line
             if (prevNode && prevNode.nodeName === 'BR') {
                 prevNode.parentNode.removeChild(prevNode);
             }
-
-            // Prevent the default behavior of the Backspace key
+// Prevent the default behavior of the Backspace key
             event.preventDefault();
-        }
-    }
-}
-
+        }}}
 // Function to handle input event
 function handleInput(event) {
     // Check if the last character is a line break
@@ -346,21 +358,33 @@ function handleInput(event) {
         range.collapse(false);
         selection.removeAllRanges();
         selection.addRange(range);
-    }
-}
-
+    }}
 // Add event listener for the keydown event on the contentDiv
 contentDiv.addEventListener('keydown', handleKeyDown);
-
 // Add event listener for the input event on the contentDiv
 contentDiv.addEventListener('input', handleInput);
-
-
-
 </script>
 
 
 
+<!--Command Q-->
+<script>
+    const {ipcRenderer } = require('electron');
 
+    ipcRenderer.on('togglePageVisibilityTest', () => {
+    const block = document.getElementById('appversion-information');
+
+    if (block.style.display === 'block') {
+        block.style.display = 'none';
+    }  else {
+        block.style.display = 'block';
+    }
+});
+</script>
 
 </div>
+
+
+
+
+</html>

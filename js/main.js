@@ -25,7 +25,7 @@ function setFileData(input) {
         if (file) {
             const reader = new FileReader();
             reader.addEventListener('load', () => {
-                if (file.path.split(".")[1] != "pml") {
+                if (!file.name.endsWith(".pml")) {
                     alert("a non-pml file was selected");
                     window.location.href = "index.html";
                 }
@@ -41,17 +41,19 @@ function setFileData(input) {
         }
         else {
             alert("invalid file selected");
+            window.location.href = "index.html";
         }
     }
 }
 
 function getIdFromTagName(s) {
-    let tags = ["p", "h1", "h2", "h3", "img"];
+    let tags = ["p", "h1", "h2", "h3", "img", "link", "h4", "h5", "h6"];
     return tags.indexOf(s);
 }
 
+
 function getStyleFromId(id) {
-    let styles = [pStyle, h1Style, h2Style, h3Style, imgStyle, linkStyle];
+    const styles = [pStyle, h1Style, h2Style, h3Style, imgStyle, linkStyle, h4Style, h5Style, h6Style];
     return styles[id];
 }
 
@@ -128,6 +130,7 @@ function directoryOfFile(str) {
 }
 
 function parseData() {
+
     var currentPage = 0;
     var pageStyle = new Style();
     var allPages = [];
@@ -331,8 +334,6 @@ function parseData() {
     writeStream.addListener('finish', () => {
         document.getElementById("display-pdf").remove();
         const iframe = document.createElement('iframe');
-        iframe.width = "800px";
-        iframe.height = "600px";
         iframe.id = "display-pdf";
         iframe.src = "output.pdf";
         document.getElementsByClassName("iframe-contain")[0].appendChild(iframe);

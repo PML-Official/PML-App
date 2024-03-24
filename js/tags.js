@@ -16,6 +16,24 @@ class Header3 extends TextTag {
     }
 }
 
+class Header4 extends TextTag {
+    constructor(text) {
+        super(HEADER4, text);
+    }
+}
+
+class Header5 extends TextTag {
+    constructor(text) {
+        super(HEADER5, text);
+    }
+}
+
+class Header6 extends TextTag {
+    constructor(text) {
+        super(HEADER6, text);
+    }
+}
+
 class P extends TextTag {
     constructor(text) {
         super(PARAGRAPH, text);
@@ -33,5 +51,11 @@ class Img extends Tag {
     constructor(url) {
         super(IMG, url);
         this.isImg = true;
+    }
+}
+
+class Text extends TextTag {
+    constructor(text) {
+        super();
     }
 }
