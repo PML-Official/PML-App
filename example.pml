@@ -8,9 +8,9 @@
 [h5: this is a header 5]
 [h6: this is a header 6]
 
-
 [p: this is a paragraph]
 [text: this is text]
+[h1: this is a header]
 
 {-- Page 2}
 
@@ -23,8 +23,7 @@
 
 [p: this is a paragraph]
 [text: this is some text]
-
-
+[h1: this is a header]
 
 
 
