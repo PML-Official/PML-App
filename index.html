@@ -169,22 +169,31 @@
 
 
 <ul>
-    
+
     <li id="li1">
 <div class="editing-area" id="resizable">
 <div class="editor-container">
-<div class="textovereditor">Edit PDF Markup Language</div>
+    
+<div class="textovereditor">Edit</div>
+    
     <div class="contenteditable-div" id="editor" contenteditable="true"></div>
+    
     <div class="runbutton-contain">
         <button class="runbutton" id="runbutton" onclick="setFileData()">Run Code</button>
     </div>
+
 </div>
 </div>
+    </li>
+    <li>
+        <div class="textoveriframe">Preview</div>
+        <div class="iframe-contain">            
+            <iframe id="display-pdf" src="output.pdf" width="900" height="700" style="display: none;"></iframe><div id="errors" class="errors" style="display: none; visibility: hidden;"></div>
+        </div>
+        <button id="previewbutton">Preview Output</button><button id="errorsbutton">Check for Errors</button>
+        
     </li>
     
-    <li>
-        <div class="iframe-contain"><iframe id="display-pdf" src="output.pdf" width="900" height="700" style="display: none;"></iframe></div>
-    </li>
 
 </ul>
 </div>
