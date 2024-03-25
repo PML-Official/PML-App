@@ -26,7 +26,7 @@ function setFileData(input) {
             const reader = new FileReader();
             reader.addEventListener('load', () => {
                 if (!file.name.endsWith(".pml")) {
-                    alert("a non-pml file was selected");
+                    alert("A non-pml file was selected");
                     window.location.href = "index.html";
                 }
                 else {

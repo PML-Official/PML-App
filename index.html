@@ -185,18 +185,29 @@
 </div>
 </div>
     </li>
-    <li>
-        <div class="textoveriframe">Preview</div>
-        <div class="iframe-contain">            
+    <li id="content">
+        <div class="textoveriframe">Preview</div><div class="textovererrors">Language Errors</div>
+        <div class="iframe-contain" id="iframe">            
             <iframe id="display-pdf" src="output.pdf" width="900" height="700" style="display: none;"></iframe><div id="errors" class="errors" style="display: none; visibility: hidden;"></div>
         </div>
-        <button id="previewbutton">Preview Output</button><button id="errorsbutton">Check for Errors</button>
+        <button id="previewbutton" onclick="toggle('display-pdf')">Preview Output</button><button id="errorsbutton" onclick="toggle('errors')">Check for Errors</button>
         
     </li>
     
 
 </ul>
 </div>
+<!--script for switching tabs-->
+<script>
+function toggle(elementId) {
+    var element = document.getElementById(elementId);
+    var buttonId = elementId == 'display-pdf' ? 'previewbutton' : 'errorsbutton';
+} 
+</script>
+
+
+
+
 <style>
     .keyword {color:rgb(223, 27, 27)}
 </style>
