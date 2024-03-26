@@ -25,7 +25,7 @@ body {background-color: rgb(34, 34, 34); padding: 0 !important; margin: 0 !impor
 /* text editor */
 .editing-area {width: fit-content; max-width: fit-content; resize: none; height: 95vh; margin-top: 0; margin: 0;} #main-page {overflow-y: none; max-width: 100%; min-height: calc(100vh - bottom-bar); overflow-x: none; width: 100vw; min-height: 100vh;} #main-page-content {flex: 1;}
 .keyword {color:rgb(223, 27, 27); font-weight: bold;} .content {padding: 10px;}/* .line-number {counter-increment: line-number; width: 30px; display: inline-block; text-align: right; user-select: none;}*/ .iframe-contain {margin-left: 0; padding-left: 50px;  margin-right: 0px; height: fit-content; max-height: fit-content; margin-top: 0; position:relative;} /* #display-pdf {display: none; visibility: hidden;}*/
-/* .line-numbers-container {display: flex; flex-direction: column; align-items: flex-end; padding-right: 10px; margin-top: 10px; font-family: Arial, sans-serif; font-size: 16px; line-height: 1.5; color: #FFF;}*/ #display-pdf {width: 600px; border: none; position:relative; display: block; margin: 0; padding: 0; height: 809px; } 
+/* .line-numbers-container {display: flex; flex-direction: column; align-items: flex-end; padding-right: 10px; margin-top: 10px; font-family: Arial, sans-serif; font-size: 16px; line-height: 1.5; color: #FFF;}*/ #display-pdf {width: 600px; border: none; position:relative; margin: 0; padding: 0; height: 809px; } 
 .runbutton {padding-top: 8px; padding-bottom: 8px; padding-left: 24px; padding-right: 24px; margin-left:0; margin-top: 10px; border: none; background-color: rgb(0, 110, 255); border-radius: 4px; color: white; height: 50px; width: 900px; } .runbutton:hover {cursor: pointer; background-color: rgb(38, 131, 252);}
 .textovereditor {color: white; font-family: 'Roboto', sans-serif; width: 900px; margin-top: 5px; background-color: rgba(69, 69, 69, 0.815);  z-index: 9999; padding-top: 8px; padding-left: 5px; padding-bottom: 8px; font-size: 1.3rem;  }
 .runbuttoncontain {display: flex; flex-direction: column; justify-content: center; align-items: center;}
@@ -53,7 +53,7 @@ body {background-color: rgb(34, 34, 34); padding: 0 !important; margin: 0 !impor
     margin-right: 0 !important;
   }
 .editor-container {padding: 2px; margin-left: 5px; max-width: fit-content; max-height: fit-content; width: fit-content; margin-bottom: 0; margin-right: 0; resize: horizontal;}
-.textoveriframe{color: white; font-family: 'Roboto', sans-serif; width: 595px; margin-top: 5px; background-color: rgb(44, 47, 50) !important; z-index: 9998; padding-top: 8px; padding-left: 5px; padding-bottom: 8px; font-size: 1.3rem; margin-left: 50px;}
+#textoveriframe{color: white; font-family: 'Roboto', sans-serif; width: 595px; margin-top: 5px; background-color: rgba(69, 69, 69, 0.815) !important; z-index: 9998; padding-top: 8px; padding-left: 5px; padding-bottom: 8px; font-size: 1.3rem; margin-left: 50px;}
 /*
 .line-numbers {
   position: absolute;
@@ -72,6 +72,10 @@ body {background-color: rgb(34, 34, 34); padding: 0 !important; margin: 0 !impor
 
 .tag1 {color: red;} .tag2 {color: blue;}
 */
-#previewbutton {padding-top: 8px; padding-bottom: 8px; padding-left: 24px; padding-right: 24px; margin-left:50px; margin-top: 10px; border: none; background-color: rgb(0, 110, 255); border-radius: 4px; color: white; height: 50px; width: 300px; } #previewbutton:hover {cursor: pointer; background-color: rgb(38, 131, 252);} #previewbutton:active {background-color: rgb(38, 131, 252);}
-#errorsbutton {padding-top: 8px; padding-bottom: 8px; padding-left: 24px; padding-right: 24px; margin-left:4px; margin-top: 10px; border: none; background-color: rgb(0, 110, 255); border-radius: 4px; color: white; height: 50px; width: 300px; } #errorsbutton:hover {cursor: pointer; background-color: rgb(38, 131, 252);} #errorsbutton:active {background-color: rgb(38, 131, 252);}
+#previewbutton {padding-top: 8px; padding-bottom: 8px; padding-left: 24px; padding-right: 24px; margin-left:50px; margin-top: 10px; border: none; background-color: rgb(0, 110, 255); border-radius: 4px; color: white; height: 50px; width: 300px; }/* #previewbutton:hover {cursor: pointer; background-color: rgb(38, 131, 252);} #previewbutton:active {background-color: rgb(38, 131, 252);}*/
+#errorsbutton {padding-top: 8px; padding-bottom: 8px; padding-left: 24px; padding-right: 24px; margin-left:4px; margin-top: 10px; border: none; background-color: rgb(0, 110, 255); border-radius: 4px; color: white; height: 50px; width: 300px; } /*#errorsbutton:hover {cursor: pointer; background-color: rgb(38, 131, 252);} #errorsbutton:active {background-color: rgb(38, 131, 252);}*/
+#textovererrors {color: white; font-family: 'Roboto', sans-serif; width: 595px; margin-top: 5px; background-color: rgba(69, 69, 69, 0.815) !important; z-index: 9998; padding-top: 8px; padding-left: 5px; padding-bottom: 8px; font-size: 1.3rem; margin-left: 50px;} #errors {width: 600px; height: 809px; background-color: aqua;}
+#previewbutton:hover {cursor: pointer;} #errorsbutton:hover {cursor: pointer;}
+.hidden {display: none; visibility: hidden;}
+
 

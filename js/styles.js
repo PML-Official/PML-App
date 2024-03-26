@@ -36,3 +36,8 @@ const linkStyle = new Style();
 linkStyle.color = blue;
 linkStyle.underlined = true;
 
+const textStyle = new Style();
+textStyle.fontSize = 16;
+textStyle.lineGap = 5;
+
+

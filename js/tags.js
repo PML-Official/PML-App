@@ -56,6 +56,6 @@ class Img extends Tag {
 
 class Text extends TextTag {
     constructor(text) {
-        super();
+        super(TEXT, text);
     }
 }

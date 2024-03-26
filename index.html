@@ -186,11 +186,12 @@
 </div>
     </li>
     <li id="content">
-        <div class="textoveriframe">Preview</div><div class="textovererrors">Language Errors</div>
+        <div id="textoveriframe">Preview</div><div class="hidden" id="textovererrors">Language Errors</div>
         <div class="iframe-contain" id="iframe">            
-            <iframe id="display-pdf" src="output.pdf" width="900" height="700" style="display: none;"></iframe><div id="errors" class="errors" style="display: none; visibility: hidden;"></div>
+            <iframe id="display-pdf" src="output.pdf" width="900" height="700" class="hidden"></iframe><div id="errors" class="hidden"></div>
         </div>
-        <button id="previewbutton" onclick="toggle('display-pdf')">Preview Output</button><button id="errorsbutton" onclick="toggle('errors')">Check for Errors</button>
+        <button id="previewbutton" onclick="toggleAndHide(['display-pdf', 'textoveriframe'], ['errors', 'textovererrors']); toggleButtonState('previewbutton', 'errorsbutton')">Preview Output</button><button id="errorsbutton" onclick="toggleAndHide(['errors', 'textovererrors'], ['display-pdf', 'textoveriframe']); toggleButtonState('errorsbutton', 'previewbutton')">Check for Errors</button>
+
         
     </li>
     
@@ -199,11 +200,58 @@
 </div>
 <!--script for switching tabs-->
 <script>
-function toggle(elementId) {
-    var element = document.getElementById(elementId);
-    var buttonId = elementId == 'display-pdf' ? 'previewbutton' : 'errorsbutton';
-} 
-</script>
+
+// disable preview button when page first loads
+window.onload = function() {
+    var previewButton = document.getElementById('previewbutton');
+    previewButton.disabled = true;
+    previewButton.style.opacity = '0.7';
+    previewButton.style.cursor = 'not-allowed';
+};
+
+
+    // disabling buttons
+    var lastClickedButtonId = null;
+
+function toggleButtonState(clickedButtonId, otherButtonId) {
+    if (lastClickedButtonId === clickedButtonId) {
+        return;
+    }
+
+    var clickedButton = document.getElementById(clickedButtonId);
+    var otherButton = document.getElementById(otherButtonId);
+
+    clickedButton.disabled = true;
+    clickedButton.style.opacity = "0.7"; 
+    clickedButton.style.cursor = "not-allowed"; 
+
+    otherButton.disabled = false;
+    otherButton.style.opacity = "1"; 
+    otherButton.style.cursor = "pointer"; 
+
+    lastClickedButtonId = clickedButtonId;
+}
+
+// showing and hiding elements
+function  toggleAndHide(elementsToShow, elementsToHide) {
+    toggleVisibility(elementsToShow);
+    hideElement(elementsToHide);
+}
+ 
+function toggleVisibility(elementIds) {
+    elementIds.forEach(function(id) {
+        var element = document.getElementById(id);
+        element.classList.remove('hidden');
+    });
+}
+
+function hideElement(elementIds) {
+    elementIds.forEach(function(id) {
+        var element = document.getElementById(id);
+        element.classList.add('hidden');
+    });
+}
+ </script>
 
 
 

@@ -47,13 +47,13 @@ function setFileData(input) {
 }
 
 function getIdFromTagName(s) {
-    let tags = ["p", "h1", "h2", "h3", "img", "link", "h4", "h5", "h6"];
+    let tags = ["p", "h1", "h2", "h3", "img", "link", "h4", "h5", "h6", "text"];
     return tags.indexOf(s);
 }
 
 
 function getStyleFromId(id) {
-    const styles = [pStyle, h1Style, h2Style, h3Style, imgStyle, linkStyle, h4Style, h5Style, h6Style];
+    const styles = [pStyle, h1Style, h2Style, h3Style, imgStyle, linkStyle, h4Style, h5Style, h6Style, textStyle];
     return styles[id];
 }
 
