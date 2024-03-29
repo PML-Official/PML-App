@@ -179,7 +179,9 @@
     <div class="contenteditable-div" id="editor" contenteditable="true"></div>
     
     <div class="runbutton-contain">
-        <button class="runbutton" id="runbutton" onclick="setFileData()">Run Code</button>
+        <button class="runbutton" id="runbutton" onclick="setFileData()">
+                Run Code
+            </button>
     </div>
 
 </div>
@@ -190,7 +192,10 @@
         <div class="iframe-contain" id="iframe">            
             <iframe id="display-pdf" src="output.pdf" width="900" height="700" class="hidden"></iframe><div id="errors" class="hidden"></div>
         </div>
-        <button id="previewbutton" onclick="toggleAndHide(['display-pdf', 'textoveriframe'], ['errors', 'textovererrors']); toggleButtonState('previewbutton', 'errorsbutton')">Preview Output</button><button id="errorsbutton" onclick="toggleAndHide(['errors', 'textovererrors'], ['display-pdf', 'textoveriframe']); toggleButtonState('errorsbutton', 'previewbutton')">Check for Errors</button>
+        <button id="previewbutton" onclick="toggleAndHide(['display-pdf', 'textoveriframe'], ['errors', 'textovererrors']); toggleButtonState('previewbutton', 'errorsbutton')">
+            Preview Output
+        </button>
+        <button id="errorsbutton" onclick="toggleAndHide(['errors', 'textovererrors'], ['display-pdf', 'textoveriframe']); toggleButtonState('errorsbutton', 'previewbutton')">Check for Errors</button>
 
         
     </li>
@@ -206,7 +211,7 @@ window.onload = function() {
     var previewButton = document.getElementById('previewbutton');
     previewButton.disabled = true;
     previewButton.style.opacity = '0.7';
-    previewButton.style.cursor = 'not-allowed';
+    previewButton.style.cursor = 'default';
 };
 
 
@@ -223,7 +228,7 @@ function toggleButtonState(clickedButtonId, otherButtonId) {
 
     clickedButton.disabled = true;
     clickedButton.style.opacity = "0.7"; 
-    clickedButton.style.cursor = "not-allowed"; 
+    clickedButton.style.cursor = "default"; 
 
     otherButton.disabled = false;
     otherButton.style.opacity = "1"; 
