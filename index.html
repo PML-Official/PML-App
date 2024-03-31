@@ -5,6 +5,7 @@
 
         <title>PML App</title>
         <link rel="stylesheet" href="styles.css">
+        <!--Google Fonts/Icons-->
         <link rel="preconnect" href="https://fonts.googleapis.com">
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
         <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap" rel="stylesheet">
@@ -13,6 +14,12 @@
         <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
         <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
         <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
+        <!--Deployed Code-->
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
+        <!--Iframe-->
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
+        <!--Iframe Off-->
         <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
     </head>
 
@@ -45,8 +52,8 @@
             </div>
 
 
-<!--Script for Changing to main page-->
-<script>document.addEventListener('DOMContentLoaded', function() {document.getElementById('file-searcher').addEventListener('change', function() {var block = document.getElementById('opening-screen');block.style.display = block.style.display === 'none' ? 'block' : 'none';document.getElementById('main-page') .style.display = 'block';document.getElementById('appversion-information').style.display = "none"; });});</script>
+
+
 
 <!--Parsing Script-->
         <script src="node_modules/pdfkit/js/pdfkit.standalone.js"></script>
@@ -58,8 +65,11 @@
         <script src="js/main.js"></script>
         </div>
 <!--End Parsing Script-->
-       
-    </div>
+
+
+
+
+</div>
         <!--Bottom Bar-->
         
         <div class="bottom-bar">
@@ -75,7 +85,9 @@
                 <span class="home-text">Home</span>
             </a>
             </div>
+
             <!--Developer Guide-->
+
             <div class="icon-1">   
             <i class="material-symbols-outlined"> 
                 developer_guide
@@ -87,6 +99,7 @@
         </div>
 
             <!--App Version-->
+
             <div class="icon-2">
                 <i class="material-symbols-outlined">
                     backup
@@ -96,6 +109,7 @@
             </div>    
 
             <!--Settings-->
+
         <div class="icon-3">
             <i class="material-symbols-outlined">
                 settings
@@ -106,7 +120,6 @@
 
             <!--Contact-->
 
-
         <div class="icon-4">
             <i class="material-symbols-outlined">
                 contact_page
@@ -115,7 +128,17 @@
             <span id="contact-text">Contact</span>
         </div> 
         
-        
+            <!--Iframe Toggle-->
+            <div class="iframe-icon">
+                <!--On-->
+                <span class="material-symbols-outlined">
+                    iframe
+                    </span>
+                <!--Off-->
+                <span class="material-symbols-outlined">
+                    iframe_off
+                    </span>
+            </div>
 
             
             </div>      
@@ -123,7 +146,7 @@
 
 
         <!--appversion-block-->
-        <div id="appversion-information" class="hidden" style="display: none;">
+        <div id="appversion-information" style="display: none;">
             <span class="av-itext"><b>Version 0.1 &lpar;Beta&rpar;</b></span>
             <i class="material-symbols-outlined" id="close-btn">
                 close
@@ -140,7 +163,7 @@
         event.preventDefault();
         const link = event.target.href;
         shell.openExternal(link);
-    }
+    } 
     document.getElementById('app-version-text').addEventListener('click', function() {
         var block = document.getElementById('appversion-information');
         block.style.display = block.style.display === 'none' ? 'block' : 'none';
@@ -174,38 +197,67 @@
 <div class="editing-area" id="resizable">
 <div class="editor-container">
     
-<div class="textovereditor">Edit</div>
+<div class="textovereditor">EDIT</div>
     
     <div class="contenteditable-div" id="editor" contenteditable="true"></div>
-    
-    <div class="runbutton-contain">
-        <button class="runbutton" id="runbutton" onclick="setFileData()">
-                Run Code
-            </button>
-    </div>
-
 </div>
 </div>
     </li>
-    <li id="content">
-        <div id="textoveriframe">Preview</div><div class="hidden" id="textovererrors">Language Errors</div>
+    <li id="content" class="resizable">
+        <div class="container">
+        <div id="textoveriframe">PREVIEW</div><div class="hidden" id="textovererrors">LANGUAGE ERRORS</div>
         <div class="iframe-contain" id="iframe">            
             <iframe id="display-pdf" src="output.pdf" width="900" height="700" class="hidden"></iframe><div id="errors" class="hidden"></div>
         </div>
-        <button id="previewbutton" onclick="toggleAndHide(['display-pdf', 'textoveriframe'], ['errors', 'textovererrors']); toggleButtonState('previewbutton', 'errorsbutton')">
-            Preview Output
-        </button>
-        <button id="errorsbutton" onclick="toggleAndHide(['errors', 'textovererrors'], ['display-pdf', 'textoveriframe']); toggleButtonState('errorsbutton', 'previewbutton')">Check for Errors</button>
-
-        
+        </div>
     </li>
-    
-
+    <div id="doublebutton-contain">
+        <button class="runbutton" id="runbutton" onclick="setFileData()">
+            Run Code
+        </button>
+    <button id="previewbutton" onclick="toggleAndHide(['display-pdf', 'textoveriframe'], ['errors', 'textovererrors']); toggleButtonState('previewbutton', 'errorsbutton')">
+        Preview PDF
+    </button>
+    <button id="errorsbutton" onclick="toggleAndHide(['errors', 'textovererrors'], ['display-pdf', 'textoveriframe']); toggleButtonState('errorsbutton', 'previewbutton')">
+        Errors
+    </button>   
+    </div>
 </ul>
 </div>
+
+<script>
+    // text editor scroll
+var textEditorScroll = document.getElementById('editor');
+
+textEditorScroll.addEventListener('scroll', function() {
+    if (textEditorScroll.scrollTop > 0) {
+        textEditorScroll.style.borderTop = '1px solid grey';
+    } else {
+        textEditorScroll.style.borderTop = 'none';
+    }
+
+});
+// width change
+
+window.onresize = function() {
+    var container = document.querySelector('.resizeable');
+    var contents = container.querySelectorAll('.container');
+
+    contents.forEach(function(content) {
+        var containerWidth = container.offsetWidth;
+        var contentWdith = content.offsetWidth;
+
+        var newContentWidth = containerWidth * (contentWidth / containerWidth);
+         content.style.width + 'px';
+    });
+};
+</script>
+
+
+
+
 <!--script for switching tabs-->
 <script>
-
 // disable preview button when page first loads
 window.onload = function() {
     var previewButton = document.getElementById('previewbutton');
@@ -409,13 +461,14 @@ const range = selection.getRangeAt(0);
 const currentLineText = range.startContainer.textContent;
         const currentLineOffset = range.startOffset;
 // Check if the cursor is at the beginning of the line and the line is empty
-        if (currentLineOffset === 0 && currentLineText.trim() === '') {
+        if (436 === getCaretCharacterOffsetWithin(range.startContainer)) {
             // Get the previous sibling node
             const prevNode = range.startContainer.previousSibling;
 // Remove the empty line
-            if (prevNode && prevNode.nodeName === 'BR') {
+            //if (prevNode && prevNode.nodeName === 'BR') {
+            //    alert("id est");
                 prevNode.parentNode.removeChild(prevNode);
-            }
+            //}
 // Prevent the default behavior of the Backspace key
             event.preventDefault();
         }}}

@@ -8,15 +8,15 @@ body {background-color: rgb(34, 34, 34); padding: 0 !important; margin: 0 !impor
 /* option 1 */
 .option1-text {font-size: 1.3rem; white-space: nowrap;} #option1-container {max-width: 100%; margin-right: 46px; width: fit-content; margin-top: 30px; display: flex; flex-direction: column; justify-content: center; align-items: center;} #bttn1contain {max-width: 100%;  margin-top: 12px;} 
 /* bottom bar */
-.bottom-bar {height: 50px; min-height: 50px; width: 100%; z-index: 9999; max-width: 100%; left: 0; position: fixed; display: flex; align-items: center; bottom: 0; background-color: rgb(48, 48, 48);} .icon-1 {display: flex; align-items: center; margin-left: 30px;} .material-symbols-outlined {color: white; margin-right: 3px; cursor: default;}
-.icon-1 a {color: white; text-decoration: none;} .developer-text {font-family: 'Roboto', sans-serif; font-size:small} .bottom-logo {max-height: 50px; height: 50px; margin-left: 3vh} .pipe { color: white; font-size: 2rem; margin-left: 30px; font-weight:100;}
-.icon-2 {display: flex; align-items: center; margin-left: 30px;} #app-version-text {font-family: 'Roboto', sans-serif; font-size:small; color: white; cursor: pointer;}
-.home-icon {display: flex; align-items: center; margin-left: 30px;} .home-text {font-family: 'Roboto', sans-serif; font-size:small; color: white; cursor: pointer;} .home-text:hover { cursor: pointer;} .homelink {text-decoration: none;}
-.icon-3 {display: flex; align-items: center; margin-left: 30px;} #settings-text {font-family: 'Roboto', sans-serif; font-size:small; color: white; cursor: not-allowed; /* cursor: pointer; */}
-.icon-4 {display: flex; align-items: center; margin-left: 30px;} #contact-text {font-family: 'Roboto', sans-serif; font-size:small; color: white; cursor: not-allowed; /* cursor: pointer; */}
-
+.bottom-bar {height: 38px; min-height: 38px; width: 100%; z-index: 9999; max-width: 100%; left: 0; position: fixed; display: flex; align-items: center; bottom: 0; background-color: rgb(48, 48, 48);} .icon-1 {display: flex; align-items: center; margin-left: 2vw;} .material-symbols-outlined {color: white; margin-right: 3px; cursor: default;}
+.icon-1 a {color: white; text-decoration: none;} .developer-text {font-family: 'Roboto', sans-serif; font-size:small} .bottom-logo {max-height: 38px; height: 38px; margin-left: 2vw} .pipe { color: white; font-size: 1.5rem; margin-left: 1.5vw; font-weight:100;}
+.icon-2 {display: flex; align-items: center; margin-left: 2vw;} #app-version-text {font-family: 'Roboto', sans-serif; font-size:small; color: white; cursor: pointer;}
+.home-icon {display: flex; align-items: center; margin-left: 2vw;} .home-text {font-family: 'Roboto', sans-serif; font-size:small; color: white; cursor: pointer;} .home-text:hover { cursor: pointer;} .homelink {text-decoration: none;}
+.icon-3 {display: flex; align-items: center; margin-left: 2vw;} #settings-text {font-family: 'Roboto', sans-serif; font-size:small; color: white; cursor: not-allowed; /* cursor: pointer; */}
+.icon-4 {display: flex; align-items: center; margin-left: 2vw;} #contact-text {font-family: 'Roboto', sans-serif; font-size:small; color: white; cursor: not-allowed; /* cursor: pointer; */}
+.iframe-icon {right: 100px; position: fixed;}
 /* app version info */
-#appversion-information {display:block; height: 250px; width: 200px; word-wrap: break-word; background-color:rgb(48, 48, 48); padding-left: 8px; box-shadow: 2px 2px 2px 2px  rgba(0, 0, 0, 0.525); padding-right: 8px; padding-bottom: 0; position: fixed; bottom: 60px; margin-left: 390px; box-shadow: 0px 10px, 20px rgba(0,0,0,20)} .av-itext {color: white; font-family: "Roboto", sans-serif; margin-left: 8px;}
+#appversion-information {display:block; height: 250px; width: 200px; word-wrap: break-word; background-color:rgb(48, 48, 48); z-index: 9999; padding-left: 8px; box-shadow: 2px 2px 2px 2px  rgba(0, 0, 0, 0.525); padding-right: 8px; padding-bottom: 0; position: fixed; bottom: 60px; margin-left: 390px; box-shadow: 0px 10px, 20px rgba(0,0,0,20)} .av-itext {color: white; font-family: "Roboto", sans-serif; margin-left: 8px;}
 #appversion-information .material-symbols-outlined {margin-left: 30px; cursor: pointer; margin-top: 5px; } .explanationtext {width: 180px; word-wrap: break-word !important; display: inline-block; margin-left: 8px; color: white; font-family: 'Roboto', sans-serif; margin-top: 30px; font-size:small} #close-btn:hover {color: rgb(226, 226, 226)} 
 .hidden {display:none;} 
 
@@ -24,36 +24,36 @@ body {background-color: rgb(34, 34, 34); padding: 0 !important; margin: 0 !impor
 
 /* text editor */
 .editing-area {width: fit-content; max-width: fit-content; resize: none; height: 95vh; margin-top: 0; margin: 0;} #main-page {overflow-y: none; max-width: 100%; min-height: calc(100vh - bottom-bar); overflow-x: none; width: 100vw; min-height: 100vh;} #main-page-content {flex: 1;}
-.keyword {color:rgb(223, 27, 27); font-weight: bold;} .content {padding: 10px;}/* .line-number {counter-increment: line-number; width: 30px; display: inline-block; text-align: right; user-select: none;}*/ .iframe-contain {margin-left: 0; padding-left: 50px;  margin-right: 0px; height: fit-content; max-height: fit-content; margin-top: 0; position:relative;} /* #display-pdf {display: none; visibility: hidden;}*/
-/* .line-numbers-container {display: flex; flex-direction: column; align-items: flex-end; padding-right: 10px; margin-top: 10px; font-family: Arial, sans-serif; font-size: 16px; line-height: 1.5; color: #FFF;}*/ #display-pdf {width: 600px; border: none; position:relative; margin: 0; padding: 0; height: 809px; } 
+.keyword {color:rgb(223, 27, 27); font-weight: bold;} .content {padding: 10px;}/* .line-number {counter-increment: line-number; width: 30px; display: inline-block; text-align: right; user-select: none;}*/ .iframe-contain {margin-left: 0; padding-left: 2px;  margin-right: 0px; height: fit-content; max-height: fit-content; margin-top: 0; position:relative;} /* #display-pdf {display: none; visibility: hidden;}*/
+/* .line-numbers-container {display: flex; flex-direction: column; align-items: flex-end; padding-right: 10px; margin-top: 10px; font-family: Arial, sans-serif; font-size: 16px; line-height: 1.5; color: #FFF;}*/ #display-pdf {width: 600px; border: none; position:relative; margin: 0; padding: 0; min-height: 600px; height: 84vh; } 
 .runbutton {padding-top: 8px; padding-bottom: 8px; padding-left: 24px; padding-right: 24px; margin-left:0; margin-top: 10px; border: none; background-color: rgb(0, 110, 255); border-radius: 4px; color: white; height: 50px; width: 900px; } .runbutton:hover {cursor: pointer; background-color: rgb(38, 131, 252);}
-.textovereditor {color: white; font-family: 'Roboto', sans-serif; width: 900px; margin-top: 0; background-color: rgba(69, 69, 69, 0.815);  z-index: 9999; padding-top: 8px; padding-left: 5px; padding-bottom: 8px; font-size: 1.3rem;  }
-.runbuttoncontain {display: flex; flex-direction: column; justify-content: center; align-items: center;}
+.textovereditor {color: white; font-family: 'Roboto', sans-serif; width: 900px; border-right: 3px solid grey; margin-top: 0; background-color: rgb(23, 23, 23); z-index: 9999; padding-top: 8px; padding-left: 5px; padding-bottom: 8px; font-size: 1.1rem;}  #content {position: fixed; top: 0; left: 907px; right: 0;}
+.runbutton-contain {position: fixed; bottom: 50px; left: 0;}
 /* page orginization */
-#main-page ul {list-style-type: none; margin: 0; padding: 0; display: inline-block;} #main-page ul li {display: inline-block; margin: 0; padding: 0;}
+#main-page ul {list-style-type: none; margin: 0; padding: 0; display: flex; justify-content: space-between; position: relative;} #main-page ul li {display: inline-block; margin: 0; padding: 0;} #li1 {margin: 0 !important; border-right: 3px solid grey;}
 #editor {
-    min-height: 800px; /* Adjust height as needed */ 
-    height: 80vh;
+    min-height: 600px; /* Adjust height as needed */ 
+    height: 83vh;
+    
     width: 897px;
-    max-width: 900px;;
+    max-width: 997px;;
     outline: none;
     overflow-x: auto;
     overflow-y: auto;
     font-family: monospace;
     font-size: inherit;
     line-height: inherit;
-    border: none;
     resize: none;
     display: block;
     color: white;
-    background-color:rgb(58, 58, 58) ;
+    background-color:rgb(37, 37, 37) ;
     padding-left: 8px;
     padding-top: 10px;
     z-index: -1;
     margin-right: 0 !important;
   }
-.editor-container {padding: 2px; margin-left: 0; max-width: fit-content; max-height: fit-content; width: fit-content; margin-bottom: 0; margin-right: 0; resize: horizontal;}
-#textoveriframe{color: white; font-family: 'Roboto', sans-serif; width: 595px; margin-top: 5px; background-color: rgba(69, 69, 69, 0.815) !important; z-index: 9998; padding-top: 8px; padding-left: 5px; padding-bottom: 8px; font-size: 1.3rem; margin-left: 50px;}
+.editor-container {padding: 0px; margin-left: 2px; max-width: fit-content; max-height: fit-content; width: fit-content; margin-bottom: 0; margin-right: 0; resize: horizontal;}
+#textoveriframe{color: white; font-family: 'Roboto', sans-serif; width: 600px; margin-top: 0; background-color: rgb(23, 23, 23); border: none;  z-index: 9999; padding-top: 8px; padding-left: 5px; padding-bottom: 8px; font-size: 1.1rem;  }
 /*
 .line-numbers {
   position: absolute;
@@ -72,10 +72,10 @@ body {background-color: rgb(34, 34, 34); padding: 0 !important; margin: 0 !impor
 
 .tag1 {color: red;} .tag2 {color: blue;}
 */
-#previewbutton {padding-top: 8px; padding-bottom: 8px; padding-left: 24px; padding-right: 24px; margin-left:50px; margin-top: 10px; border: none; background-color: rgb(0, 110, 255); border-radius: 4px; color: white; height: 50px; width: 300px; }/* #previewbutton:hover {cursor: pointer; background-color: rgb(38, 131, 252);} #previewbutton:active {background-color: rgb(38, 131, 252);}*/
-#errorsbutton {padding-top: 8px; padding-bottom: 8px; padding-left: 24px; padding-right: 24px; margin-left:4px; margin-top: 10px; border: none; background-color: rgb(0, 110, 255); border-radius: 4px; color: white; height: 50px; width: 300px; } /*#errorsbutton:hover {cursor: pointer; background-color: rgb(38, 131, 252);} #errorsbutton:active {background-color: rgb(38, 131, 252);}*/
-#textovererrors {color: white; font-family: 'Roboto', sans-serif; width: 595px; margin-top: 5px; background-color: rgba(69, 69, 69, 0.815) !important; z-index: 9998; padding-top: 8px; padding-left: 5px; padding-bottom: 8px; font-size: 1.3rem; margin-left: 50px;} #errors {width: 600px; height: 809px; background-color: aqua;}
+#previewbutton {padding-top: 8px; padding-bottom: 8px; padding-left: 24px; padding-right: 24px; margin-left:2px; margin-top: 10px; border: none; background-color: rgb(0, 110, 255); border-radius: 4px; color: white; height: 50px; width: 300px; }/* #previewbutton:hover {cursor: pointer; background-color: rgb(38, 131, 252);} #previewbutton:active {background-color: rgb(38, 131, 252);}*/
+#errorsbutton {padding-top: 8px; padding-bottom: 8px; padding-left: 24px; padding-right: 24px; margin-left:2px; margin-top: 10px; border: none; background-color: rgb(0, 110, 255); border-radius: 4px; color: white; height: 50px; width: 300px; } /*#errorsbutton:hover {cursor: pointer; background-color: rgb(38, 131, 252);} #errorsbutton:active {background-color: rgb(38, 131, 252);}*/
+#textovererrors {color: white; font-family: 'Roboto', sans-serif; width: 600px; margin-top: 0; background-color: rgb(23, 23, 23); border:none; z-index: 9999; padding-top: 8px; padding-left: 5px; padding-bottom: 8px; font-size: 1.1rem;  } #errors {width: 600px; min-height: 600px; height: 84vh; background-color: aqua;}
 #previewbutton:hover {cursor: pointer;} #errorsbutton:hover {cursor: pointer;}
-.hidden {display: none; visibility: hidden;}
+.hidden {display: none; visibility: hidden;} #doublebutton-contain {position: fixed; width: 100%; bottom: 38px; background-color: rgb(53, 53, 53);}
 
 

@@ -15,6 +15,7 @@ function writeToFile(data) {
 }
 
 function setFileData(input) {
+    toggleAndHide(['display-pdf', 'textoveriframe'], ['errors', 'textovererrors']);
     if (input == undefined) {
         const content = fs.readFileSync(filePath, 'utf8');
         fileLines = content.split("\n");
@@ -30,6 +31,10 @@ function setFileData(input) {
                     window.location.href = "index.html";
                 }
                 else {
+                    var block = document.getElementById('opening-screen');
+                    block.style.display = block.style.display === 'none' ? 'block' : 'none';
+                    document.getElementById('main-page') .style.display = 'block';
+                    document.getElementById('appversion-information').style.display = "none"; 
                     fileLines = reader.result.split("\n");
                     document.getElementById("editor").innerText = reader.result;
                     parseData();
