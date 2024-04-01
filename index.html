@@ -211,7 +211,7 @@
         </div>
         </div>
     </li>
-    <div id="doublebutton-contain">
+    <div id="button-contain">
         <button class="runbutton" id="runbutton" onclick="setFileData()">
             Run Code
         </button>
@@ -320,111 +320,7 @@ function hideElement(elementIds) {
 
 
 
-<!--for changing colors-->
-<script>
-document.getElementsByClassName("contenteditable-div")[0].addEventListener('input', () => {
-    writeToFile(document.getElementsByClassName("contenteditable-div")[0].innerText);
-});
 
-const contentDiv = document.querySelector('.contenteditable-div');
-
-function getCaretCharacterOffsetWithin(element) {
-    const caretOffset = 0;
-    const doc = element.ownerDocument || element.document;
-    const win = doc.defaultView || doc.parentWindow;
-    let sel;
-    let range;
-    let preCaretRange;
-    let caretOffsetValue = 0;
-    if (typeof win.getSelection !== 'undefined') {
-        sel = win.getSelection();
-        if (sel.rangeCount > 0) {
-            range = win.getSelection().getRangeAt(0);
-            preCaretRange = range.cloneRange();
-            preCaretRange.selectNodeContents(element);
-            preCaretRange.setEnd(range.endContainer, range.endOffset);
-            caretOffsetValue = preCaretRange.toString().length;
-        }
-    }
-    return caretOffsetValue;
-}
-
-function setCaretPosition(element, offset) {
-    const range = document.createRange();
-    const sel = window.getSelection();
-    let currentNode;
-    let previousNode;
-    let count = 0;
-    range.setStart(element, 0);
-    range.collapse(true);
-    const textNodes = getTextNodesIn(element);
-    for (const textNode of textNodes) {
-        if (count + textNode.length >= offset) {
-            currentNode = textNode;
-            break;
-        }
-        count += textNode.length;
-        previousNode = textNode;
-    }
-    if (currentNode) {
-        range.setStart(currentNode, offset - count);
-        range.collapse(true);
-        sel.removeAllRanges();
-        sel.addRange(range);
-    }
-}
-
-function getTextNodesIn(node) {
-    const textNodes = [];
-    if (node.nodeType === 3) {
-        textNodes.push(node);
-    } else {
-        const children = node.childNodes;
-        for (let i = 0; i < children.length; i++) {
-            textNodes.push(...getTextNodesIn(children[i]));
-        }
-    }
-    return textNodes;
-}
-
-// Define keywords and their corresponding colors
-const keywordColors = {
-    // Note for Luke:
-    // as you see, it is working as it is now. but when I add special charaters, i.e [h1:, then it stops working. chat gpt got stumped by this one. Line 249 is where the execution of pluses is being carried out. line 251 is were the acutall color changing of the text is being carried out. and line 233 is where the keywords are being declared.
-    'h1': 'red',
-    'p': 'blue'
-};
-
-
-function highlightKeywords() {
-    const cursorOffset = getCaretCharacterOffsetWithin(contentDiv);
-    const text = contentDiv.innerText;
-
-    // Remove existing highlighting spans
-    contentDiv.querySelectorAll('.keyword').forEach(span => {
-        const textNode = document.createTextNode(span.textContent);
-        span.parentNode.replaceChild(textNode, span);
-    });
-
-    // Highlight keywords with different colors
-    Object.keys(keywordColors).forEach(keyword => {
-        const regex = new RegExp('\\b' + keyword + '\\b', 'g');
-        contentDiv.innerHTML = contentDiv.innerHTML.replace(regex, match => {
-            return `<span class="keyword" style="color: ${keywordColors[keyword]}">${match}</span>`;
-        });
-    });
-
-    // Restore cursor position
-    setCaretPosition(contentDiv, cursorOffset);
-}
-
-contentDiv.addEventListener('input', highlightKeywords);
-
-
-// Initial highlighting
-highlightKeywords();
-
-</script>
 
 
 <!--this is the script for pressing enter-->
