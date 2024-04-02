@@ -47,13 +47,13 @@ function setFileData(input) {
 }
 
 function getIdFromTagName(s) {
-    let tags = ["p", "h1", "h2", "h3", "img", "link", "h4", "h5", "h6"];
+    let tags = ["p", "h1", "h2", "h3", "img", "link", "h4", "h5", "h6", "text"];
     return tags.indexOf(s);
 }
 
 
 function getStyleFromId(id) {
-    const styles = [pStyle, h1Style, h2Style, h3Style, imgStyle, linkStyle, h4Style, h5Style, h6Style];
+    const styles = [pStyle, h1Style, h2Style, h3Style, imgStyle, linkStyle, h4Style, h5Style, h6Style, textStyle];
     return styles[id];
 }
 
@@ -109,6 +109,23 @@ function trim(str) {
     return str;
 }
 
+function between(str, c1, c2) {
+    let buff;
+    for (let x = 0; x < str.length; x ++) {
+        if (str.substring(x, x + c1.length) == c1) {
+            x += c1.length-1;
+            buff = "";
+        }
+        else if (buff != undefined) {
+            if (str.substring(x, x + c2.length) == c2) {
+                return buff;
+            }
+            buff += str[x];
+        }
+    }
+    return undefined;
+}
+
 function isHttps(str) {
     return str.substring(0, 7) == "https://" || str.substring(0, 6) == "http://";
 }
@@ -130,13 +147,14 @@ function directoryOfFile(str) {
 }
 
 function parseData() {
+    const doc = new PDFDocument();
+    doc.initForm();
+    alert(between("opt(hello, this is a thing)", "opt(", ")"));
 
     var currentPage = 0;
     var pageStyle = new Style();
     var allPages = [];
-
     pageStyle.margin = 40;
-    const doc = new PDFDocument();
 
     let buffer = "";
 
@@ -257,9 +275,12 @@ function parseData() {
                                         }
                                         currentPage.tags.push(new TextLine(line));
                                     }
+                                    else if (tagName == "sel-check") {
+                                        currentPage.tags.push(new Checkbox(tagContent));
+                                    }
                                     else {
                                         if (tagName == "img") {
-                                            currentPage.tags.push(new Img(tagContent))
+                                            currentPage.tags.push(new Img(between(tagContent, "local(", ")"), (between(tagContent, "alt(", ")") == undefined ? "image" : between(tagContent, "alt(", ")"))));
                                         }
                                     }
                                 }
@@ -313,11 +334,19 @@ function parseData() {
             else {
                 if (currTag.id == IMG) {
                     if (fs.existsSync(directoryOfFile(filePath) + currTag.text)) {
-                        doc.image(directoryOfFile(filePath) + currTag.text, pageStyle.margin, doc.y, { width: 200 });
+                        doc.image(directoryOfFile(filePath) + currTag.text, pageStyle.margin, doc.y, { width: 200, alt: currTag.alt });
                     }
                     else {
                         alert("invalid img selected");
                     }
+                }
+                else if (currTag.id == CHECKBOX) {
+                    doc.fontSize(checkboxTextStyle.fontSize).lineGap(checkboxTextStyle.lineGap).text(currTag.text, doc.x, doc.y, {continued: false});
+                    doc.x += doc.widthOfString(currTag.text) + 10;
+                    doc.y -= doc.heightOfString(currTag.text);
+                    doc.formCheckbox(currTag.text, doc.x, doc.y, 16, 16);
+                    doc.y += 20;
+                    doc.x -= doc.widthOfString(currTag.text) + 10;
                 }
             }
         }

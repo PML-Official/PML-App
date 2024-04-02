@@ -8,6 +8,7 @@ const HEADER4 = 6;
 const HEADER5 = 7;
 const HEADER6 = 8;
 const TEXT = 9;
+const CHECKBOX = 10;
 
 const textTagNames = ["p", "h1", "h2", "h3", "h4", "h5", "h6", "text"];
 

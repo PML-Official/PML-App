@@ -47,15 +47,22 @@ class Link extends TextTag {
     }
 }
 
-class Img extends Tag {
-    constructor(url) {
-        super(IMG, url);
-        this.isImg = true;
+class Text extends TextTag {
+    constructor(text) {
+        super(TEXT, text);
     }
 }
 
-class Text extends TextTag {
-    constructor(text) {
-        super();
+class Img extends Tag {
+    constructor(url, alt) {
+        super(IMG, url);
+        this.isImg = true;
+        this.alt = alt;
+    }
+}
+
+class Checkbox extends Tag {
+    constructor(label) {
+        super(CHECKBOX, label);
     }
 }

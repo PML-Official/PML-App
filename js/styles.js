@@ -36,3 +36,10 @@ const linkStyle = new Style();
 linkStyle.color = blue;
 linkStyle.underlined = true;
 
+const textStyle = new Style();
+textStyle.fontSize = 16;
+textStyle.lineGap = 5;
+
+const checkboxTextStyle = new Style();
+checkboxTextStyle.fontSize = 16;
+checkboxTextStyle.lineGap = 5;
