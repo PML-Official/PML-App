@@ -153,8 +153,8 @@ function directoryOfFile(str) {
 
 function parseData() {
     const doc = new PDFDocument();
+    doc.info.Producer = "PDF Markup Language (PML)";
     doc.initForm();
-    alert(between("opt(hello, this is a thing)", "opt(", ")"));
 
     var currentPage = 0;
     var pageStyle = new Style();
@@ -253,8 +253,19 @@ function parseData() {
                                 for (let z = 1; z < buffer.split(":").length-1; z ++) {
                                     tagContent += ":" + buffer.split(":")[z+1];
                                 }
-                                
-                                if (currentPage == 0) {
+                                if (tagName == "meta-name") {
+                                    doc.info.Title = tagContent;
+                                }
+                                else if (tagName == "meta-author") {
+                                    doc.info.Author = tagContent;
+                                }
+                                else if (tagName == "meta-description") {
+                                    doc.info.Subject = tagContent;
+                                }
+                                else if (tagName == "meta-keywords") {
+                                    doc.info.Keywords = tagContent;
+                                }
+                                else if (currentPage == 0) {
                                     alert("page not created yet");
                                 }
                                 else {
@@ -283,10 +294,8 @@ function parseData() {
                                     else if (tagName == "sel-check") {
                                         currentPage.tags.push(new Checkbox(tagContent));
                                     }
-                                    else {
-                                        if (tagName == "img") {
-                                            currentPage.tags.push(new Img(between(tagContent, "local(", ")"), (between(tagContent, "alt(", ")") == undefined ? "image" : between(tagContent, "alt(", ")"))));
-                                        }
+                                    else if (tagName == "img") {
+                                        currentPage.tags.push(new Img(between(tagContent, "local(", ")"), (between(tagContent, "alt(", ")") == undefined ? "image" : between(tagContent, "alt(", ")"))));
                                     }
                                 }
                             }
