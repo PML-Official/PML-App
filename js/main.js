@@ -52,13 +52,13 @@ function setFileData(input) {
 }
 
 function getIdFromTagName(s) {
-    let tags = ["p", "h1", "h2", "h3", "img", "link", "h4", "h5", "h6", "text"];
+    let tags = ["p", "h1", "h2", "h3", "img", "link", "h4", "h5", "h6", "text", "sel-check", "sel-text"];
     return tags.indexOf(s);
 }
 
 
 function getStyleFromId(id) {
-    const styles = [pStyle, h1Style, h2Style, h3Style, imgStyle, linkStyle, h4Style, h5Style, h6Style, textStyle];
+    const styles = [pStyle, h1Style, h2Style, h3Style, imgStyle, linkStyle, h4Style, h5Style, h6Style, textStyle, checkboxTextStyle, textboxStyle];
     return styles[id];
 }
 
@@ -294,6 +294,9 @@ function parseData() {
                                     else if (tagName == "sel-check") {
                                         currentPage.tags.push(new Checkbox(tagContent));
                                     }
+                                    else if (tagName == "sel-text") {
+                                        currentPage.tags.push(new Textbox(tagContent));
+                                    }
                                     else if (tagName == "img") {
                                         currentPage.tags.push(new Img(between(tagContent, "local(", ")"), (between(tagContent, "alt(", ")") == undefined ? "image" : between(tagContent, "alt(", ")"))));
                                     }
@@ -362,6 +365,15 @@ function parseData() {
                     doc.y += 20;
                     doc.x -= doc.widthOfString(currTag.text) + 10;
                 }
+                else if (currTag.id == TEXTBOX) {
+                    doc.fontSize(textboxStyle.fontSize).lineGap(textboxStyle.lineGap).text(currTag.text, doc.x, doc.y, {continued: false});
+                    doc.x += doc.widthOfString(currTag.text) + 10;
+                    doc.y -= doc.heightOfString(currTag.text);
+                    doc.formText(currTag.text, doc.x, doc.y, textboxStyle.width, textboxStyle.height, {multiline: true});
+                    doc.y += 20;
+                    doc.x -= doc.widthOfString(currTag.text) + 10;
+                }
+                
             }
         }
         if (x != allPages.length - 1) {

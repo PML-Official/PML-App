@@ -9,12 +9,14 @@ const HEADER5 = 7;
 const HEADER6 = 8;
 const TEXT = 9;
 const CHECKBOX = 10;
+const TEXTBOX = 11;
 
 const textTagNames = ["p", "h1", "h2", "h3", "h4", "h5", "h6", "text"];
 
 class Style {
     constructor() {
         this.width = 0;
+        this.height = 0;
         this.color = black;
         this.size = 0;
         this.fontSize = undefined;

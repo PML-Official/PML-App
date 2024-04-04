@@ -43,3 +43,9 @@ textStyle.lineGap = 5;
 const checkboxTextStyle = new Style();
 checkboxTextStyle.fontSize = 16;
 checkboxTextStyle.lineGap = 5;
+
+const textboxStyle = new Style();
+textboxStyle.fontSize = 16;
+textboxStyle.lineGap = 5;
+textboxStyle.width = 200;
+textboxStyle.height = 20;

@@ -66,3 +66,9 @@ class Checkbox extends Tag {
         super(CHECKBOX, label);
     }
 }
+
+class Textbox extends Tag {
+    constructor(label) {
+        super(TEXTBOX, label);
+    }
+}
