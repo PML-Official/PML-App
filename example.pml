@@ -2,9 +2,10 @@
 [meta-author: Stashey13 and lukewhite32]
 
 {-- Page 1}
-[h1: this is a header]
-[p: this is a paragraph]
-[text: this is a link(https://urmom.com, link) to urmom]
+[text: this @pageNumber a link(https://urmom.com, link) to urmom]
+[nl]
 [sel-text: this is a text box: ]
-[sel-check: does this work:]
-[img: local(images/Linux Icon.png) alt(this is alt text)]
+
+{-- Page 2}
+[text: this is some @pageNumber text]
+>>>>>>> b79b941d82b6cb6efb4b515d7f9cf38bca5e0d92
