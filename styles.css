@@ -12,12 +12,12 @@ body {background-color: rgb(34, 34, 34); padding: 0 !important; margin: 0 !impor
 .icon-1 a {color: white; text-decoration: none;} .developer-text {font-family: 'Roboto', sans-serif; font-size:small} .bottom-logo {max-height: 38px; height: 38px; margin-left: 2vw} .pipe { color: white; font-size: 1.5rem; margin-left: 1.5vw; font-weight:100;}
 .icon-2 {display: flex; align-items: center; margin-left: 2vw;} #app-version-text {font-family: 'Roboto', sans-serif; font-size:small; color: white; cursor: pointer;}
 .home-icon {display: flex; align-items: center; margin-left: 2vw;} .home-text {font-family: 'Roboto', sans-serif; font-size:small; color: white; cursor: pointer;} .home-text:hover { cursor: pointer;} .homelink {text-decoration: none;}
-.icon-3 {display: flex; align-items: center; margin-left: 2vw;} #settings-text {font-family: 'Roboto', sans-serif; font-size:small; color: white; cursor: not-allowed; /* cursor: pointer; */}
+.icon-3 {display: flex; align-items: center; margin-left: 2vw;} #settings-text {font-family: 'Roboto', sans-serif; font-size:small; color: white; cursor: pointer; /* cursor: pointer; */}
 .icon-4 {display: flex; align-items: center; margin-left: 2vw;} #contact-text {font-family: 'Roboto', sans-serif; font-size:small; color: white; cursor: not-allowed; /* cursor: pointer; */}
 .iframe-icon {right: 100px; position: fixed;}
 /* app version info */
-#appversion-information {display:block; height: 250px; width: 200px; word-wrap: break-word; background-color:rgb(48, 48, 48); z-index: 9999; padding-left: 8px; box-shadow: 2px 2px 2px 2px  rgba(0, 0, 0, 0.525); padding-right: 8px; padding-bottom: 0; position: fixed; bottom: 60px; margin-left: 390px; box-shadow: 0px 10px, 20px rgba(0,0,0,20)} .av-itext {color: white; font-family: "Roboto", sans-serif; margin-left: 8px;}
-#appversion-information .material-symbols-outlined {margin-left: 30px; cursor: pointer; margin-top: 5px; } .explanationtext {width: 180px; word-wrap: break-word !important; display: inline-block; margin-left: 8px; color: white; font-family: 'Roboto', sans-serif; margin-top: 30px; font-size:small} #close-btn:hover {color: rgb(226, 226, 226)} 
+#appversion-information {display:block; height: 250px; width: 200px; word-wrap: break-word; background-color:rgb(48, 48, 48); z-index: 9999; padding-left: 8px; box-shadow: 4px 4px 2px 2px  rgba(22, 22, 22, 0.239); padding-right: 8px; padding-bottom: 0; position: fixed; bottom: 60px; margin-left: 390px; box-shadow: 0px 10px, 20px rgba(0,0,0,20)} .av-itext {color: white; font-family: "Roboto", sans-serif; margin-left: 8px;}
+#appversion-information .material-symbols-outlined {margin-left: 30px; cursor: pointer; margin-top: 5px; } .explanationtext {width: 180px; word-wrap: break-word !important; display: inline-block; margin-left: 8px; color: white; font-family: 'Roboto', sans-serif; margin-top: 30px; font-size:small} #close-btn:hover {color: rgb(226, 226, 226)} #close:hover {color: rgb(226, 226, 226); cursor: pointer;}
 .hidden {display:none;} 
 
 
@@ -34,7 +34,6 @@ body {background-color: rgb(34, 34, 34); padding: 0 !important; margin: 0 !impor
 #editor {
     min-height: 600px; /* Adjust height as needed */ 
     height: 83vh;
-    
     width: 897px;
     max-width: 997px;;
     outline: none;
@@ -74,8 +73,32 @@ body {background-color: rgb(34, 34, 34); padding: 0 !important; margin: 0 !impor
 */
 #previewbutton {padding-top: 8px; padding-bottom: 8px; padding-left: 24px; padding-right: 24px; margin-left:2px; margin-top: 0px; border: none; background-color: rgb(0, 110, 255); border-radius: 4px; color: white; height: 50px; width: 300px; }/* #previewbutton:hover {cursor: pointer; background-color: rgb(38, 131, 252);} #previewbutton:active {background-color: rgb(38, 131, 252);}*/
 #errorsbutton {padding-top: 8px; padding-bottom: 8px; padding-left: 24px; padding-right: 24px; margin-left:2px; margin-top: 0px; border: none; background-color: rgb(0, 110, 255); border-radius: 4px; color: white; height: 50px; width: 300px; } /*#errorsbutton:hover {cursor: pointer; background-color: rgb(38, 131, 252);} #errorsbutton:active {background-color: rgb(38, 131, 252);}*/
-#textovererrors {color: white; font-family: 'Roboto', sans-serif; width: 600px; margin-top: 0; background-color: rgb(23, 23, 23); border:none; z-index: 9999; padding-top: 8px; padding-left: 5px; padding-bottom: 8px; font-size: 1.1rem;  } #errors {width: 600px; min-height: 600px; height: 84vh; background-color: aqua;}
+#textovererrors {color: white; font-family: 'Roboto', sans-serif; width: 600px; margin-top: 0; background-color: rgb(23, 23, 23); border:none; z-index: 9999; padding-top: 8px; padding-left: 5px; padding-bottom: 8px; font-size: 1.1rem;  } #errors {width: 600px; min-height: 600px; height: 84vh; background-color: rgb(41, 41, 41);}
 #previewbutton:hover {cursor: pointer;} #errorsbutton:hover {cursor: pointer;}
 .hidden {display: none; visibility: hidden;} #button-contain {position: fixed; width: 100%; bottom: 38px; background-color: rgb(48, 48, 48); padding-top: 8px; padding-bottom: 8px; border-top: 1px solid grey;}
+#span {color: white; font-family: 'Roboto', sans-serif; font-size: 0.9rem; display: inline-block; margin-top: 60%; margin-left: 40%;}
 
 
+/* settings */
+
+#settings {width: 840px; height: 700px; background-color: rgb(55, 55, 55);  top: 10vh; position: fixed; z-index: 9999; box-shadow: 4px 4px 2px 2px  rgba(22, 22, 22, 0.239); border-radius: 2px; max-width: 840px;}
+#settings-contain {width: 100%; height: 100%; position: fixed; display: flex; justify-content: center; align-items: center; } #settings-topbar {width: 100%; height: 30px; background-color: rgb(68, 68, 68); display: flex; align-items: center; justify-content: center;}
+#settingstext {color: white; font-family: monospace;} #close {position: fixed; right: 290px;}
+
+.animate {
+  animation: scaleOpen 0.2s ease forwards; /* Keyframe animation */
+}
+
+.animate.reverse {
+  animation: scaleClose 0.2s ease forwards;
+}
+
+@keyframes scaleOpen {
+  0% { height: 0px; width: 400px; opacity: 0;}
+  100% { height: 700px; opacity: 1;}
+}
+
+@keyframes scaleClose {
+  0% { height: 700px; opacity: 1;}
+  100% { height: 0px; width: 400px; opacity: 0;}
+}

@@ -206,7 +206,7 @@
         <div class="container">
         <div id="textoveriframe">PREVIEW</div><div class="hidden" id="textovererrors">LANGUAGE ERRORS</div>
         <div class="iframe-contain" id="iframe">            
-            <iframe id="display-pdf" src="output.pdf" width="900" height="700" class="hidden"></iframe><div id="errors" class="hidden"></div>
+            <iframe id="display-pdf" src="output.pdf" width="900" height="700" class="hidden"></iframe><div id="errors" class="hidden"><span id="span">no errors detected.</span></div>
         </div>
         </div>
     </li>
@@ -404,6 +404,57 @@ contentDiv.addEventListener('input', handleInput);
 </script>
 
 </div>
+
+
+
+
+
+
+
+<!--Settings-->
+
+
+
+
+
+<div id="settings-contain">
+<div id="settings" class="settings" style="display: none;">
+    <div id="settings-topbar">
+
+        <div id="textcontian">
+            <span id="settingstext">SETTINGS</span>
+        </div>
+
+        <i class="material-symbols-outlined" id="close">
+            close
+        </i>
+
+    </div>
+</div>
+</div>
+
+<script>
+    document.getElementById('settings-text').addEventListener('click', function() {
+    var block = document.getElementById('settings');
+    block.style.display = block.style.display === 'none' ? 'block' : 'none';
+    if (block.style.display === 'block') {
+        block.classList.remove('reverse'); // Ensure 'reverse' class is removed if settings are opening
+        block.classList.add('animate');
+    } else {
+        block.classList.remove('animate'); // Ensure 'animate' class is removed if settings are closing
+        block.classList.add('reverse');
+    }
+});
+
+document.getElementById('close').addEventListener('click', function() {
+    var block = document.getElementById('settings');
+    block.style.display = 'none';
+    block.classList.remove('animate'); // Ensure 'animate' class is removed if settings are closing
+    block.classList.add('reverse');
+});
+</script>      
+
+
 
 
 
