@@ -10,6 +10,7 @@ const HEADER6 = 8;
 const TEXT = 9;
 const CHECKBOX = 10;
 const TEXTBOX = 11;
+const NEWLINE = 12;
 
 const textTagNames = ["p", "h1", "h2", "h3", "h4", "h5", "h6", "text"];
 
@@ -35,6 +36,8 @@ class Page {
     constructor() {
         this.tags = [];
         this.pageNum = 0;
+        this.header = [];
+        this.footer = [];
     }
 }
 

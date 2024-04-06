@@ -40,9 +40,11 @@ const textStyle = new Style();
 textStyle.fontSize = 16;
 textStyle.lineGap = 5;
 
-const checkboxTextStyle = new Style();
-checkboxTextStyle.fontSize = 16;
-checkboxTextStyle.lineGap = 5;
+const checkboxStyle = new Style();
+checkboxStyle.fontSize = 16;
+checkboxStyle.lineGap = 5;
+checkboxStyle.width = 20;
+checkboxStyle.height = 20;
 
 const textboxStyle = new Style();
 textboxStyle.fontSize = 16;

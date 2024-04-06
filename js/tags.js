@@ -72,3 +72,10 @@ class Textbox extends Tag {
         super(TEXTBOX, label);
     }
 }
+
+class NewLine extends Tag {
+    constructor(amt) {
+        super(NEWLINE, "");
+        this.amt = amt;
+    }
+}

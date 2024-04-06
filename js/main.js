@@ -58,7 +58,7 @@ function getIdFromTagName(s) {
 
 
 function getStyleFromId(id) {
-    const styles = [pStyle, h1Style, h2Style, h3Style, imgStyle, linkStyle, h4Style, h5Style, h6Style, textStyle, checkboxTextStyle, textboxStyle];
+    const styles = [pStyle, h1Style, h2Style, h3Style, imgStyle, linkStyle, h4Style, h5Style, h6Style, textStyle, checkboxStyle, textboxStyle];
     return styles[id];
 }
 
@@ -87,6 +87,15 @@ function getAllIndexes(str, substring) {
         index = str.indexOf(substring, index + 1);
     }
     return indexes;
+}
+
+function setPageNumberVariable(string, num) {
+    for (let x = 0; x < string.length; x ++) {
+        if (string.substring(x, x+11) == "@pageNumber") {
+            return string.substring(0, x) + num + string.substring(x+11);
+        }
+    }
+    return string;
 }
 
 // returns the index of the next char seen at an index
@@ -131,6 +140,14 @@ function between(str, c1, c2) {
     return undefined;
 }
 
+function nextChar(str, ind) {
+    for (let x = ind; x < str.length; x ++) {
+        if (str[x] != " ") {
+            return str[x];
+        }
+    }
+}
+
 function isHttps(str) {
     return str.substring(0, 7) == "https://" || str.substring(0, 6) == "http://";
 }
@@ -168,6 +185,10 @@ function parseData() {
     let brcsScope = 0;
     let inComment = false;
     let parsingStyle = false;
+    let inHeader = false;
+    let inFooter = false;
+    let headerTags = [];
+    let footerTags = [];
     let styleString = "";
     let styleTagName = "";
     let styleTagContent = "";
@@ -182,12 +203,24 @@ function parseData() {
                 }
                 if (fileLines[x][y] == '}') {
                     brcsScope --;
+                    /*if (inHeader && brcsScope == 0) {
+                        inHeader = false;
+                    }
+                    else if (inFooter && brcsScope == 0) {
+                        inFooter = false;
+                    }*/
                 }
                 if (fileLines[x][y] == ')') {
                     pthScope --;
                 }
                 if (fileLines[x].substring(y, y+5) == "style") {
                     parsingStyle = true;
+                }
+                else if (fileLines[x].substring(y, y+6) == "header") {
+                    inHeader = true;
+                }
+                else if (fileLines[x].substring(y, y+6) == "footer" && (nextChar(fileLines[x], y+7) == "{")) {
+                    inFooter = true;
                 }
                 else if (parsingStyle) {
                     parsingStyle = false;
@@ -212,7 +245,6 @@ function parseData() {
                                 else if (styleString[s] == ')') {
                                     pthScope --;
                                 }
-                                
                                 if (brcsScope == 0 && styleString[s] != " ") {
                                     styleTagName += styleString[s];
                                 }
@@ -230,22 +262,30 @@ function parseData() {
                         }
                     }
                 }
-                else if (brktScope >= 1 || brcsScope >= 1) {
+                else if (brktScope >= 1 || (brcsScope >= 1)) {
                     buffer += fileLines[x][y];
                 }
                 else {
                     if (buffer != "") {
                         if (fileLines[x][y] == '}') {
-                            if (buffer.split("Page").length != 1) {
-                                if (currentPage != 0) {
-                                    allPages.push(currentPage);
+                            if (!inHeader) {
+                                if (buffer.split("Page").length != 1) {
+                                    if (currentPage != 0) {
+                                        allPages.push(currentPage);
+                                    }
+                                    currentPage = new Page();
                                 }
-                                currentPage = new Page();
                             }
+                            inHeader = false;
                         }
                         else {
                             if (buffer.split(":").length == 1) {
-                                alert("error at " + parseInt(x) + ":" + parseInt(y));
+                                if (buffer == "nl") {
+                                    currentPage.tags.push(new NewLine(1));
+                                }
+                                else {
+                                    alert("error at " + parseInt(x) + ":" + parseInt(y));
+                                }
                             }
                             else {
                                 let tagName = trim(buffer.split(":")[0]);
@@ -274,6 +314,7 @@ function parseData() {
                                         var linkPoses = getAllIndexes(tagContent, "link(");
                                         var textBuffer = "";
                                         var linkBuffer = "";
+                                        var pushToTag = 0;
                                         for (let z = 0; z < tagContent.length; z ++) {
                                             if (linkPoses.includes(z)) {
                                                 line.push(new TextTag(getIdFromTagName(tagName), textBuffer));
@@ -289,16 +330,28 @@ function parseData() {
                                         if (textBuffer != "") {
                                             line.push(new TextTag(getIdFromTagName(tagName), textBuffer));
                                         }
-                                        currentPage.tags.push(new TextLine(line));
+                                        pushToTag = new TextLine(line);
                                     }
                                     else if (tagName == "sel-check") {
-                                        currentPage.tags.push(new Checkbox(tagContent));
+                                        pushToTag = new Checkbox(tagContent);
                                     }
                                     else if (tagName == "sel-text") {
-                                        currentPage.tags.push(new Textbox(tagContent));
+                                        pushToTag = new Textbox(tagContent);
                                     }
                                     else if (tagName == "img") {
-                                        currentPage.tags.push(new Img(between(tagContent, "local(", ")"), (between(tagContent, "alt(", ")") == undefined ? "image" : between(tagContent, "alt(", ")"))));
+                                        pushToTag = new Img(between(tagContent, "local(", ")"), (between(tagContent, "alt(", ")") == undefined ? "image" : between(tagContent, "alt(", ")")));
+                                    }
+                                    else if (tagName == "nl") {
+                                        pushToTag = new NewLine(tagContent);
+                                    }
+                                    if (inHeader) {
+                                        currentPage.header.push(pushToTag);
+                                    }
+                                    else if (inFooter) {
+                                        currentPage.footer.push(pushToTag);
+                                    }
+                                    else {
+                                        currentPage.tags.push(pushToTag);
                                     }
                                 }
                             }
@@ -321,9 +374,10 @@ function parseData() {
             }
         }
     }
-
     allPages.push(currentPage);
     for (let x = 0; x < allPages.length; x ++) {
+        allPages[x].tags = allPages[x].header.concat(allPages[x].tags);
+        allPages[x].tags = allPages[x].tags.concat(allPages[x].footer);
         for (let y = 0; y < allPages[x].tags.length; y ++) {
             let currTag = allPages[x].tags[y];
             if (currTag.lineOfText) {
@@ -344,24 +398,24 @@ function parseData() {
                         s = getStyleFromId(currTag.elements[z].id);
                     }
                     options.underline = s.underlined;
-
-                    placeText(doc, currTag.elements[z].text, s, options);
+                    placeText(doc, setPageNumberVariable(currTag.elements[z].text, x+1), s, options);
                 }
             }
             else {
+                currTag.text = setPageNumberVariable(currTag.text);
                 if (currTag.id == IMG) {
                     if (fs.existsSync(directoryOfFile(filePath) + currTag.text)) {
-                        doc.image(directoryOfFile(filePath) + currTag.text, pageStyle.margin, doc.y, { width: 200, alt: currTag.alt });
+                        doc.image(directoryOfFile(filePath) + currTag.text, doc.x, doc.y, { width: 200, alt: currTag.alt });
                     }
                     else {
                         alert("invalid img selected");
                     }
                 }
                 else if (currTag.id == CHECKBOX) {
-                    doc.fontSize(checkboxTextStyle.fontSize).lineGap(checkboxTextStyle.lineGap).text(currTag.text, doc.x, doc.y, {continued: false});
+                    doc.fontSize(checkboxStyle.fontSize).lineGap(checkboxStyle.lineGap).text(currTag.text, doc.x, doc.y, {continued: false});
                     doc.x += doc.widthOfString(currTag.text) + 10;
                     doc.y -= doc.heightOfString(currTag.text);
-                    doc.formCheckbox(currTag.text, doc.x, doc.y, 16, 16);
+                    doc.formCheckbox(currTag.text, doc.x, doc.y, checkboxStyle.width, checkboxStyle.height);
                     doc.y += 20;
                     doc.x -= doc.widthOfString(currTag.text) + 10;
                 }
@@ -373,7 +427,11 @@ function parseData() {
                     doc.y += 20;
                     doc.x -= doc.widthOfString(currTag.text) + 10;
                 }
-                
+                else if (currTag.id == NEWLINE) {
+                    for (let x = 0; x < currTag.amt; x ++) {
+                        doc.moveDown();
+                   }
+                }
             }
         }
         if (x != allPages.length - 1) {
