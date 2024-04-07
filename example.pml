@@ -2,10 +2,17 @@
 [meta-author: Stashey13 and lukewhite32]
 
 {-- Page 1}
-[text: this @pageNumber a link(https://urmom.com, link) to urmom]
+[text: this a link(https://urmom.com, link) to urmom]
+[p: this is a test of nl using 3 lines:]
+[nl: 2]
+[sel-text: this is a text box:]
 [nl]
-[sel-text: this is a text box: ]
+
+
+[sel-check: this is a check:]
+[nl: 3]
+[p: this is the page number: @pageNumber]
 
 {-- Page 2}
-[text: this is some @pageNumber text]
->>>>>>> b79b941d82b6cb6efb4b515d7f9cf38bca5e0d92
+[text: this is the page number: @pageNumber]
+
