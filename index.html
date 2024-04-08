@@ -326,53 +326,32 @@ function hideElement(elementIds) {
 
 
    <script>
-  // Function to handle keydown event
 function handleKeyDown(event) {
-// Check if the Enter key is pressed
 if (event.keyCode === 13) {
-// Get the selection and range objects
 const selection = window.getSelection();
 const range = selection.getRangeAt(0);
-// Create a new line break node
         const br = document.createElement('br');
-// Insert the line break at the current cursor position
         range.insertNode(br);
-// Move the cursor to the end of the newly created line
         range.setStartAfter(br);
         range.setEndAfter(br);
-// Collapse the range and set the selection
         range.collapse(false);
         selection.removeAllRanges();
         selection.addRange(range);
-// Prevent the default behavior of the Enter key
         event.preventDefault();
     }
-// Check if the Backspace key is pressed
     if (event.keyCode === 8) {
-        // Get the selection and range objects
         const selection = window.getSelection();
         const range = selection.getRangeAt(0);
-// Get the current line text
 const currentLineText = range.startContainer.textContent;
         const currentLineOffset = range.startOffset;
-// Check if the cursor is at the beginning of the line and the line is empty
         if (436 === getCaretCharacterOffsetWithin(range.startContainer)) {
-            // Get the previous sibling node
             const prevNode = range.startContainer.previousSibling;
-// Remove the empty line
-            //if (prevNode && prevNode.nodeName === 'BR') {
-            //    alert("id est");
                 prevNode.parentNode.removeChild(prevNode);
-            //}
-// Prevent the default behavior of the Backspace key
             event.preventDefault();
         }}}
-// Function to handle input event
 function handleInput(event) {
-    // Check if the last character is a line break
     const content = event.target.textContent;
     if (content.endsWith('<br>') || content.endsWith('<br><br>')) {
-        // Move the cursor to the end
         const range = document.createRange();
         const selection = window.getSelection();
         range.selectNodeContents(event.target);
@@ -380,9 +359,7 @@ function handleInput(event) {
         selection.removeAllRanges();
         selection.addRange(range);
     }}
-// Add event listener for the keydown event on the contentDiv
 contentDiv.addEventListener('keydown', handleKeyDown);
-// Add event listener for the input event on the contentDiv
 contentDiv.addEventListener('input', handleInput);
 </script>
 
@@ -499,10 +476,5 @@ contentDiv.addEventListener('input', handleInput);
 document.getElementById('close').addEventListener('click', function() {var block = document.getElementById('settings'); block.style.display = 'none'; block.classList.remove('animate'); block.classList.add('reverse');});
 </script>      
 <!--Settings functionality logic-->
-
-
-
-
-
 
 </html>
