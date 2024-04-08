@@ -104,5 +104,5 @@ body {background-color: rgb(34, 34, 34); padding: 0 !important; margin: 0 !impor
 }
 
 .sidebar-buttons {background-color: rgb(46, 46, 46); border: none; border-bottom: 2px solid rgb(42, 42, 42); width: 220px; height: 60px; color: white; font-size: 0.85rem; text-align: left; padding-left: 20px;} .sidebar-buttons:hover {cursor: pointer; background-color: rgb(64, 64, 64); transition: 0.1s;} #mainlayout {list-style-type: none; margin: 0; padding: 0; display: inline-block;} 
-#mainlayout-li {display: inline-block; margin:0; padding: 0;}
+.mainlayout-li {display: inline-block; margin:0; padding: 0;}
 .all-sections {background-color: rgb(55, 55, 55); position:absolute; height: 640px; width: 616px; max-width: 616px; max-height: 640px; top: 60px; margin: 0;} #themes-section select {margin:0; padding: 0;}
