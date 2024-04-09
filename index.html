@@ -15,6 +15,10 @@
         <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
         <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
         <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
+        <!--Warning-->
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
+        <!--Error-->
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
         <!--Undo (restore)-->
         <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
         <!--Deployed Code-->
@@ -224,10 +228,27 @@
     </li>
     <li id="content" class="resizable">
         <div class="container">
-        <div id="textoveriframe" class="hidden">PREVIEW</div><div class="hidden" id="textovererrors">LANGUAGE ERRORS</div>
-        <div class="iframe-contain" id="iframe">            
-            <iframe id="display-pdf" src="output.pdf" width="900" height="700" class="hidden"></iframe><div id="errors" class="hidden"><span id="span">no errors detected.</span></div>
-        </div>
+            <!--Text Over-->
+            <div id="textoveriframe" class="hidden">PREVIEW</div>
+            <div class="hidden" id="textovererrors">LANGUAGE ERRORS</div>
+            <div class="iframe-contain" id="iframe">     
+                <!--Iframe-->       
+                <iframe id="display-pdf" src="output.pdf" width="900" height="700" class="hidden">No Preview Avliable</iframe>
+                <!--End Iframe-->
+                
+                <div id="errors" class="hidden">
+                    <span class="material-symbols-outlined">
+                        warning
+                    </span>
+                    <span class="material-symbols-outlined">
+                        error
+                        </span>
+                    <span id="span">
+                        no errors detected.
+                    </span>
+                </div>
+                
+            </div>
         </div>
     </li>
     <div id="button-contain">
