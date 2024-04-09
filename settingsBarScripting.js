@@ -1,5 +1,18 @@
 // this is the script for the settings. includes all funtionality and button clicks ect.
 
+
+
+//script for active buttons
+function toggleButton(button, showElements, hideElements) {
+    var buttons = document.querySelectorAll('.sidebar-buttons');
+    buttons.forEach(function(btn) {
+        btn.classList. remove('active-buttons');
+    });
+
+    button.classList.add('active-buttons');
+
+    toggleAndHideSections(showElements, hideElements);
+}
 // script for switching tabs
 function toggleAndHideSections(showElements, hideElements) {
     visibilityOn(showElements);
@@ -23,6 +36,7 @@ function hideElements(elementIds) {
     });
 };
 
+
 // for opening settings tab
 
 document.getElementById('settings-text').addEventListener('click', 
@@ -45,3 +59,15 @@ document.addEventListener('DOMContentLoaded', function() {
         block.classList.add('reverse');
     });
 });
+
+
+
+function restoreToDefaults () {
+    alert("Restore Clicked");
+    console.log("Settings Restored to Default");
+};
+
+function settingsSaveButton () {
+    alert("Save bttn clicked!");
+    console.log("Settings Saved");
+}

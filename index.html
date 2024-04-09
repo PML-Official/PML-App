@@ -15,6 +15,8 @@
         <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
         <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
         <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
+        <!--Undo (restore)-->
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
         <!--Deployed Code-->
         <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
         <!--Iframe-->
@@ -89,11 +91,12 @@
             <!--Developer Guide-->
 
             <div class="icon-1">   
+                
             <i class="material-symbols-outlined"> 
                 developer_guide
             </i>
         
-            <a href="https://stashey13.github.io" id="electron-shell">  
+            <a href="https://stashey13.github.io" id="electron-shell"> 
                 <span class="developer-text">Developer Guide</span>
                 </a>
         </div>
@@ -143,7 +146,24 @@
             
             </div>      
         </div>
+<!--Command Q-->
+<script>
+    console.log('Renderer process script loaded');
 
+    const { ipcRenderer } = require('electron');
+
+    ipcRenderer.on('togglePageVisibilityTest', () => {
+        console.log('togglePageVisibilityTest event received'); // Add this line for debugging
+        const block = document.getElementById('appversion-information');
+
+        if (block) {
+            // Use a CSS class to toggle visibility instead
+            block.classList.toggle('hidden');
+        } else {
+            console.error('Element with ID "appversion-information" not found');
+        }
+    });
+</script>
 
         <!--appversion-block-->
         <div id="appversion-information" style="display: none;">
@@ -365,26 +385,9 @@ contentDiv.addEventListener('input', handleInput);
 
 
 
-<!--Command Q-->
-<script>
-    const {ipcRenderer } = require('electron');
 
-    ipcRenderer.on('togglePageVisibilityTest', () => {
-    const block = document.getElementById('appversion-information');
-
-    if (block.style.display === 'block') {
-        block.style.display = 'none';
-    }  else {
-        block.style.display = 'block';
-    }
-});
-</script>
 
 </div>
-
-
-
-
 
 
 
@@ -411,63 +414,84 @@ contentDiv.addEventListener('input', handleInput);
                     <div id="leftnav">
                         <ul>
                             <li>
-                                <button class="sidebar-buttons" id="themeButton" onclick="toggleAndHideSections(['themes-section'], ['text-editor-section', 'preview-settings-section', 'empty-section1', 'empty-section2'])">Themes</button>
+                                <button class="sidebar-buttons active-buttons" id="themeButton" onclick="toggleButton(this, ['themes-section'], ['text-editor-section', 'preview-settings-section', 'empty-section1', 'empty-section2'])">Themes</button>
                             </li>
                             <li>
-                                <button class="sidebar-buttons" id="othersettings1" onclick="toggleAndHideSections(['text-editor-section'], ['themes-section', 'preview-settings-section', 'empty-section1', 'empty-section2'])">Text Editor</button>
+                                <button class="sidebar-buttons" id="text-editor-bttn" onclick="toggleButton(this, ['text-editor-section'], ['themes-section', 'preview-settings-section', 'empty-section1', 'empty-section2'])">Text Editor</button>
                             </li>
                             <li>
-                                <button class="sidebar-buttons" id="othersettings2" onclick="toggleAndHideSections(['preview-settings-section'], ['themes-section', 'text-editor-section', 'empty-section1', 'empty-section2'])">Preview</button>
+                                <button class="sidebar-buttons" id="preview-settings-bttn" onclick="toggleButton(this, ['preview-settings-section'], ['themes-section', 'text-editor-section', 'empty-section1', 'empty-section2'])">Preview</button>
                             </li>
                             <li>
-                                <button class="sidebar-buttons" id="othersettings3" onclick="toggleAndHideSections(['empty-section1'], ['themes-section', 'text-editor-section', 'preview-settings-section', 'empty-section2'])">Empty</button>
+                                <button class="sidebar-buttons" id="othersettings3" onclick="toggleButton(this, ['empty-section1'], ['themes-section', 'text-editor-section', 'preview-settings-section', 'empty-section2'])">Empty</button>
                             </li>
                             <li>
-                                <button class="sidebar-buttons" id="othersettings4" onclick="toggleAndHideSections(['empty-section2'], ['themes-section', 'text-editor-section', 'preview-settings-section', 'empty-section1'])">Empty</button>
+                                <button class="sidebar-buttons" id="othersettings4" onclick="toggleButton(this, ['empty-section2'], ['themes-section', 'text-editor-section', 'preview-settings-section', 'empty-section1'])">Empty</button>
                             </li>
-                        </ul>
+                        </ul> 
                     </div>
                 </li>
 <!--Sectional Settings-->
-            <li class="mainlayout-li hidden" id="themes-section">
+            <li class="mainlayout-li" id="themes-section">
                 <div class="all-sections"> 
-                    <h3>Color Theme:</h3>
-                    <select>
-                        <option value="light">
-                            Light Theme
-                        </option>
-                        <option value="dark">
-                            Dark Theme
-                        </option>
-                    </select>
-                    <h3>Display Bottom-Bar:</h3>
+                    <h3 class="settings-headers">Color Theme:</h3>
+                    <input type="radio" id="option1" name="options" value="option1" class="radio" checked>
+                    <input type="radio" id="option2" name="options" value="option2" class="radio">
+                    <br>
+                    <label for="option1" class="settings-labels">Dark Theme</label>
+                    <label for="option2" class="settings-labels">Light Theme</label>
+                    
+                    
+                    <h3 class="settings-headers">Display Bottom-Bar:</h3>
+                    <input type="radio" id="option3" name="barToggle" value="option3" class="radio" checked>
+                    <input type="radio" id="option4" name="barToggle" value="option4" class="radio">
+                    <br>
+                    <label for="option3" class="settings-labels">Show</label>
+                    <label for="option4" class="settings-labels">Hide</label>
+
+                    <h3 class="settings-headers">Open Main Page:</h3>
+                    <input type="radio" id="option5" name="windowToggle" value="option5" class="radio" checked>
+                    <input type="radio" id="option6" name="windowToggle" value="option6" class="radio">
+                    <br>
+                    <label for="option5" class="settings-labels">Open In Same Window</label>
+                    <label for="option6" class="settings-labels">Open In New Window</label>
                 </div>
             </li>
             
             <li class="mainlayout-li hidden" id="text-editor-section">
                 <div class="all-sections">
-<p>text-editor-section</p>
+                    <p>text-editor-section</p>
                 </div>
             </li>
 
             <li class="mainlayout-li hidden" id="preview-settings-section">
                 <div class="all-sections">
-<p>settings for preview</p>
+                    <p>settings for preview</p>
                 </div>
             </li>
 
             <li class="mainlayout-li hidden" id="empty-section1">
                 <div class="all-sections">
-<p>empty 1</p>
+                    <p>empty 1</p>
                 </div>
             </li>
 
             <li class="mainlayout-li hidden" id="empty-section2">
                 <div class="all-sections">
-<p>empty 2</p>
+                    <p>empty 2</p>
                 </div>
             </li>
-        
+        <!--Save Buttons-->
+        <ul id="settings-links-ul">
+            <li class="l1" id="le">
+                <span class="material-symbols-outlined" id="undo" onclick="restoreToDefaults()">undo</span>
+                <a href="#" id="restore-link" onclick="restoreToDefaults()">Restore to Defaults</a>
+            </li>
+            <li class="l1">
+                <button id="settings-save" onclick="settingsSaveButton()">Save</button>
+            </li>
+        </ul>
+        <!--End Save Buttons-->
 </ul>
         </div>
 </div>

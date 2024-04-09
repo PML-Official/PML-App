@@ -81,8 +81,8 @@ body {background-color: rgb(34, 34, 34); padding: 0 !important; margin: 0 !impor
 
 /* settings */
 
-#settings {width: 840px; height: 700px; background-color: rgb(55, 55, 55);  top: 10vh; display: inline-block; position: fixed; z-index: 9999; box-shadow: 4px 4px 2px 2px  rgba(22, 22, 22, 0.239); border-radius: 8px; max-width: 840px;}
-#settings-contain {width: 100%; height: 100%; position: fixed; display: flex; justify-content: center; align-items: center; } #settings-topbar {width: 840px; height: 30px; z-index: 9999; background-color: rgb(68, 68, 68); display: flex; align-items: center; justify-content: center; box-shadow: 0px 4px 4px rgba(22, 22, 22, 0.239) ; z-index: 100;}
+#settings {width: 840px; height: 700px; background-color: rgb(55, 55, 55); color: white; top: 10vh; display: inline-block; position: fixed; z-index: 9999; box-shadow: 4px 4px 2px 2px  rgba(22, 22, 22, 0.239); border-radius: 8px; max-width: 840px;}
+#settings-contain {width: 100%; height: 100%; position: fixed; display: flex; justify-content: center; align-items: center; flex-direction: column;} #settings-topbar {width: 840px; height: 30px; z-index: 9999; background-color: rgb(68, 68, 68); display: flex; align-items: center; justify-content: center; box-shadow: 0px 4px 4px rgba(22, 22, 22, 0.239) ; z-index: 100;}
 #settingstext {color: white; font-family: monospace;} #close {position: relative; display: flex; justify-content: center; align-items: center; width: 840px; background-color: rgb(34, 34, 34); height: 30px; border-top-left-radius: 8px; border-top-right-radius: 8px; } 
 #close:hover {background-color: rgb(46, 46, 46); transition: 0.2s;} #leftnav {width: 220px; background-color: rgb(46, 46, 46); height: 640px; margin-top: 0; margin-bottom: 30px;} #leftnav ul {margin: 0; padding: 0; list-style-type: none;}
 .animate {
@@ -103,6 +103,9 @@ body {background-color: rgb(34, 34, 34); padding: 0 !important; margin: 0 !impor
   100% {opacity: 0;}
 }
 
-.sidebar-buttons {background-color: rgb(46, 46, 46); border: none; border-bottom: 2px solid rgb(42, 42, 42); width: 220px; height: 60px; color: white; font-size: 0.85rem; text-align: left; padding-left: 20px;} .sidebar-buttons:hover {cursor: pointer; background-color: rgb(64, 64, 64); transition: 0.1s;} #mainlayout {list-style-type: none; margin: 0; padding: 0; display: inline-block;} 
-.mainlayout-li {display: inline-block; background-color: white; margin:0; padding: 0; left: 220px; position: absolute; height: 640px; width: 616px; max-width: 616px; max-height: 640px; top: 60px;}
-.all-sections {background-color: rgb(119, 119, 119);  margin: 0;} #themes-section select {margin:0; padding: 0;}
+.sidebar-buttons {background-color: rgb(46, 46, 46); border: none; border-bottom: 2px solid rgb(42, 42, 42); width: 220px; height: 60px; color: white; font-size: 0.85rem; text-align: left; padding-left: 20px;} .sidebar-buttons:hover {cursor: pointer; background-color: rgb(57, 57, 57); transition: 0.1s;} #mainlayout {list-style-type: none; margin: 0; padding: 0; display: inline-block;} 
+.mainlayout-li {display: inline-block; margin:0; padding: 0; left: 220px; position: absolute; height: 600px; width: 616px; max-width: 616px; max-height: 640px; top: 60px;} #settings-links-ul {list-style-type: none; display: inline-block; margin:0; padding: 0; position: absolute; bottom: 2px; right: 30px; margin-bottom: 4px;}
+.all-sections {background-color: rgb(55, 55, 55); margin: 0; padding: 10px;} #themes-section select {margin:0; padding: 0;} .active-buttons {background-color: rgb(55, 55, 55);} .l1 {display: inline-block; margin:0; padding: 0;} #undo {display: inline-block; vertical-align: center; position: absolute; bottom: 4px; right: 250px; color: rgb(181, 181, 181);}
+#restore-link {display: inline-block; vertical-align: center; color: rgb(181, 181, 181); margin-right: 18px; text-decoration: none; font-family: monospace; margin-bottom: 1px;} #restore-link:hover{text-decoration: underline;} #undo:hover {cursor: pointer;} 
+#settings-save {color: white; border: none; background-color: rgb(61, 83, 255); height: 28px; padding-left: 25px; padding-right: 25px; border-radius: 4px; font-family: monospace; font-size: 0.77rem;} #settings-save:hover {cursor: pointer; }
+.settings-labels{font-family: monospace;} .settings-headers {color: white; font-family: 'Roboto', sans-serif;} .radio:hover {cursor: pointer;} .radio {margin-left: 20px; margin-right: 150px;}
