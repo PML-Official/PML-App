@@ -14,7 +14,7 @@ function createWindow() {
     webPreferences: {
       nodeIntegration: true, // Enable Node.js integration in renderer process
       contextIsolation: false,
-      preload: path.join(__dirname, 'preload.js')
+      preload: path.join(__dirname, '/More JS Folders/preload.js')
     },
     icon: process.platform === 'win32' ? path.join(__dirname, 'Windows Icon.ico') : path.join(__dirname, 'Mac-Icon.icns')
   });
