@@ -83,6 +83,7 @@
         <!--Bottom Bar-->
         
         <div class="bottom-bar">
+            <div class="tooltip-bottom" id="tooltip-logo">PML Logo</div>
             <img alt="pml logo" class="bottom-logo" src="images/PML White.png" href="https://PML-Official.github.io">
             <span class="pipe">|</span>
 
@@ -521,7 +522,7 @@ contentDiv.addEventListener('input', handleInput);
         <!--Save Buttons-->
         <ul id="settings-links-ul">
             <li class="l1" id="le">
-                <div id="restore-text">Restore Settings</div>
+                <div id="restore-text" class="tooltip-bottom">Restore Settings</div>
                 <span class="material-symbols-outlined" id="undo" onclick="restoreToDefaults()">undo</span>
                 <!--
                 <a href="#" id="restore-link" onclick="restoreToDefaults()">Restore to Defaults</a>

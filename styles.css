@@ -104,6 +104,10 @@ Note: all option odd numbers arent there because their positioning is determind 
 .settings-labels{font-family: monospace;} .settings-headers {color: white; font-family: 'Roboto', sans-serif; margin-bottom: 40px; margin-top: 40px;} .radio:hover {cursor: pointer;} .radio {margin-left: 20px; margin-right: 150px;} #themes-content {margin-top: 5px; padding-left: 20px; margin-left: 50px;}
 #label1 {margin-left: 10px;} #label2 {margin-left: 32px;} #label3 {margin-left: 29px;} #label4 {margin-left: 88px;} #option1 {margin-left: 40px; margin-right: 84px;}  #option3 {margin-left: 40px; margin-right: 84px;} #option5 {margin-left: 40px; margin-right: 84px;} 
 #ulradio {display: inline-block; margin: 0; padding: 0;} .ulradioli {display: inline-block; margin: 0; padding: 0; text-align: center;} #container1 {margin-left: 5px;} #container2 {margin-left: 34px;} 
+
+
+/* Overall Tooltip classes for Bottom arrow */
+.tooltip-bottom::after {content: " "; position: absolute; top: 100%; left: 50%; margin-left: -5px; border-width: 6px; border-style: solid; border-color: rgb(32, 32, 32) transparent transparent transparent}
+.tooltip-bottom {display: none; position: absolute; font-family: monospace; font-size: 0.6rem; opacity: 0; transition: opacity 0.2s ease; background-color: rgb(32, 32, 32); padding: 5px; padding-left: 7px; padding-right: 7px; border-radius: 4px;}
 /* tooltip for undo settings */
-#restore-text {display: none; position: absolute; bottom: 35px; right: 40px; font-family: monospace; font-size: 0.7rem; opacity: 0; transition: opacity 0.2s ease; background-color: rgb(32, 32, 32); padding: 5px; padding-left: 7px; padding-right: 7px; border-radius: 4px;} #undo:hover + #restore-text {display: block;}
-#restore-text::after {content: " "; position: absolute; top: 100%; left: 50%; margin-left: -5px; border-width: 6px; border-style: solid; border-color: rgb(32, 32, 32) transparent transparent transparent}
+#restore-text {bottom: 35px; right: 48px;} #undo:hover + #restore-text {display: block;}

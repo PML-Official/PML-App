@@ -1,6 +1,7 @@
-// Tooltip code for Undo Button
-
 document.addEventListener('DOMContentLoaded', () => {
+
+    // Tooltip code for Undo Button
+
     const undoHover = document.getElementById('undo');
     const hoverExplain = document.getElementById('restore-text');
     let tooltipTimeout;
@@ -25,4 +26,26 @@ document.addEventListener('DOMContentLoaded', () => {
 
     undoHover.addEventListener('mouseenter', showTooltip);
     undoHover.addEventListener('mouseleave', hideTooltip);
+
+    
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 });
