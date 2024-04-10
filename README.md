@@ -14,7 +14,7 @@ PML App is a text editor made specifically for PML. The features will enable you
 
 ## Official Website
 
-The website explaining it all: [PML-Offical.github.io](https://PML-Official.github.io). This website is also under construction.
+The website explaining it all: [PML-Official.github.io](https://PML-Official.github.io). This website is also under construction.
 
 ## Repositories
 
