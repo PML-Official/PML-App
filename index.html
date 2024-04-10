@@ -454,28 +454,40 @@ contentDiv.addEventListener('input', handleInput);
                 </li>
 <!--Sectional Settings-->
             <li class="mainlayout-li" id="themes-section">
-                <div class="all-sections"> 
+                <div class="all-sections" id="themes-content"> 
                     <h3 class="settings-headers">Color Theme:</h3>
                     <input type="radio" id="option1" name="options" value="option1" class="radio" checked>
                     <input type="radio" id="option2" name="options" value="option2" class="radio">
                     <br>
-                    <label for="option1" class="settings-labels">Dark Theme</label>
-                    <label for="option2" class="settings-labels">Light Theme</label>
+                    <label for="option1" class="settings-labels" id="label1">Dark Theme</label>
+                    <label for="option2" class="settings-labels" id="label2">Light Theme</label>
                     
                     
                     <h3 class="settings-headers">Display Bottom-Bar:</h3>
                     <input type="radio" id="option3" name="barToggle" value="option3" class="radio" checked>
                     <input type="radio" id="option4" name="barToggle" value="option4" class="radio">
                     <br>
-                    <label for="option3" class="settings-labels">Show</label>
-                    <label for="option4" class="settings-labels">Hide</label>
+                    <label for="option3" class="settings-labels" id="label3">Show</label>
+                    <label for="option4" class="settings-labels" id="label4">Hide</label>
 
                     <h3 class="settings-headers">Open Main Page:</h3>
                     <input type="radio" id="option5" name="windowToggle" value="option5" class="radio" checked>
                     <input type="radio" id="option6" name="windowToggle" value="option6" class="radio">
                     <br>
-                    <label for="option5" class="settings-labels">Open In Same Window</label>
-                    <label for="option6" class="settings-labels">Open In New Window</label>
+                    <!-- The Reason this area needs Lists and Containers is because adding the <br>s makes it act weird-->
+                    <ul id="ulradio">
+                        
+                        <li class="ulradioli">
+                            <div id="container1">
+                                <label for="option5" class="settings-labels" id="label5" style="text-align: center;">Open In <br>Same Window</label>
+                            </div>
+                        </li>
+                        <li class="ulradioli">
+                            <div id="container2">
+                                <label for="option6" class="settings-labels" id="label6" style="text-align: center;">Open In <br>New Window</label>
+                            </div>
+                        </li>
+                    </ul>
                 </div>
             </li>
             
@@ -505,8 +517,11 @@ contentDiv.addEventListener('input', handleInput);
         <!--Save Buttons-->
         <ul id="settings-links-ul">
             <li class="l1" id="le">
+                <div id="restore-text">Restore Settings</div>
                 <span class="material-symbols-outlined" id="undo" onclick="restoreToDefaults()">undo</span>
+                <!--
                 <a href="#" id="restore-link" onclick="restoreToDefaults()">Restore to Defaults</a>
+                -->
             </li>
             <li class="l1">
                 <button id="settings-save" onclick="settingsSaveButton()">Save</button>
