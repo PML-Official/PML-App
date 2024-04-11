@@ -45,12 +45,7 @@ function hideElements(elementIds) {
     if (block) {
         block.style.display = block.style.display === 'none' ? 'block' : 'none';
         if (block.style.display === 'block') {
-            block.classList.remove('reverse');
             block.classList.add('animate');
-        }
-        else {
-            block.classList.remove('animate');
-            block.classList.add('reverse');
         }
     }
 });
@@ -60,8 +55,6 @@ document.addEventListener('DOMContentLoaded', () => {
         const block = document.getElementById('settings');
         if (block) {
             block.style.display = 'none';
-            block.classList.remove('animate');
-            block.classList.add('reverse');
         }
     });
 });
