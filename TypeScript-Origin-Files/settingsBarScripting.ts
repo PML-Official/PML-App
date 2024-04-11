@@ -33,7 +33,7 @@ function visibilityOn(elementIds: string[]) {
         }
     });
 }
-function hideElements(elementIds: string[]) {
+function hideThings(elementIds: string[]) {
     elementIds.forEach(function(id) {
         const element = document.getElementById(id);
         if (element) {

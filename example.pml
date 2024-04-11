@@ -18,6 +18,3 @@
 [nl: 4]
 [img: local(images/Linux Icon.png) alt(image)]
 [nl]
-
-
-

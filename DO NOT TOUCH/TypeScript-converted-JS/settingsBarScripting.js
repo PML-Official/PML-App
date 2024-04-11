@@ -30,7 +30,7 @@ function visibilityOn(elementIds) {
         }
     });
 }
-function hideElements(elementIds) {
+function hideThings(elementIds) {
     elementIds.forEach(function (id) {
         const element = document.getElementById(id);
         if (element) {

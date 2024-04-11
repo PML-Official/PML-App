@@ -30,9 +30,6 @@
     </head>
 
     <body>
-<!--Tooltips JS-->
-<script src="DO NOT TOUCH/TypeScript-converted-JS/tooltips.js"></script>
-
 
 <div id="opening-screen" style="display: block">
             <div id="logo"><img alt="pml logo" class="pml-logo" src="images/PML White.png"></div>
@@ -187,26 +184,6 @@
         </div>
 
 
-        <script>
-    function openLinkExternally(event) {
-        event.preventDefault();
-        const link = event.target.href;
-        shell.openExternal(link);
-    } 
-    document.getElementById('app-version-text').addEventListener('click', function() {
-        var block = document.getElementById('appversion-information');
-        block.style.display = block.style.display === 'none' ? 'block' : 'none';
-    });
-
-    document.getElementById('close-btn').addEventListener('click', function() {
-        var block = document.getElementById('appversion-information');
-        block.style.display = 'none';
-    });
-</script>            
-
-
-
-
 
 
 <!--Text Editor Section-->
@@ -260,113 +237,15 @@
         <button class="runbutton" id="runbutton" onclick="setFileData()">
             Run Code
         </button>
-    <button id="previewbutton" onclick="toggleAndHide(['display-pdf', 'textoveriframe'], ['errors', 'textovererrors']); toggleButtonState('previewbutton', 'errorsbutton')">
+    <button id="previewbutton">
         Preview PDF
     </button>
-    <button id="errorsbutton" onclick="toggleAndHide(['errors', 'textovererrors'], ['display-pdf', 'textoveriframe']); toggleButtonState('errorsbutton', 'previewbutton')">
+    <button id="errorsbutton">
         Errors
     </button>   
     </div>
 </ul>
 </div>
-
-<script>
-    // text editor scroll
-var textEditorScroll = document.getElementById('editor');
-
-textEditorScroll.addEventListener('scroll', function() {
-    if (textEditorScroll.scrollTop > 0) {
-        textEditorScroll.style.borderTop = '1px solid grey';
-    } else {
-        textEditorScroll.style.borderTop = 'none';
-    }
-
-});
-// width change
-
-window.onresize = function() {
-    var container = document.querySelector('.resizeable');
-    var contents = container.querySelectorAll('.container');
-
-    contents.forEach(function(content) {
-        var containerWidth = container.offsetWidth;
-        var contentWdith = content.offsetWidth;
-
-        var newContentWidth = containerWidth * (contentWidth / containerWidth);
-         content.style.width + 'px';
-    });
-};
-</script>
-
-
-
-
-<!--script for switching tabs-->
-<script>
-// disable preview button when page first loads
-window.onload = function() {
-    var previewButton = document.getElementById('previewbutton');
-    previewButton.disabled = true;
-    previewButton.style.opacity = '0.7';
-    previewButton.style.cursor = 'default';
-};
-
-
-    // disabling buttons
-    var lastClickedButtonId = null;
-
-function toggleButtonState(clickedButtonId, otherButtonId) {
-    if (lastClickedButtonId === clickedButtonId) {
-        return;
-    }
-
-    var clickedButton = document.getElementById(clickedButtonId);
-    var otherButton = document.getElementById(otherButtonId);
-
-    clickedButton.disabled = true;
-    clickedButton.style.opacity = "0.7"; 
-    clickedButton.style.cursor = "default"; 
-
-    otherButton.disabled = false;
-    otherButton.style.opacity = "1"; 
-    otherButton.style.cursor = "pointer"; 
-
-    lastClickedButtonId = clickedButtonId;
-}
-
-// showing and hiding elements
-function  toggleAndHide(elementsToShow, elementsToHide) {
-    toggleVisibility(elementsToShow);
-    hideElement(elementsToHide);
-}
- 
-function toggleVisibility(elementIds) {
-    elementIds.forEach(function(id) {
-        var element = document.getElementById(id);
-        element.classList.remove('hidden');
-    });
-}
-
-function hideElement(elementIds) {
-    elementIds.forEach(function(id) {
-        var element = document.getElementById(id);
-        element.classList.add('hidden');
-    });
-}
- </script>
-
-
-
-
-<style>
-    .keyword {color:rgb(223, 27, 27)}
-</style>
-
-
-
-
-
-
 
 <!--this is the script for pressing enter-->
 
@@ -538,4 +417,14 @@ contentDiv.addEventListener('input', handleInput);
 </div>
 
 
+
+<!--Scripting - STAY AT END OF DOC-->
+
+<!--Tooltips JS-->
+<script defer src="DO NOT TOUCH/TypeScript-converted-JS/tooltips.js"></script>
+<!--Bottom Bar JS-->
+<script defer src="More JS Folders/Bottom-bar.js"></script>
+<!--text-editor script-->
+<script defer src="DO NOT TOUCH/TypeScript-converted-JS/text-editor.js"></script>
+</body>
 </html>
