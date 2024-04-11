@@ -250,43 +250,7 @@
 <!--this is the script for pressing enter-->
 
 
-   <script>
-function handleKeyDown(event) {
-if (event.keyCode === 13) {
-const selection = window.getSelection();
-const range = selection.getRangeAt(0);
-        const br = document.createElement('br');
-        range.insertNode(br);
-        range.setStartAfter(br);
-        range.setEndAfter(br);
-        range.collapse(false);
-        selection.removeAllRanges();
-        selection.addRange(range);
-        event.preventDefault();
-    }
-    if (event.keyCode === 8) {
-        const selection = window.getSelection();
-        const range = selection.getRangeAt(0);
-const currentLineText = range.startContainer.textContent;
-        const currentLineOffset = range.startOffset;
-        if (436 === getCaretCharacterOffsetWithin(range.startContainer)) {
-            const prevNode = range.startContainer.previousSibling;
-                prevNode.parentNode.removeChild(prevNode);
-            event.preventDefault();
-        }}}
-function handleInput(event) {
-    const content = event.target.textContent;
-    if (content.endsWith('<br>') || content.endsWith('<br><br>')) {
-        const range = document.createRange();
-        const selection = window.getSelection();
-        range.selectNodeContents(event.target);
-        range.collapse(false);
-        selection.removeAllRanges();
-        selection.addRange(range);
-    }}
-contentDiv.addEventListener('keydown', handleKeyDown);
-contentDiv.addEventListener('input', handleInput);
-</script>
+
 
 
 
