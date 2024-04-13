@@ -70,7 +70,6 @@
         <script src="js/tags.js"></script>
         <script src="js/styles.js"></script>
         <script src="js/main.js"></script>
-        </div>
 <!--End Parsing Script-->
 
 
@@ -152,24 +151,7 @@
             
             </div>      
         </div>
-<!--Command Q-->
-<script>
-    console.log('Renderer process script loaded');
 
-    const { ipcRenderer } = require('electron');
-
-    ipcRenderer.on('togglePageVisibilityTest', () => {
-        console.log('togglePageVisibilityTest event received'); // Add this line for debugging
-        const block = document.getElementById('appversion-information');
-
-        if (block) {
-            // Use a CSS class to toggle visibility instead
-            block.classList.toggle('hidden');
-        } else {
-            console.error('Element with ID "appversion-information" not found');
-        }
-    });
-</script>
 
         <!--appversion-block-->
         <div id="appversion-information" style="display: none;">

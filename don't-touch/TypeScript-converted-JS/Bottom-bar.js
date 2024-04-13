@@ -1,15 +1,15 @@
 "use strict";
-document.addEventListener('DOMContentLoaded', () => {
+//document.addEventListener('DOMContentLoaded', () => {
+const appversionElements = document.querySelectorAll('#appversion-text, #appversion-icon');
+appversionElements.forEach(appversionElement => {
     var _a;
-    const appversionElements = document.querySelectorAll('#appversion-text, #appversion-icon');
-    appversionElements.forEach(appversionElement => {
-        appversionElement.addEventListener('click', () => {
-            const block = document.getElementById('appversion-information');
-            if (block) {
-                block.style.display = block.style.display === 'none' ? 'block' : 'none';
-            }
-        });
+    appversionElement.addEventListener('click', () => {
+        const block = document.getElementById('appversion-information');
+        if (block) {
+            block.style.display = block.style.display === 'none' ? 'block' : 'none';
+        }
     });
+    //});
     (_a = document.getElementById('close-btn')) === null || _a === void 0 ? void 0 : _a.addEventListener('click', () => {
         const block = document.getElementById('appversion-information');
         if (block) {

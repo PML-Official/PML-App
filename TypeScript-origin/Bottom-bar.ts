@@ -1,5 +1,5 @@
 
-document.addEventListener('DOMContentLoaded', () => {
+//document.addEventListener('DOMContentLoaded', () => {
 
     const appversionElements = document.querySelectorAll('#appversion-text, #appversion-icon');
 
@@ -10,7 +10,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 block.style.display = block.style.display === 'none' ? 'block' : 'none';
             }
         });
-});
+ //});
 
     document.getElementById('close-btn')?.addEventListener('click', () => {
         const block = document.getElementById('appversion-information');

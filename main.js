@@ -1,6 +1,6 @@
 //import { PDFDocument, StandardFonts, rgb } from 'pdf-lib';
 
-const { app, BrowserWindow, shell, globalShortcut, dialog, ipcMain } = require('electron');
+const { app, BrowserWindow, shell, globalShortcut, dialog, ipcMain, Menu, MenuItem } = require('electron');
 const path = require('path');
 
 let mainWindow;
@@ -11,8 +11,9 @@ function createWindow() {
     height: 1010,
     maxHeight: 1205,
     minHeight: 900,
+    minWidth: 865,
     webPreferences: {
-      nodeIntegration: true, // Enable Node.js integration in renderer process
+      nodeIntegration: true, 
       contextIsolation: false,
       preload: path.join(__dirname, '/More JS Folders/preload.js')
     },
@@ -21,13 +22,12 @@ function createWindow() {
   win.openDevTools();
   win.webContents.on('will-navigate', (event, url) => {
     if (url.substring(0, 4) != "file") {
-      event.preventDefault(); // Prevent default navigation behavior
-      shell.openExternal(url); // Open the link in the default system browser
+      event.preventDefault(); 
+      shell.openExternal(url); 
     }
 
   });
 
-  // Load your HTML file (e.g., index.html)
   win.loadFile('index.html');
 }
 
@@ -48,36 +48,57 @@ app.on('activate', () => {
 });
 
 
+// Customize menu?
 
-
-// Keyboard Shortcuts
-
-// Command + Q
-app.on('ready', () => {
-    // Call createWindow function to create the main window
-    mainWindow = createWindow();
-
-    // Register global shortcut
-    const ret = globalShortcut.register('CommandOrControl+Q', () => {
-        console.log('CommandOrControl+Q was pressed');
-        if (mainWindow) {
-            mainWindow.webContents.send('togglePageVisibilityTest');
-            
+const template = [
+  {
+      label: 'PML',
+      submenu: [
+        {
+          label: 'About PML App',
+          accelerator: 'CmdOrCtrl+Shift+Q',
+          click: () => {
+            dialog.showMessageBox({
+              type: 'info',
+              title: 'About was clicked',
+              buttons: ['OK']
+            });
+          }
+        },
+        {
+          label: 'Quit',
+          accelerator: 'CmdOrCtrl+Q',
+          click: () => {
+            app.quit()
+          }
+        },
+        { type: 'separator'},
+        {
+          label: 'Hide PML App',
+          accelerator: 'CmdOrCtrl+H',
+          click: () => {
+            if (mainWindow) {
+              mainWindow.minimize();
+            }
+          }
         }
-    });
+      ]
+  },
+  {
+      label: 'Edit',
+      submenu: [
+          { label: 'Cut', role: 'cut' },
+          { label: 'Copy', role: 'copy' },
+          { label: 'Paste', role: 'paste' },
+          { type: 'separator' },
+          { label: 'Select All', role: 'selectAll' }
+      ]
+  },
+  // Add more menu items as needed
+];
 
-    if (!ret) {
-        console.log('Registration of Keyboard Shortcuts failed');
-    }
+const menu = Menu.buildFromTemplate(template);
 
-    console.log(globalShortcut.isRegistered('CommandOrControl+Q'));
-});
-
-
-// Unregister all shortcuts when the app is about to quit
-
-app.on('will-quit', () => {
-    globalShortcut.unregisterAll();
-});
+Menu.setApplicationMenu(menu);
 
 
