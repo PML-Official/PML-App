@@ -74,8 +74,21 @@ function mergeStyle(main, sub) {
     return ret;
 }
 
-function placeText(d, text, style, opt) {
-    d.fontSize(style.fontSize).lineGap(style.lineGap).fillColor(style.color.name).text(text, options=opt);
+function addToFont(font, isBold, isItalicied) {
+    if (isBold || isItalicied) {
+        font += "-";
+    }
+    if (isBold) {
+        font += "Bold";
+    }
+    if (isItalicied) {
+        font += "Oblique";
+    }
+    return font;
+}
+
+function placeText(d, text, style, opt, font="Helvetica") {
+    d.font(font).fontSize(style.fontSize).lineGap(style.lineGap).fillColor(style.color.name).text(text, options=opt);
 }
 
 // thanks internet
@@ -314,6 +327,10 @@ function parseData() {
                                         var linkPoses = getAllIndexes(tagContent, "link(");
                                         var textBuffer = "";
                                         var linkBuffer = "";
+                                        var inBold = false;
+                                        var inUnderline = false;
+                                        var inItalics = false;
+                                        var inStrikethrough = false;
                                         var pushToTag = 0;
                                         for (let z = 0; z < tagContent.length; z ++) {
                                             if (linkPoses.includes(z)) {
@@ -324,7 +341,18 @@ function parseData() {
                                                 z += nextOccuranceRelative(tagContent, z, ")");
                                             }
                                             else {
-                                                textBuffer += tagContent[z];
+                                                if (tagContent[z] == "*") {
+                                                    inBold = !inBold;
+                                                    let toPush = new TextTag(getIdFromTagName(tagName), textBuffer);
+                                                    toPush.isBold = !inBold;
+                                                    line.push(toPush);
+                                                    textBuffer = "";
+                                                
+                                                }
+                                                else {
+                                                    textBuffer += tagContent[z];
+                                                }
+                                                
                                             }
                                         }
                                         if (textBuffer != "") {
@@ -398,7 +426,7 @@ function parseData() {
                         s = getStyleFromId(currTag.elements[z].id);
                     }
                     options.underline = s.underlined;
-                    placeText(doc, setPageNumberVariable(currTag.elements[z].text, x+1), s, options);
+                    placeText(doc, setPageNumberVariable(currTag.elements[z].text, x+1), s, options, addToFont("Helvetica", currTag.elements[z].isBold, false));
                 }
             }
             else {
@@ -419,36 +447,4 @@ function parseData() {
                     doc.y += 20;
                     doc.x -= doc.widthOfString(currTag.text) + 10;
                 }
-                else if (currTag.id == TEXTBOX) {
-                    doc.fontSize(textboxStyle.fontSize).lineGap(textboxStyle.lineGap).text(currTag.text, doc.x, doc.y, {continued: false});
-                    doc.x += doc.widthOfString(currTag.text) + 10;
-                    doc.y -= doc.heightOfString(currTag.text);
-                    doc.formText(currTag.text, doc.x, doc.y, textboxStyle.width, textboxStyle.height, {multiline: true});
-                    doc.y += 20;
-                    doc.x -= doc.widthOfString(currTag.text) + 10;
-                }
-                else if (currTag.id == NEWLINE) {
-                    for (let x = 0; x < currTag.amt; x ++) {
-                        doc.moveDown();
-                   }
-                }
-            }
-        }
-        if (x != allPages.length - 1) {
-            doc.addPage({ margin: pageStyle.margin });
-            pageY = pageStyle.topMargin;
-        }
-    }
-
-    const writeStream = fs.createWriteStream('output.pdf');
-    doc.pipe(writeStream);
-    doc.end();
-
-    writeStream.addListener('finish', () => {
-        document.getElementById("display-pdf").remove();
-        const iframe = document.createElement('iframe');
-        iframe.id = "display-pdf";
-        iframe.src = "output.pdf";
-        document.getElementsByClassName("iframe-contain")[0].appendChild(iframe);
-    });
-}
+                else if (currTag.id == TE

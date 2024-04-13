@@ -15,6 +15,4 @@
 
 {-- Page 2}
 [text: this is the page number: @pageNumber]
-[nl: 4]
-[img: local(images/Linux Icon.png) alt(image)]
-[nl]
+[p: *this is some bolded text* and this isnt, this *is also 
