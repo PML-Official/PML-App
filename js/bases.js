@@ -54,13 +54,4 @@ class TextTag extends Tag {
         this.isBold = false;
         this.isUnderlined = false;
         this.isStrikethrough = false;
-        this.isItalicied = false;
-    }
-}
-
-class TextLine {
-    constructor(line) {
-        this.elements = line;
-        this.lineOfText = true;
-    }
-}
+        this.isItalici

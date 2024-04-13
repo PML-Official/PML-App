@@ -1,16 +1,21 @@
 {
   "name": "PML",
-  "version": "0.1",
+  "version": "1.0.0",
   "description": "App to code PML",
   "main": "main.js",
   "scripts": {
     "test": "pml",
-    "start": "electron ."
+    "start": "concurrently \"npm run start-electron\" \"npm run start-tsc\"",
+    "start-electron": "electron .",
+    "start-tsc": "tsc -w"
   },
   "author": "Luke White",
   "license": "ISC",
   "devDependencies": {
-    "electron": "^29.2.0"
+    "concurrently": "^8.2.2",
+    "electron": "^29.2.0",
+    "npm-run-all": "^4.1.5",
+    "typescript": "^5.4.5"
   },
   "dependencies": {
     "pdfkit": "^0.14.0"

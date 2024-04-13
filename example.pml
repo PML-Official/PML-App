@@ -7,7 +7,7 @@
 [nl: 2]
 [sel-text: this is a text box:]
 [nl]
-
+[p: this more text]
 
 [sel-check: this is a check:]
 [nl: 3]
@@ -15,4 +15,4 @@
 
 {-- Page 2}
 [text: this is the page number: @pageNumber]
-[p: *this is some bolded text* and this isnt, this *is also bolded* and this is also not.]
+[p: *this is some bolded text* and this isnt, this *is also 
