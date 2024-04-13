@@ -51,6 +51,10 @@ class Tag {
 class TextTag extends Tag {
     constructor(id, text) {
         super(id, text);
+        this.isBold = false;
+        this.isUnderlined = false;
+        this.isStrikethrough = false;
+        this.isItalicied = false;
     }
 }
 

@@ -15,4 +15,4 @@
 
 {-- Page 2}
 [text: this is the page number: @pageNumber]
-
+[p: *this is some bolded text* and this isnt, this *is also bolded* and this is also not.]

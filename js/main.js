@@ -74,8 +74,21 @@ function mergeStyle(main, sub) {
     return ret;
 }
 
-function placeText(d, text, style, opt) {
-    d.fontSize(style.fontSize).lineGap(style.lineGap).fillColor(style.color.name).text(text, options=opt);
+function addToFont(font, isBold, isItalicied) {
+    if (isBold || isItalicied) {
+        font += "-";
+    }
+    if (isBold) {
+        font += "Bold";
+    }
+    if (isItalicied) {
+        font += "Oblique";
+    }
+    return font;
+}
+
+function placeText(d, text, style, opt, font="Helvetica") {
+    d.font(font).fontSize(style.fontSize).lineGap(style.lineGap).fillColor(style.color.name).text(text, options=opt);
 }
 
 // thanks internet
@@ -314,6 +327,10 @@ function parseData() {
                                         var linkPoses = getAllIndexes(tagContent, "link(");
                                         var textBuffer = "";
                                         var linkBuffer = "";
+                                        var inBold = false;
+                                        var inUnderline = false;
+                                        var inItalics = false;
+                                        var inStrikethrough = false;
                                         var pushToTag = 0;
                                         for (let z = 0; z < tagContent.length; z ++) {
                                             if (linkPoses.includes(z)) {
@@ -324,7 +341,18 @@ function parseData() {
                                                 z += nextOccuranceRelative(tagContent, z, ")");
                                             }
                                             else {
-                                                textBuffer += tagContent[z];
+                                                if (tagContent[z] == "*") {
+                                                    inBold = !inBold;
+                                                    let toPush = new TextTag(getIdFromTagName(tagName), textBuffer);
+                                                    toPush.isBold = !inBold;
+                                                    line.push(toPush);
+                                                    textBuffer = "";
+                                                
+                                                }
+                                                else {
+                                                    textBuffer += tagContent[z];
+                                                }
+                                                
                                             }
                                         }
                                         if (textBuffer != "") {
@@ -398,7 +426,7 @@ function parseData() {
                         s = getStyleFromId(currTag.elements[z].id);
                     }
                     options.underline = s.underlined;
-                    placeText(doc, setPageNumberVariable(currTag.elements[z].text, x+1), s, options);
+                    placeText(doc, setPageNumberVariable(currTag.elements[z].text, x+1), s, options, addToFont("Helvetica", currTag.elements[z].isBold, false));
                 }
             }
             else {
