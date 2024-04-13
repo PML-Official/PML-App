@@ -2,6 +2,7 @@
 
 const { app, BrowserWindow, shell, globalShortcut, dialog, ipcMain, Menu, MenuItem } = require('electron');
 const path = require('path');
+const { mainModule } = require('process');
 
 let mainWindow;
 
@@ -47,53 +48,106 @@ app.on('activate', () => {
   }
 });
 
-
+/*
 // Customize menu?
 
 const template = [
+  // File
   {
-      label: 'PML',
-      submenu: [
-        {
-          label: 'About PML App',
-          accelerator: 'CmdOrCtrl+Shift+Q',
-          click: () => {
-            dialog.showMessageBox({
-              type: 'info',
-              title: 'About was clicked',
-              buttons: ['OK']
-            });
-          }
-        },
-        {
-          label: 'Quit',
-          accelerator: 'CmdOrCtrl+Q',
-          click: () => {
-            app.quit()
-          }
-        },
-        { type: 'separator'},
-        {
-          label: 'Hide PML App',
-          accelerator: 'CmdOrCtrl+H',
-          click: () => {
-            if (mainWindow) {
-              mainWindow.minimize();
-            }
+    label: 'PML',
+    submenu: [
+      // About PML App
+      {
+        label: 'About PML App',
+        accelerator: 'CmdOrCtrl+Shift+A',
+        click: () => {
+          dialog.showMessageBox({
+            type: 'info',
+            title: 'About was clicked',
+            buttons: ['OK']
+          });
+        }
+      },
+      // Line
+      { type: 'separator' },
+      // Refresh
+      {
+        label: 'Refresh',
+        accelerator: 'CmdOrCtrl+R',
+        click: () => {
+          if (mainWindow) {
+            mainWindow.reload();
           }
         }
-      ]
+      },
+      // Quit
+      {
+        label: 'Quit',
+        accelerator: 'CmdOrCtrl+Q',
+        click: () => {
+          app.quit()
+        }
+      },
+      // Line
+      { type: 'separator' },
+      // Hide PML App
+      {
+        label: 'Hide PML App',
+        accelerator: 'CmdOrCtrl+H',
+        click: () => {
+          if (mainWindow) {
+            mainWindow.minimize();
+          }
+        }
+      },
+      // Hide Others
+      {
+        label: 'Hide Others',
+        accelerator: 'CmdOrCtrl+Shift+H',
+        click: () => {
+          const allWindows = BrowserWindow.getAllWindows();
+          const currentWindow = BrowserWindow.getFocusedWindow();
+
+          allWindows.forEach(window => {
+            if (window !== currentWindow) {
+              window.minimize();
+            }
+          });
+        }
+      }
+    ]
   },
+  // Edit
   {
-      label: 'Edit',
-      submenu: [
-          { label: 'Cut', role: 'cut' },
-          { label: 'Copy', role: 'copy' },
-          { label: 'Paste', role: 'paste' },
-          { type: 'separator' },
-          { label: 'Select All', role: 'selectAll' }
-      ]
-  },
+    label: 'Edit',
+    submenu: [
+      // Cut
+      { label: 'Cut', role: 'cut' },
+      // Copy
+      { label: 'Copy', role: 'copy' },
+      // Paste
+      { label: 'Paste', role: 'paste' },
+      // Line
+      { type: 'separator' },
+      // Select All
+      { label: 'Select All', role: 'selectAll' },
+      {
+        label: 'Delete',
+        accelerator: 'Backspace',
+        click: () => {
+          if (mainWindow) {
+            mainWindow.webContents.executeJavaScript(`
+              var selection = window.getSelection().toString();
+              if (selection) {
+                var newText = document.activeElement.value.replace(selection, '');
+                document.activeElement.value = newText;
+              }
+            `);
+          }
+        }
+      }
+    ]
+  }
   // Add more menu items as needed
 ];
 
@@ -101,4 +155,4 @@ const menu = Menu.buildFromTemplate(template);
 
 Menu.setApplicationMenu(menu);
 
-
+*/

@@ -1,14 +1,14 @@
-document.addEventListener('DOMContentLoaded', () => {
-
     // Tooltip code for Undo Button
 
     const undoHover = document.getElementById('undo');
     const hoverExplain = document.getElementById('restore-text');
     let tooltipTimeout: ReturnType<typeof setTimeout>;
-
-    function showTooltip() {
-            tooltipTimeout = setTimeout(() => {
-                if (hoverExplain) {
+    
+    function showTooltip(event: MouseEvent) {
+        tooltipTimeout = setTimeout(() => {
+            if (hoverExplain) {
+                // Update tooltip position
+                updateTooltipPosition(event.pageX, event.pageY);
                 hoverExplain.style.opacity = '0'; 
                 hoverExplain.style.display = 'block'; 
                 setTimeout(() => {
@@ -20,18 +20,29 @@ document.addEventListener('DOMContentLoaded', () => {
 
     function hideTooltip() {
         clearTimeout(tooltipTimeout);
-            if (hoverExplain) {
+        if (hoverExplain) {
             hoverExplain.style.opacity = '0'; 
             setTimeout(() => {
                 hoverExplain.style.display = 'none';
             }, 300); 
         }
     }
-
-if (undoHover) {
-    undoHover.addEventListener('mouseenter', showTooltip);
-    undoHover.addEventListener('mouseleave', hideTooltip);
-}
+    
+    // Method to update tooltip position
+    function updateTooltipPosition(mouseX: number, mouseY: number) {
+        if (hoverExplain) {
+            hoverExplain.style.left = (mouseX + 200) + 'px';
+            hoverExplain.style.top = (mouseY + 200) + 'px';
+        }
+    }
+    
+    if (undoHover) {
+        undoHover.addEventListener('mouseenter', showTooltip);
+        undoHover.addEventListener('mousemove', (event) => {
+            updateTooltipPosition(event.pageX, event.pageY);
+        });
+        undoHover.addEventListener('mouseleave', hideTooltip);
+    }
     
 
 
@@ -53,4 +64,3 @@ if (undoHover) {
 
 
 
-});

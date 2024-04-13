@@ -107,7 +107,6 @@ Note: all option odd numbers arent there because their positioning is determind 
 
 
 /* Overall Tooltip classes for Bottom arrow */
-.tooltip-bottom::after {content: " "; position: absolute; top: 100%; left: 50%; margin-left: -5px; border-width: 6px; border-style: solid; border-color: rgb(32, 32, 32) transparent transparent transparent}
-.tooltip-bottom {display: none; position: absolute; font-family: monospace; font-size: 0.6rem; opacity: 0; transition: opacity 0.2s ease; background-color: rgb(32, 32, 32); padding: 5px; padding-left: 7px; padding-right: 7px; border-radius: 4px;}
+.tooltip-bottom {display: none; position: absolute; font-family: monospace; border: 1px solid black; font-size: 0.6rem; opacity: 0; transition: opacity 0.2s ease; background-color: rgb(32, 32, 32); padding: 5px; padding-left: 7px; padding-right: 7px; border-radius: 2px;}
 /* tooltip for undo settings */
-#restore-text {bottom: 35px; right: 48px;} #undo:hover + #restore-text {display: block;}
+#undo:hover + #restore-text {display: block;}
