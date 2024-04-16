@@ -1,21 +1,17 @@
 "use strict";
-//document.addEventListener('DOMContentLoaded', () => {
-const appversionElements = document.querySelectorAll('#appversion-text, #appversion-icon');
-appversionElements.forEach(appversionElement => {
-    var _a;
-    appversionElement.addEventListener('click', () => {
-        const block = document.getElementById('appversion-information');
-        if (block) {
-            block.style.display = block.style.display === 'none' ? 'block' : 'none';
-        }
-    });
-    //});
-    (_a = document.getElementById('close-btn')) === null || _a === void 0 ? void 0 : _a.addEventListener('click', () => {
-        const block = document.getElementById('appversion-information');
-        if (block) {
-            block.style.display = 'none';
-        }
-    });
+var _a;
+const appversionOpen = document.getElementById('click-contain');
+appversionOpen === null || appversionOpen === void 0 ? void 0 : appversionOpen.addEventListener('click', () => {
+    const block = document.getElementById('appversion-information');
+    if (block) {
+        block.style.display = block.style.display === 'none' ? 'block' : 'none';
+    }
+});
+(_a = document.getElementById('close-btn')) === null || _a === void 0 ? void 0 : _a.addEventListener('click', () => {
+    const block = document.getElementById('appversion-information');
+    if (block) {
+        block.style.display = 'none';
+    }
 });
 // icon clicking code
 //home icon

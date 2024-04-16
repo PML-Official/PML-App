@@ -79,7 +79,6 @@
         <!--Bottom Bar-->
         
         <div class="bottom-bar">
-            <div class="tooltip-bottom" id="tooltip-logo">PML Logo</div>
             <img alt="pml logo" class="bottom-logo" src="images/PML White.png" href="https://PML-Official.github.io">
             <span class="pipe">|</span>
 
@@ -108,7 +107,7 @@
 
             <!--App Version-->
 
-            <div class="icon-2">
+            <div class="icon-2" id="click-contain">
                 <i class="material-symbols-outlined" id="appversion-icon">
                     backup
                 </i>
@@ -285,22 +284,28 @@
 <!--Sectional Settings-->
             <li class="mainlayout-li" id="themes-section">
                 <div class="all-sections" id="themes-content"> 
-                    <h3 class="settings-headers">Color Theme:</h3>
-                    <input type="radio" id="option1" name="options" value="option1" class="radio" checked>
-                    <input type="radio" id="option2" name="options" value="option2" class="radio">
-                    <br>
-                    <label for="option1" class="settings-labels" id="label1">Dark Theme</label>
-                    <label for="option2" class="settings-labels" id="label2">Light Theme</label>
+                    <h3 class="settings-headers">Color Theme</h3>
+                    <hr>
+                    <p>In both light and dark themes: The light theme offers soft colors and clean lines,<br> while the dark theme provides clear icons against a dark background for visibility.</p>
+                    <select>
+                        <option>Light Theme</option>
+                        <option>Dark Theme</option>
+                    </select>
                     
                     
-                    <h3 class="settings-headers">Display Bottom-Bar:</h3>
+                    
+                    <h3 class="settings-headers">Display Bottom-Bar</h3>
+                    <hr>
+                    <p>Viewing the bottom bar (or navigation).</p>
                     <input type="radio" id="option3" name="barToggle" value="option3" class="radio" checked>
                     <input type="radio" id="option4" name="barToggle" value="option4" class="radio">
                     <br>
                     <label for="option3" class="settings-labels" id="label3">Show</label>
                     <label for="option4" class="settings-labels" id="label4">Hide</label>
 
-                    <h3 class="settings-headers">Open Main Page:</h3>
+                    <h3 class="settings-headers">Open Main Page</h3>
+                    <hr>
+                    <p>The main page is the page with the text-editor; the page where you edit PML.</p>
                     <input type="radio" id="option5" name="windowToggle" value="option5" class="radio" checked>
                     <input type="radio" id="option6" name="windowToggle" value="option6" class="radio">
                     <br>
@@ -322,8 +327,21 @@
             </li>
             
             <li class="mainlayout-li hidden" id="text-editor-section">
-                <div class="all-sections">
-                    <p>text-editor-section</p>
+                <div class="all-sections" id="text-editor-settings">
+                    <h3 class="settings-headers">Color Coding</h3>
+                    <hr>
+                    <h3 class="settings-headers">Font</h3>
+                    <hr>
+                    <h3 class="settings-headers">Background Color</h3>
+                    <hr>
+                    <ul>
+                        <li>
+                            For Dark Theme:
+                        </li>
+                        <li>
+                            For Light Theme:
+                        </li>
+                    </ul>
                 </div>
             </li>
 
@@ -347,11 +365,10 @@
         <!--Save Buttons-->
         <ul id="settings-links-ul">
             <li class="l1" id="le">
-                <div id="restore-text" class="tooltip-bottom">Restore Settings</div>
-                <span class="material-symbols-outlined" id="undo" onclick="restoreToDefaults()">undo</span>
-                <!--
-                <a href="#" id="restore-link" onclick="restoreToDefaults()">Restore to Defaults</a>
-                -->
+             <!--<div id="tooltip-container">-->
+                    <!--<div id="restore-text" class="tooltip-bottom">Restore Settings</div>-->
+                    <span class="material-symbols-outlined" id="undo" onclick="restoreToDefaults()">undo</span>
+            <!--</div>-->
             </li>
             <li class="l1">
                 <button id="settings-save" onclick="settingsSaveButton()">Save</button>
