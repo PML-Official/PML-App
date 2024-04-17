@@ -447,4 +447,36 @@ function parseData() {
                     doc.y += 20;
                     doc.x -= doc.widthOfString(currTag.text) + 10;
                 }
-                else if (currTag.id == TE
+                else if (currTag.id == TEXTBOX) {
+                    doc.fontSize(textboxStyle.fontSize).lineGap(textboxStyle.lineGap).text(currTag.text, doc.x, doc.y, {continued: false});
+                    doc.x += doc.widthOfString(currTag.text) + 10;
+                    doc.y -= doc.heightOfString(currTag.text);
+                    doc.formText(currTag.text, doc.x, doc.y, textboxStyle.width, textboxStyle.height, {multiline: true});
+                    doc.y += 20;
+                    doc.x -= doc.widthOfString(currTag.text) + 10;
+                }
+                else if (currTag.id == NEWLINE) {
+                    for (let x = 0; x < currTag.amt; x ++) {
+                        doc.moveDown();
+                   }
+                }
+            }
+        }
+        if (x != allPages.length - 1) {
+            doc.addPage({ margin: pageStyle.margin });
+            pageY = pageStyle.topMargin;
+        }
+    }
+
+    const writeStream = fs.createWriteStream('output.pdf');
+    doc.pipe(writeStream);
+    doc.end();
+
+    writeStream.addListener('finish', () => {
+        document.getElementById("display-pdf").remove();
+        const iframe = document.createElement('iframe');
+        iframe.id = "display-pdf";
+        iframe.src = "output.pdf";
+        document.getElementsByClassName("iframe-contain")[0].appendChild(iframe);
+    });
+}

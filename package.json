@@ -5,7 +5,7 @@
   "main": "main.js",
   "scripts": {
     "test": "pml",
-    "start": "concurrently \"npm run start-electron\" \"npm run start-tsc\"",
+    "start": "electron .",
     "start-electron": "electron .",
     "start-tsc": "tsc -w"
   },
