@@ -39,7 +39,7 @@ body {background-color: rgb(34, 34, 34); padding: 0 !important; margin: 0 !impor
     outline: none;
     overflow-x: auto;
     overflow-y: auto;
-    font-family: 'Menlo', 'Monaco', 'Courier New', monospace;
+    font-family: monospace;
     font-size: inherit;
     line-height: inherit;
     resize: none;
