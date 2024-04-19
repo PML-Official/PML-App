@@ -88,7 +88,7 @@ function addToFont(font, isBold, isItalicied) {
 }
 
 function placeText(d, text, style, opt, font="Helvetica") {
-    d.font(font).fontSize(style.fontSize).lineGap(style.lineGap).fillColor(style.color.name).text(text, options=opt);
+    d.font(font).fontSize(style.fontSize).lineGap(style.lineGap).fillColor(style.color.name).text(text, opt);
 }
 
 // thanks internet
@@ -342,12 +342,52 @@ function parseData() {
                                             }
                                             else {
                                                 if (tagContent[z] == "*") {
-                                                    inBold = !inBold;
-                                                    let toPush = new TextTag(getIdFromTagName(tagName), textBuffer);
-                                                    toPush.isBold = !inBold;
-                                                    line.push(toPush);
-                                                    textBuffer = "";
-                                                
+                                                    if ((!inBold && (tagContent[z] != " ")) || inBold) {
+                                                        inBold = !inBold;
+                                                        let toPush = new TextTag(getIdFromTagName(tagName), textBuffer);
+                                                        toPush.isBold = !inBold;
+                                                        line.push(toPush);
+                                                        textBuffer = "";
+                                                    }
+                                                    else {
+                                                        textBuffer += "*";
+                                                    }
+                                                }
+                                                else if (tagContent[z] == "_") {
+                                                    if ((!inUnderline && (tagContent[z] != " ")) || inUnderline) {
+                                                        inUnderline = !inUnderline;
+                                                        let toPush = new TextTag(getIdFromTagName(tagName), textBuffer);
+                                                        toPush.isUnderlined = !inUnderline;
+                                                        line.push(toPush);
+                                                        textBuffer = "";
+                                                    }
+                                                    else {
+                                                        textBuffer += "_";
+                                                    }
+                                                }
+                                                else if (tagContent[z] == "/") {
+                                                    if ((!inItalics && (tagContent[z] != " ")) || inItalics) {
+                                                        inItalics = !inItalics;
+                                                        let toPush = new TextTag(getIdFromTagName(tagName), textBuffer);
+                                                        toPush.isItalicied = !inItalics;
+                                                        line.push(toPush);
+                                                        textBuffer = "";
+                                                    }
+                                                    else {
+                                                        textBuffer += "/";
+                                                    }
+                                                }
+                                                else if (tagContent[z] == "-") {
+                                                    if ((!inStrikethrough && (tagContent[z] != " ")) || inStrikethrough) {
+                                                        inStrikethrough = !inStrikethrough;
+                                                        let toPush = new TextTag(getIdFromTagName(tagName), textBuffer);
+                                                        toPush.isStrikethrough = !inStrikethrough;
+                                                        line.push(toPush);
+                                                        textBuffer = "";
+                                                    }
+                                                    else {
+                                                        textBuffer += "-";
+                                                    }
                                                 }
                                                 else {
                                                     textBuffer += tagContent[z];
@@ -415,7 +455,8 @@ function parseData() {
                     const options = {
                         link: null,
                         continued: z != (currTag.elements.length - 1),
-                        underline: false
+                        underline: currTag.elements[z].isUnderlined,
+                        strike: currTag.elements[z].isStrikethrough
                     };
                     if (currTag.elements[z].id == LINK) {
                         options.link = currTag.elements[z].hyperlink;
@@ -425,8 +466,7 @@ function parseData() {
                         overrideId = currTag.elements[z].id;
                         s = getStyleFromId(currTag.elements[z].id);
                     }
-                    options.underline = s.underlined;
-                    placeText(doc, setPageNumberVariable(currTag.elements[z].text, x+1), s, options, addToFont("Helvetica", currTag.elements[z].isBold, false));
+                    placeText(doc, setPageNumberVariable(currTag.elements[z].text, x+1), s, options, addToFont("Helvetica", currTag.elements[z].isBold, currTag.elements[z].isItalicied));
                 }
             }
             else {

@@ -16,3 +16,4 @@
 {-- Page 2}
 [text: this is the page number: @pageNumber]
 [p: *this is some bolded text* and this isnt, this *is also some bolded text*]
+[p: this * shouldnt be bold, _this is underlined_ and this isnt, /this is italicied/ and this isn't, -this is strikethrough- and this isnt]
