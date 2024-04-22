@@ -27,6 +27,9 @@
         <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
         <!--Iframe Off-->
         <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
+
+
+        <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/spectrum/1.8.0/spectrum.min.css">
     </head>
 
     <body>
@@ -330,20 +333,36 @@
                 <div class="all-sections" id="text-editor-settings">
                     <h3 class="settings-headers">Color Coding</h3>
                     <hr>
-                    <h3 class="settings-headers">Font</h3>
+                    <p>Color coding different PML tags in the editor - automatic</p>
+                    <h3 class="settings-headers">Editor Font/Family</h3>
                     <hr>
                     <h3 class="settings-headers">Background Color</h3>
                     <hr>
+                    <p>Can only customize the editor background-color for selected theme</p>
                     <ul>
-                        <li>
+                        <li id="for-dark-theme">
+                            <span>
                             For Dark Theme:
+                            </span>
+                            <br>
+                            <div id="darktheme-options">    
+                                <div id="darktheme-1"></div>Default
+                                <div id="darktheme-2"></div>Medium                          
+                                <div id="darktheme-3"></div>Dark                         
+                                <div id="darktheme-4"></div>Grey
+                            </div>
                         </li>
-                        <li>
+                        <li id="for-light-theme" class="disabled">
+                            <span>
                             For Light Theme:
+                            </span>
                         </li>
                     </ul>
                 </div>
             </li>
+
+
+
 
             <li class="mainlayout-li hidden" id="preview-settings-section">
                 <div class="all-sections">
