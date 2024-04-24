@@ -334,30 +334,35 @@
                     <h3 class="settings-headers">Color Coding</h3>
                     <hr>
                     <p>Color coding different PML tags in the editor - automatic</p>
+                    <input type="radio" id="Yes" name="colors-on/off" value="Yes" class="radio" checked>
+                    <input type="radio" id="No" name="colors-on/off" value="No" class="radio">   
+                    <br>
+                    <label for="Yes" class="settings-labels">On (Default)</label>       
+                    <label for="No" class="settings-labels">Off</label>        
                     <h3 class="settings-headers">Editor Font/Family</h3>
                     <hr>
+                    <label for="fonts">Choose a font:</label>
+                    <select id="fonts" onchange="editorFontChange()">
+                        <option value="monospace">Monospace (default)</option>
+                        <option value="font:tbd">Other font</option>
+                        <option value="font:tbd">Another font</option>
+                    </select>
                     <h3 class="settings-headers">Background Color</h3>
                     <hr>
                     <p>Can only customize the editor background-color for selected theme</p>
-                    <ul>
-                        <li id="for-dark-theme">
-                            <span>
-                            For Dark Theme:
-                            </span>
-                            <br>
                             <div id="darktheme-options">    
-                                <div id="darktheme-1"></div>Default
-                                <div id="darktheme-2"></div>Medium                          
-                                <div id="darktheme-3"></div>Dark                         
-                                <div id="darktheme-4"></div>Grey
+                                <div onclick="darkThemeI()" id="darktheme-1"></div>Default
+                                <div onclick="darkThemeII()" id="darktheme-2"></div>Medium                          
+                                <div onclick="darkThemeIII()" id="darktheme-3"></div>Dark                         
+                                <div onclick="darkThemeIV()" id="darktheme-4"></div>Grey
                             </div>
-                        </li>
-                        <li id="for-light-theme" class="disabled">
-                            <span>
-                            For Light Theme:
-                            </span>
-                        </li>
-                    </ul>
+                       
+                            <div id="lighttheme-options" style="display:none;">
+                                <div onclick="lightThemeI()" id="lighttheme-1"></div>Defualt
+                                <div onclick="lightThemeII()" id="lighttheme-2"></div>Medium
+                                <div onclick="lightThemeIII()" id="lighttheme-3"></div>Dark
+                                <div onclick="lightThemeIV()" id="lighttheme-4"></div>Grey
+                            </div>                
                 </div>
             </li>
 
@@ -409,6 +414,6 @@
 <!--text-editor script-->
 <script defer src="don't-touch/TypeScript-converted-JS/text-editor.js"></script>
 <!--tooltips JS-->
-<script defer src="don't-touch/TypeScript-converted-JS/settingsBarScripting.js"></script>
+<script defer src="don't-touch/TypeScript-converted-JS/settings.js"></script>
 </body>
 </html>

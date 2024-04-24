@@ -34,4 +34,6 @@ developerIcon.addEventListener('click', () => {
 });
 
 
-
+function text () {
+    String("test is this working")
+}

@@ -58,6 +58,7 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     });
 });
+
 function restoreToDefaults() {
     alert("Restore Clicked TESt TET AGAIN");
     console.log("Settings Restored to Default");
@@ -68,3 +69,35 @@ function settingsSaveButton() {
     console.log("Settings Saved");
 }
 ;
+
+function darkThemeI () {
+    alert("dark theme color I was clicked")
+};
+
+function darkThemeII () {
+    alert("dark theme color II was clicked")
+};
+
+function darkThemeIII () {
+    alert("dark theme color III was clicked")
+};
+
+function darkThemeIV () {
+    alert("dark theme color IV was clicked")
+};
+
+function lightThemeI () {
+    alert("light theme color I was clicked")
+};
+
+function lightThemeII () {
+    alert("light theme color II was clicked")
+};
+
+function lightThemeIII () {
+    alert("light theme color III was clicked")
+};
+
+function lightThemeIV () {
+    alert("light theme color IV was clicked")
+};
