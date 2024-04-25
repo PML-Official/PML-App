@@ -135,4 +135,29 @@ const contentDiv = document.getElementById('contentDiv');
 if (contentDiv) {
     contentDiv.addEventListener('keydown', handleKeyDown);
     contentDiv.addEventListener('input', handleInput);
-}
+};
+
+// Preventing automatically adding the period after sentences
+
+document.getElementById('editor').addEventListener('keydown', function(event) {
+    if (event.key === ' ' && event.getModifierState('Shift')) {
+        event.preventDefault();
+    }
+});
+
+// Adding closing parenthasy automatically
+/*
+document.getElementById('editor').addEventListener('input', function(event) {
+    const selection = window.getSelection();
+    const cursorPos = selection.anchorOffset;
+    const text = this.textContent;
+
+    if (event.data === '(') {
+        event.preventDefault();
+        const beforeCursor = text.slice(0, cursorPos);
+        const afterCursor = text.slice(cursorPos);
+        this.textContent = beforeCursor + '()' + afterCursor;
+        selection.collapse(this.firstChild, cursorPos + 1);
+    }
+});
+*/
