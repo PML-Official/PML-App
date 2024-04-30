@@ -174,7 +174,6 @@ function removeSpaces(str) {
 function changeStyle(styleStr, attr, val) {
     let style = styleStringList[styleStr];
     style.setAttrOfStr(attr, val);
-    alert(style.fontSize);
 }
 
 function isHttps(str) {
@@ -260,7 +259,6 @@ function parseData() {
                     
                     if (fileLines[x][y] == ")"){
                         if (styleString != "") {
-                            alert(styleString);
                             // parse style here
                             for (let s = 0; s < styleString.length; s ++) {
                                 pthScope = 0;
