@@ -1,6 +1,10 @@
 [meta-name: This is a title]
 [meta-author: Stashey13 and lukewhite32]
 
+style [
+    p (fontsz: 24)
+]
+
 {-- Page 1}
 [text: this a link(https://urmom.com, link) to urmom]
 [p: this is a test of nl using 3 lines:]

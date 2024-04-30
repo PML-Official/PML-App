@@ -30,6 +30,11 @@ class Style {
         this.lineGap = undefined;
         this.underlined = false;
     }
+    setAttrOfStr(str, val) {
+        if (str == "fontsz") {
+            this.fontSize = val;
+        }
+    }
 }
 
 class Page {

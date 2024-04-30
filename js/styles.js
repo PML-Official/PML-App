@@ -51,3 +51,5 @@ textboxStyle.fontSize = 16;
 textboxStyle.lineGap = 5;
 textboxStyle.width = 200;
 textboxStyle.height = 20;
+
+const styleStringList = {"h1": h1Style, "h2": h2Style, "h3": h3Style, "h4": h4Style, "h5": h5Style, "h6": h6Style, "p": pStyle};

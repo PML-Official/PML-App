@@ -161,6 +161,22 @@ function nextChar(str, ind) {
     }
 }
 
+function removeSpaces(str) {
+    let ret = "";
+    for (let x = 0; x < str.length; x ++) {
+        if (str[x] != " ") {
+            ret += str[x];
+        }
+    }
+    return ret;
+}
+
+function changeStyle(styleStr, attr, val) {
+    let style = styleStringList[styleStr];
+    style.setAttrOfStr(attr, val);
+    alert(style.fontSize);
+}
+
 function isHttps(str) {
     return str.substring(0, 7) == "https://" || str.substring(0, 6) == "http://";
 }
@@ -213,6 +229,9 @@ function parseData() {
             if (!inComment) {
                 if (fileLines[x][y] == ']') {
                     brktScope --;
+                    if (parsingStyle) {
+                        parsingStyle = false;
+                    }
                 }
                 if (fileLines[x][y] == '}') {
                     brcsScope --;
@@ -228,6 +247,7 @@ function parseData() {
                 }
                 if (fileLines[x].substring(y, y+5) == "style") {
                     parsingStyle = true;
+                    y += nextOccuranceRelative(fileLines[x], y, "[");
                 }
                 else if (fileLines[x].substring(y, y+6) == "header") {
                     inHeader = true;
@@ -236,12 +256,11 @@ function parseData() {
                     inFooter = true;
                 }
                 else if (parsingStyle) {
-                    parsingStyle = false;
-                    if (pthScope != 0) {
-                        styleString += fileLines[x][y];
-                    }
-                    else {
+                    styleString += fileLines[x][y];
+                    
+                    if (fileLines[x][y] == ")"){
                         if (styleString != "") {
+                            alert(styleString);
                             // parse style here
                             for (let s = 0; s < styleString.length; s ++) {
                                 pthScope = 0;
@@ -258,18 +277,16 @@ function parseData() {
                                 else if (styleString[s] == ')') {
                                     pthScope --;
                                 }
-                                if (brcsScope == 0 && styleString[s] != " ") {
+                                if (pthScope == 0 && styleString[s] != " ") {
                                     styleTagName += styleString[s];
                                 }
-                                else if (brcsScope == 1) {
-                                    /*alert(styleTagName);
-                                    if (pthScope >= 2) {
-                                        styleTagContent += styleString[s];
-                                    }
-                                    else if (styleTagContent != "") {
-                                        alert(styleTagContent);
-                                        parsingStyle = false;
-                                    }*/
+                                else if (pthScope == 1) {
+                                    styleTagContent = between(styleString, "(", ")").split(":");
+                                    changeStyle(styleTagName, removeSpaces(styleTagContent[0]), removeSpaces(styleTagContent[1]));
+                                    parsingStyle = false;
+                                    pthScope = 0;
+                                    brcsScope = 0;
+                                    pthScope = 0;
                                 } 
                             }
                         }
