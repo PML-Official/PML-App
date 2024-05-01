@@ -290,9 +290,9 @@
                     <h3 class="settings-headers">Color Theme</h3>
                     <hr>
                     <p>In both light and dark themes: The light theme offers soft colors and clean lines,<br> while the dark theme provides clear icons against a dark background for visibility.</p>
-                    <select>
+                    <select onchange="colorThemeChange()" id="select">
+                        <option>Dark Theme (default)</option>
                         <option>Light Theme</option>
-                        <option>Dark Theme</option>
                     </select>
                     
                     
@@ -338,10 +338,10 @@
                     <input type="radio" id="No" name="colors-on/off" value="No" class="radio">   
                     <br>
                     <label for="Yes" class="settings-labels">On (Default)</label>       
-                    <label for="No" class="settings-labels">Off</label>        
+                    <label for="No" class="settings-labels" id="off">Off</label>        
                     <h3 class="settings-headers">Editor Font/Family</h3>
                     <hr>
-                    <label for="fonts">Choose a font:</label>
+                    <p>Choose a font:</p>
                     <select id="fonts" onchange="editorFontChange()">
                         <option value="monospace">Monospace (default)</option>
                         <option value="font:tbd">Other font</option>

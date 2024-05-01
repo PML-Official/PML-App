@@ -2,7 +2,7 @@
 [meta-author: Stashey13 and lukewhite32]
 
 style [
-    p (fontsz: 24)
+p (fontsz: 24;)
 ]
 
 {-- Page 1}
