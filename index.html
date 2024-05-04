@@ -120,12 +120,12 @@
 
             <!--Settings-->
 
-        <div class="icon-3">
-            <i class="material-symbols-outlined" id="settings-icon">
+        <div class="icon-3" id="settings-icon">
+            <i class="material-symbols-outlined">
                 settings
             </i>
 
-            <span id="settings-text">Settings</span>
+            <span id="settings-bottombar-text">Settings</span>
         </div>
 
             <!--Contact-->
@@ -141,13 +141,15 @@
             <!--Iframe Toggle-->
             <div class="iframe-icon">
                 <!--On-->
-                <span class="material-symbols-outlined">
+                <span class="material-symbols-outlined" id="iframeon">
                     iframe
                     </span>
+                  <span id="iframe-on">Iframe On</span>
                 <!--Off-->
-                <span class="material-symbols-outlined">
+                <span class="material-symbols-outlined" id="iframeoff">
                     iframe_off
                     </span>
+                 <span id="iframe-off">Iframe Off</span>
             </div>
 
             
@@ -273,7 +275,7 @@
                                 <button class="sidebar-buttons" id="text-editor-bttn" onclick="toggleButton(this, ['text-editor-section'], ['themes-section', 'preview-settings-section', 'empty-section1', 'empty-section2'])">Text Editor</button>
                             </li>
                             <li>
-                                <button class="sidebar-buttons" id="preview-settings-bttn" onclick="toggleButton(this, ['preview-settings-section'], ['themes-section', 'text-editor-section', 'empty-section1', 'empty-section2'])">Preview</button>
+                                <button class="sidebar-buttons" id="preview-settings-bttn" onclick="toggleButton(this, ['preview-settings-section'], ['themes-section', 'text-editor-section', 'empty-section1', 'empty-section2'])">Preview/Errors</button>
                             </li>
                             <li>
                                 <button class="sidebar-buttons" id="othersettings3" onclick="toggleButton(this, ['empty-section1'], ['themes-section', 'text-editor-section', 'preview-settings-section', 'empty-section2'])">Empty</button>

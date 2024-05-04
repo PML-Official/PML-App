@@ -24,3 +24,15 @@ const developerIcon = document.getElementById('developer-icon');
 developerIcon.addEventListener('click', () => {
     location.href = 'https://PML-Official.github.io';
 });
+const settingsIcon = document.getElementById('settings-icon')
+settingsIcon.addEventListener('click', () => {
+
+})
+
+const settingsOpen = document.getElementById('settings-icon');
+settingsOpen === null || settingsOpen === void 0 ? void 0 : settingsOpen.addEventListener('click', () => {
+    const block = document.getElementById('settings');
+    if (block) {
+        block.style.display = block.style.display === 'none' ? 'block' : 'none';
+    }
+});

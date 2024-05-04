@@ -12,9 +12,10 @@ body {background-color: rgb(34, 34, 34); padding: 0 !important; margin: 0 !impor
 .icon-1 a {color: white; text-decoration: none;} .developer-text {font-family: 'Roboto', sans-serif; font-size:small} .bottom-logo {max-height: 38px; height: 38px; margin-left: 2vw} .pipe { color: white; font-size: 1.5rem; margin-left: 1.5vw; font-weight:100;}
 .icon-2 {display: flex; align-items: center; margin-left: 2vw; cursor: pointer;} #app-version-text {font-family: 'Roboto', sans-serif; font-size:small; color: white; cursor: pointer;}
 .home-icon {display: flex; align-items: center; margin-left: 2vw;} .home-text {font-family: 'Roboto', sans-serif; font-size:small; color: white; cursor: pointer;} .home-text:hover { cursor: pointer;} .homelink {text-decoration: none;}
-.icon-3 {display: flex; align-items: center; margin-left: 2vw;} #settings-text {font-family: 'Roboto', sans-serif; font-size:small; color: white; cursor: pointer; /* cursor: pointer; */}
+.icon-3 {display: flex; align-items: center; margin-left: 2vw;} #settings-bottombar-text {font-family: 'Roboto', sans-serif; font-size:small; color: white; cursor: pointer; /* cursor: pointer; */}
 .icon-4 {display: flex; align-items: center; margin-left: 2vw;} #contact-text {font-family: 'Roboto', sans-serif; font-size:small; color: white; cursor: not-allowed; /* cursor: pointer; */}
-.iframe-icon {right: 100px; position: fixed;} 
+.iframe-icon {display: flex; align-items: center; position: fixed; right: 200px; } #iframe-on {font-size: small; font-family: 'Roboto', sans-serif; color: white; margin-right: 5px;} #iframe-off {font-size: small; font-family: 'Roboto', sans-serif; color: white; margin-right: 5px;}
+#iframeoff {margin-left: 2vw;}
 /* app version info */
 #appversion-information {display:block; height: 250px; width: 200px; word-wrap: break-word; background-color:rgb(48, 48, 48); z-index: 9999; padding-left: 8px; box-shadow: 4px 4px 2px 2px  rgba(22, 22, 22, 0.239); padding-right: 8px; padding-bottom: 0; position: fixed; bottom: 60px; margin-left: 390px; box-shadow: 0px 10px, 20px rgba(0,0,0,20)} .av-itext {color: white; font-family: "Roboto", sans-serif; margin-left: 8px;}
 #appversion-information .material-symbols-outlined {margin-left: 30px; cursor: pointer; margin-top: 5px; } .explanationtext {width: 180px; word-wrap: break-word !important; display: inline-block; margin-left: 8px; color: white; font-family: 'Roboto', sans-serif; margin-top: 30px; font-size:small} #close-btn:hover {color: rgb(226, 226, 226)} #close:hover {color: rgb(226, 226, 226); cursor: pointer;}
