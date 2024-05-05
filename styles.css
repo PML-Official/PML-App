@@ -15,7 +15,7 @@ body {background-color: rgb(34, 34, 34); padding: 0 !important; margin: 0 !impor
 .icon-3 {display: flex; align-items: center; margin-left: 2vw;} #settings-bottombar-text {font-family: 'Roboto', sans-serif; font-size:small; color: white; cursor: pointer; /* cursor: pointer; */}
 .icon-4 {display: flex; align-items: center; margin-left: 2vw;} #contact-text {font-family: 'Roboto', sans-serif; font-size:small; color: white; cursor: not-allowed; /* cursor: pointer; */}
 .iframe-icon {display: flex; align-items: center; position: fixed; right: 200px; } #iframe-on {font-size: small; font-family: 'Roboto', sans-serif; color: white; margin-right: 5px;} #iframe-off {font-size: small; font-family: 'Roboto', sans-serif; color: white; margin-right: 5px;}
-#iframeoff {margin-left: 2vw;}
+#iframeoff {margin-left: 2vw; display: flex; align-items: center; cursor: pointer;} #iframeon {display: flex; align-items: center; cursor: pointer;}
 /* app version info */
 #appversion-information {display:block; height: 250px; width: 200px; word-wrap: break-word; background-color:rgb(48, 48, 48); z-index: 9999; padding-left: 8px; box-shadow: 4px 4px 2px 2px  rgba(22, 22, 22, 0.239); padding-right: 8px; padding-bottom: 0; position: fixed; bottom: 60px; margin-left: 390px; box-shadow: 0px 10px, 20px rgba(0,0,0,20)} .av-itext {color: white; font-family: "Roboto", sans-serif; margin-left: 8px;}
 #appversion-information .material-symbols-outlined {margin-left: 30px; cursor: pointer; margin-top: 5px; } .explanationtext {width: 180px; word-wrap: break-word !important; display: inline-block; margin-left: 8px; color: white; font-family: 'Roboto', sans-serif; margin-top: 30px; font-size:small} #close-btn:hover {color: rgb(226, 226, 226)} #close:hover {color: rgb(226, 226, 226); cursor: pointer;}
@@ -58,7 +58,7 @@ body {background-color: rgb(34, 34, 34); padding: 0 !important; margin: 0 !impor
 #previewbutton {padding-top: 8px; padding-bottom: 8px; padding-left: 24px; padding-right: 24px; margin-left:2px; margin-top: 0px; border: none; background-color: rgb(0, 110, 255); border-radius: 4px; color: white; height: 50px; width: 300px; }/* #previewbutton:hover {cursor: pointer; background-color: rgb(38, 131, 252);} #previewbutton:active {background-color: rgb(38, 131, 252);}*/
 #errorsbutton {padding-top: 8px; padding-bottom: 8px; padding-left: 24px; padding-right: 24px; margin-left:2px; margin-top: 0px; border: none; background-color: rgb(0, 110, 255); border-radius: 4px; color: white; height: 50px; width: 300px; } /*#errorsbutton:hover {cursor: pointer; background-color: rgb(38, 131, 252);} #errorsbutton:active {background-color: rgb(38, 131, 252);}*/
 #textovererrors {color: white; font-family: 'Roboto', sans-serif; width: 600px; margin-top: 0; background-color: rgb(23, 23, 23); border:none; z-index: 9999; padding-top: 8px; padding-left: 5px; padding-bottom: 8px; font-size: 1.1rem;  } #errors {width: 600px; min-height: 600px; height: 84vh; background-color: rgb(41, 41, 41);}
-#previewbutton:hover {cursor: pointer;} #errorsbutton:hover {cursor: pointer;}
+#previewbutton:hover {cursor: pointer;} #errorsbutton:hover {cursor: pointer;} #errors-warning {color: orange} #errors-error {color: red;}
 .hidden {display: none; visibility: hidden;} #button-contain {position: fixed; width: 100%; bottom: 38px; background-color: rgb(48, 48, 48); padding-top: 8px; padding-bottom: 8px; border-top: 1px solid grey;}
 #span {color: white; font-family: 'Roboto', sans-serif; font-size: 0.9rem; display: inline-block; margin-top: 60%; margin-left: 40%;}
 
@@ -108,3 +108,7 @@ body {background-color: rgb(34, 34, 34); padding: 0 !important; margin: 0 !impor
   select {background-color: rgb(83, 83, 83); color: white; border: 1px solid rgb(114, 114, 114); padding: 5px; border-radius: 3px;} select:hover {cursor: pointer;} #select {padding: 5px;}
 
 /* End settings */
+
+@media only screen and (max-width: 1030px) {
+  .developer-text {display: none; visibility: hidden;} #app-version-text {display: none; visibility: hidden;} #settings-bottombar-text {display: none; visibility: hidden;} .home-text {display: none; visibility: hidden;} #contact-text {display: none; visibility: hidden;}
+}
