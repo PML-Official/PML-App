@@ -27,7 +27,7 @@ developerIcon.addEventListener('click', () => {
 const settingsIcon = document.getElementById('settings-icon')
 settingsIcon.addEventListener('click', () => {
 
-})
+});
 
 const settingsOpen = document.getElementById('settings-icon');
 settingsOpen === null || settingsOpen === void 0 ? void 0 : settingsOpen.addEventListener('click', () => {
@@ -35,4 +35,15 @@ settingsOpen === null || settingsOpen === void 0 ? void 0 : settingsOpen.addEven
     if (block) {
         block.style.display = block.style.display === 'none' ? 'block' : 'none';
     }
+});
+
+const logoHome = document.getElementById('pml-logo');
+logoHome.addEventListener('click', () => {
+    window.location.href = 'index.html';
+});
+
+const close1 = document.getElementById('close1');
+close1.addEventListener('click', () => {
+    const appInfo = document.getElementById('description');
+    appInfo.style.display = 'none';
 });

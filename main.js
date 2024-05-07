@@ -48,9 +48,9 @@ app.on('activate', () => {
   }
 });
 
-/*
-// Customize menu?
 
+// Customize menu?
+/*
 const template = [
   // File
   {

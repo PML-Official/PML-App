@@ -53,7 +53,16 @@
                             </div>
                             <div id="bttn1contain">
                                 <button id="open-button1" class="opening-screen-button" onclick="document.getElementById('file-searcher').click()">Open</button>
-
+                            </div>
+                            <div class="description" id="description">
+                                    <i class="material-symbols-outlined" id="close1">
+                                        close
+                                    </i> 
+                                    <br>
+                                    <span class="material-symbols-outlined">
+                                        help
+                                        </span>
+                                <p>For more information on how to set up a document, click <a href="https://PML-Official.github.io" id="link">here</a></p>
                             </div>
                         </div>
                     </li>
@@ -82,7 +91,7 @@
         <!--Bottom Bar-->
         
         <div class="bottom-bar">
-            <img alt="pml logo" class="bottom-logo" src="images/PML White.png" href="https://PML-Official.github.io">
+            <img alt="pml logo" class="bottom-logo" src="images/PML White.png" href="https://PML-Official.github.io" id="pml-logo">
             <span class="pipe">|</span>
 
             <!--Home icon-->
@@ -202,7 +211,7 @@
         <div class="container">
             <!--Text Over-->
             <div id="textoveriframe" class="hidden">PREVIEW</div>
-            <div class="hidden" id="textovererrors">LANGUAGE ERRORS</div>
+            <div class="hidden" id="textovererrors">CODING ERRORS</div>
             <div class="iframe-contain" id="iframe">     
                 <!--Iframe-->       
                 <iframe id="display-pdf" src="output.pdf" width="900" height="700" class="hidden">No Preview Avliable</iframe>
@@ -271,13 +280,13 @@
                                 <button class="sidebar-buttons active-buttons" id="themeButton" onclick="toggleButton(this, ['themes-section'], ['text-editor-section', 'preview-settings-section', 'empty-section1', 'empty-section2'])">Themes</button>
                             </li>
                             <li>
-                                <button class="sidebar-buttons" id="text-editor-bttn" onclick="toggleButton(this, ['text-editor-section'], ['themes-section', 'preview-settings-section', 'empty-section1', 'empty-section2'])">Text Editor</button>
+                                <button class="sidebar-buttons" id="text-editor-bttn" onclick="toggleButton(this, ['text-editor-section'], ['themes-section', 'preview-settings-section', 'empty-section1', 'empty-section2'])">Text Editor Settings</button>
                             </li>
                             <li>
-                                <button class="sidebar-buttons" id="preview-settings-bttn" onclick="toggleButton(this, ['preview-settings-section'], ['themes-section', 'text-editor-section', 'empty-section1', 'empty-section2'])">Preview/Errors</button>
+                                <button class="sidebar-buttons" id="preview-settings-bttn" onclick="toggleButton(this, ['preview-settings-section'], ['themes-section', 'text-editor-section', 'empty-section1', 'empty-section2'])">Preview Settings</button>
                             </li>
                             <li>
-                                <button class="sidebar-buttons" id="othersettings3" onclick="toggleButton(this, ['empty-section1'], ['themes-section', 'text-editor-section', 'preview-settings-section', 'empty-section2'])">Empty</button>
+                                <button class="sidebar-buttons" id="othersettings3" onclick="toggleButton(this, ['empty-section1'], ['themes-section', 'text-editor-section', 'preview-settings-section', 'empty-section2'])">Errors Settings</button>
                             </li>
                             <li>
                                 <button class="sidebar-buttons" id="othersettings4" onclick="toggleButton(this, ['empty-section2'], ['themes-section', 'text-editor-section', 'preview-settings-section', 'empty-section1'])">Empty</button>

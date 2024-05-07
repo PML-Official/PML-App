@@ -3,8 +3,8 @@ body {background-color: rgb(34, 34, 34); padding: 0 !important; margin: 0 !impor
 .opening-screen-button:hover {background-color: rgba(223, 27, 27, 0.728); box-shadow: 0px 4px 8px rgba(0,0,0,0.1)} #welcome {font-size: 2.5rem;} #welcome-contain {max-width: 100%; width: 100%; display: flex; justify-content: center; align-items: center; margin-top: 30px;}
 #getstarted-contain {max-width: 100%; width: 100%; display: flex; justify-content: center; align-items: center; margin-top: 0px;} #getstarted {font-size: 1.4rem;}
 /* logo */
-#logo {max-height: 100px; width:100%; align-items: center; display: flex; justify-content: center; margin-top: 15vh;} .pml-logo {height: 100px; max-width: 100%; }
-#options {display: flex; align-items: center; justify-content: center;} #options ul { list-style-type: none; } #options li {display: inline-block;} .description {text-align: center;}
+#logo {max-height: 100px; width:100%; align-items: center; display: flex; justify-content: center; margin-top: 15vh;} .pml-logo {height: 100px; max-width: 100%; } #link {color: rgba(255, 255, 255, 0.868); cursor: pointer;} #link:hover {color: white;} #close1 {font-size: 1.4rem; position: absolute; margin-left: 190px; margin-bottom:20px; padding-top: none !important;}
+#options {display: flex; align-items: center; justify-content: center;} #options ul { list-style-type: none; } #options li {display: inline-block;} .description {text-align: center;} #description {font-size: 0.9rem; margin-top: 150px; background-color: rgba(0, 157, 255, 0.165); border-radius: 6px; border: 1px solid rgba(0, 157, 255, 0.392); padding: 20px;}
 /* option 1 */
 .option1-text {font-size: 1.3rem; white-space: nowrap;} #option1-container {max-width: 100%; margin-right: 46px; width: fit-content; margin-top: 30px; display: flex; flex-direction: column; justify-content: center; align-items: center;} #bttn1contain {max-width: 100%;  margin-top: 12px;} 
 /* bottom bar */
