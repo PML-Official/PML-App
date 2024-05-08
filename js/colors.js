@@ -1,5 +1,5 @@
 
-class Color {
+/*class Color {
     constructor(name, r, g, b) {
         this.name = name;
         this.r = r;
@@ -85,4 +85,4 @@ const peachyorange = new Color("peachy-orange", 255, 165, 0);
 const gold = new Color("gold", 255, 215, 0);
 const yellow = new Color("yellow", 255, 255, 0);
 const lightyellow = new Color("light-yellow", 255, 255, 224);
-const lemonchiffon = new Color("lemon-chiffon", 255, 250, 205);
+const lemonchiffon = new Color("lemon-chiffon", 255, 250, 205);*/

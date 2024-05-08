@@ -30,10 +30,10 @@ pStyle.fontSize = 16;
 pStyle.lineGap = 5;
 
 const imgStyle = new Style();
-imgStyle.color = blue;
+imgStyle.color = "blue";
 
 const linkStyle = new Style();
-linkStyle.color = blue;
+linkStyle.color = "blue";
 linkStyle.underlined = true;
 
 const textStyle = new Style();
@@ -52,4 +52,27 @@ textboxStyle.lineGap = 5;
 textboxStyle.width = 200;
 textboxStyle.height = 20;
 
+function stringToStyle(str) {
+    if (str == "h1") {
+        return h1Style;
+    }
+    if (str == "h2") {
+        return h2Style;
+    }
+    if (str == "h3") {
+        return h3Style;
+    }
+    if (str == "h4") {
+        return h4Style;
+    }
+    if (str == "h5") {
+        return h5Style;
+    }
+    if (str == "h6") {
+        return h6Style;
+    }
+    if (str == "p") {
+        return pStyle;
+    }
+}
 const styleStringList = {"h1": h1Style, "h2": h2Style, "h3": h3Style, "h4": h4Style, "h5": h5Style, "h6": h6Style, "p": pStyle};

@@ -88,7 +88,7 @@ function addToFont(font, isBold, isItalicied) {
 }
 
 function placeText(d, text, style, opt, font="Helvetica") {
-    d.font(font).fontSize(style.fontSize).lineGap(style.lineGap).fillColor(style.color.name).text(text, opt);
+    d.font(font).fontSize(style.fontSize).lineGap(style.lineGap).fillColor(style.color).text(text, opt);
 }
 
 // thanks internet
@@ -172,7 +172,7 @@ function removeSpaces(str) {
 }
 
 function changeStyle(styleStr, attr, val) {
-    let style = styleStringList[styleStr];
+    let style = stringToStyle(styleStr);
     style.setAttrOfStr(attr, val);
 }
 
@@ -257,7 +257,7 @@ function parseData() {
                 else if (parsingStyle) {
                     styleString += fileLines[x][y];
                     
-                    if (fileLines[x][y] == ")"){
+                    if (fileLines[x][y] == ";"){
                         if (styleString != "") {
                             // parse style here
                             for (let s = 0; s < styleString.length; s ++) {
@@ -279,14 +279,15 @@ function parseData() {
                                     styleTagName += styleString[s];
                                 }
                                 else if (pthScope == 1) {
-                                    styleTagContent = between(styleString, "(", ")").split(":");
+                                    styleTagContent = between(styleString.substring(s), "(", ")").split(":");
                                     changeStyle(styleTagName, removeSpaces(styleTagContent[0]), removeSpaces(styleTagContent[1]));
-                                    parsingStyle = false;
                                     pthScope = 0;
                                     brcsScope = 0;
                                     pthScope = 0;
+                                    s += nextOccuranceRelative(styleString, s, ")");
                                 } 
                             }
+                            parsingStyle = false;
                         }
                     }
                 }
@@ -495,7 +496,7 @@ function parseData() {
                     }
                 }
                 else if (currTag.id == CHECKBOX) {
-                    doc.fontSize(checkboxStyle.fontSize).lineGap(checkboxStyle.lineGap).text(currTag.text, doc.x, doc.y, {continued: false});
+                    doc.fillColor(checkboxStyle.color).fontSize(checkboxStyle.fontSize).lineGap(checkboxStyle.lineGap).text(currTag.text, doc.x, doc.y, {continued: false});
                     doc.x += doc.widthOfString(currTag.text) + 10;
                     doc.y -= doc.heightOfString(currTag.text);
                     doc.formCheckbox(currTag.text, doc.x, doc.y, checkboxStyle.width, checkboxStyle.height);
@@ -503,7 +504,7 @@ function parseData() {
                     doc.x -= doc.widthOfString(currTag.text) + 10;
                 }
                 else if (currTag.id == TEXTBOX) {
-                    doc.fontSize(textboxStyle.fontSize).lineGap(textboxStyle.lineGap).text(currTag.text, doc.x, doc.y, {continued: false});
+                    doc.fillColor(textboxStyle.color).fontSize(textboxStyle.fontSize).lineGap(textboxStyle.lineGap).text(currTag.text, doc.x, doc.y, {continued: false});
                     doc.x += doc.widthOfString(currTag.text) + 10;
                     doc.y -= doc.heightOfString(currTag.text);
                     doc.formText(currTag.text, doc.x, doc.y, textboxStyle.width, textboxStyle.height, {multiline: true});

@@ -18,12 +18,12 @@ class Style {
     constructor() {
         this.width = 0;
         this.height = 0;
-        this.color = black;
+        this.color = "black";
         this.size = 0;
         this.fontSize = undefined;
         this.height = 0;
         this.opacity = 0;
-        this.backgroundColor = white;
+        this.backgroundColor = "white";
         this.margin = 1;
         this.topMargin = 20;
         this.botMargin = 20;
@@ -33,6 +33,9 @@ class Style {
     setAttrOfStr(str, val) {
         if (str == "fontsz") {
             this.fontSize = val;
+        }
+        else if (str == "color") {
+            this.color = val;
         }
     }
 }
