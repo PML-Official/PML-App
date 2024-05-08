@@ -7,7 +7,7 @@ p (fontsz: 21) (color: pink);
 
 {-- Page 1}
 [text: this a link(https://urmom.com, link) to urmom]
-[p: this is a test of nl using 3 lines:]
+[p: this is a test of nl using 2 lines:]
 [nl: 2]
 [sel-text: this is a text box:]
 [nl]

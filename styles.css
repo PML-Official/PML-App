@@ -3,8 +3,8 @@ body {background-color: rgb(34, 34, 34); padding: 0 !important; margin: 0 !impor
 .opening-screen-button:hover {background-color: rgba(223, 27, 27, 0.728); box-shadow: 0px 4px 8px rgba(0,0,0,0.1)} #welcome {font-size: 2.5rem;} #welcome-contain {max-width: 100%; width: 100%; display: flex; justify-content: center; align-items: center; margin-top: 30px;}
 #getstarted-contain {max-width: 100%; width: 100%; display: flex; justify-content: center; align-items: center; margin-top: 0px;} #getstarted {font-size: 1.4rem;}
 /* logo */
-#logo {max-height: 100px; width:100%; align-items: center; display: flex; justify-content: center; margin-top: 15vh;} .pml-logo {height: 100px; max-width: 100%; }
-#options {display: flex; align-items: center; justify-content: center;} #options ul { list-style-type: none; } #options li {display: inline-block;} .description {text-align: center;}
+#logo {max-height: 100px; width:100%; align-items: center; display: flex; justify-content: center; margin-top: 15vh;} .pml-logo {height: 100px; max-width: 100%; } #link {color: rgba(255, 255, 255, 0.868); cursor: pointer;} #link:hover {color: white;} #close1 {font-size: 1.4rem; position: absolute; margin-left: 190px; margin-bottom:20px; padding-top: none !important;}
+#options {display: flex; align-items: center; justify-content: center;} #options ul { list-style-type: none; } #options li {display: inline-block;} .description {text-align: center;} #description {font-size: 0.9rem; margin-top: 150px; background-color: rgba(0, 157, 255, 0.165); border-radius: 6px; border: 1px solid rgba(0, 157, 255, 0.392); padding: 20px;}
 /* option 1 */
 .option1-text {font-size: 1.3rem; white-space: nowrap;} #option1-container {max-width: 100%; margin-right: 46px; width: fit-content; margin-top: 30px; display: flex; flex-direction: column; justify-content: center; align-items: center;} #bttn1contain {max-width: 100%;  margin-top: 12px;} 
 /* bottom bar */
@@ -12,9 +12,10 @@ body {background-color: rgb(34, 34, 34); padding: 0 !important; margin: 0 !impor
 .icon-1 a {color: white; text-decoration: none;} .developer-text {font-family: 'Roboto', sans-serif; font-size:small} .bottom-logo {max-height: 38px; height: 38px; margin-left: 2vw} .pipe { color: white; font-size: 1.5rem; margin-left: 1.5vw; font-weight:100;}
 .icon-2 {display: flex; align-items: center; margin-left: 2vw; cursor: pointer;} #app-version-text {font-family: 'Roboto', sans-serif; font-size:small; color: white; cursor: pointer;}
 .home-icon {display: flex; align-items: center; margin-left: 2vw;} .home-text {font-family: 'Roboto', sans-serif; font-size:small; color: white; cursor: pointer;} .home-text:hover { cursor: pointer;} .homelink {text-decoration: none;}
-.icon-3 {display: flex; align-items: center; margin-left: 2vw;} #settings-text {font-family: 'Roboto', sans-serif; font-size:small; color: white; cursor: pointer; /* cursor: pointer; */}
+.icon-3 {display: flex; align-items: center; margin-left: 2vw;} #settings-bottombar-text {font-family: 'Roboto', sans-serif; font-size:small; color: white; cursor: pointer; /* cursor: pointer; */}
 .icon-4 {display: flex; align-items: center; margin-left: 2vw;} #contact-text {font-family: 'Roboto', sans-serif; font-size:small; color: white; cursor: not-allowed; /* cursor: pointer; */}
-.iframe-icon {right: 100px; position: fixed;} 
+.iframe-icon {display: flex; align-items: center; position: fixed; right: 200px; } #iframe-on {font-size: small; font-family: 'Roboto', sans-serif; color: white; margin-right: 5px;} #iframe-off {font-size: small; font-family: 'Roboto', sans-serif; color: white; margin-right: 5px;}
+#iframeoff {margin-left: 2vw; display: flex; align-items: center; cursor: pointer;} #iframeon {display: flex; align-items: center; cursor: pointer;}
 /* app version info */
 #appversion-information {display:block; height: 250px; width: 200px; word-wrap: break-word; background-color:rgb(48, 48, 48); z-index: 9999; padding-left: 8px; box-shadow: 4px 4px 2px 2px  rgba(22, 22, 22, 0.239); padding-right: 8px; padding-bottom: 0; position: fixed; bottom: 60px; margin-left: 390px; box-shadow: 0px 10px, 20px rgba(0,0,0,20)} .av-itext {color: white; font-family: "Roboto", sans-serif; margin-left: 8px;}
 #appversion-information .material-symbols-outlined {margin-left: 30px; cursor: pointer; margin-top: 5px; } .explanationtext {width: 180px; word-wrap: break-word !important; display: inline-block; margin-left: 8px; color: white; font-family: 'Roboto', sans-serif; margin-top: 30px; font-size:small} #close-btn:hover {color: rgb(226, 226, 226)} #close:hover {color: rgb(226, 226, 226); cursor: pointer;}
@@ -57,51 +58,57 @@ body {background-color: rgb(34, 34, 34); padding: 0 !important; margin: 0 !impor
 #previewbutton {padding-top: 8px; padding-bottom: 8px; padding-left: 24px; padding-right: 24px; margin-left:2px; margin-top: 0px; border: none; background-color: rgb(0, 110, 255); border-radius: 4px; color: white; height: 50px; width: 300px; }/* #previewbutton:hover {cursor: pointer; background-color: rgb(38, 131, 252);} #previewbutton:active {background-color: rgb(38, 131, 252);}*/
 #errorsbutton {padding-top: 8px; padding-bottom: 8px; padding-left: 24px; padding-right: 24px; margin-left:2px; margin-top: 0px; border: none; background-color: rgb(0, 110, 255); border-radius: 4px; color: white; height: 50px; width: 300px; } /*#errorsbutton:hover {cursor: pointer; background-color: rgb(38, 131, 252);} #errorsbutton:active {background-color: rgb(38, 131, 252);}*/
 #textovererrors {color: white; font-family: 'Roboto', sans-serif; width: 600px; margin-top: 0; background-color: rgb(23, 23, 23); border:none; z-index: 9999; padding-top: 8px; padding-left: 5px; padding-bottom: 8px; font-size: 1.1rem;  } #errors {width: 600px; min-height: 600px; height: 84vh; background-color: rgb(41, 41, 41);}
-#previewbutton:hover {cursor: pointer;} #errorsbutton:hover {cursor: pointer;}
+#previewbutton:hover {cursor: pointer;} #errorsbutton:hover {cursor: pointer;} #errors-warning {color: orange} #errors-error {color: red;}
 .hidden {display: none; visibility: hidden;} #button-contain {position: fixed; width: 100%; bottom: 38px; background-color: rgb(48, 48, 48); padding-top: 8px; padding-bottom: 8px; border-top: 1px solid grey;}
 #span {color: white; font-family: 'Roboto', sans-serif; font-size: 0.9rem; display: inline-block; margin-top: 60%; margin-left: 40%;}
 
 
 /* settings */
 
-#settings {width: 840px; height: 700px; background-color: rgb(55, 55, 55); color: white; top: 10vh; display: inline-block; position: fixed; z-index: 9999; box-shadow: 4px 4px 2px 2px  rgba(22, 22, 22, 0.239); border-radius: 8px; max-width: 840px;}
-#settings-contain {width: 100%; height: 100%; position: fixed; display: flex; justify-content: center; align-items: center; flex-direction: column;} #settings-topbar {width: 840px; height: 30px; z-index: 9999; background-color: rgb(68, 68, 68); display: flex; align-items: center; justify-content: center; z-index: 100;}
-#settingstext {color: white; font-family: monospace;} #close {position: relative; display: flex; justify-content: center; align-items: center; width: 840px; background-color: rgb(34, 34, 34); height: 30px; border-top-left-radius: 8px; border-top-right-radius: 8px; } 
-#close:hover {background-color: rgb(46, 46, 46); transition: 0.2s;} #leftnav {width: 220px; background-color: rgb(46, 46, 46); height: 640px; margin-top: 0; margin-bottom: 30px;} #leftnav ul {margin: 0; padding: 0; list-style-type: none;}
-.animate {animation: fadeOpen 0.2s ease forwards;}
-@keyframes fadeOpen {
-  0% {opacity: 0;}
-  100% {opacity: 1;}
+  #settings {width: 840px; height: 700px; background-color: rgb(55, 55, 55); color: white; top: 10vh; display: inline-block; position: fixed; z-index: 9999; box-shadow: 4px 4px 2px 2px  rgba(22, 22, 22, 0.239); border-radius: 8px; max-width: 840px;}
+  #settings-contain {width: 100%; height: 100%; position: fixed; display: flex; justify-content: center; align-items: center; flex-direction: column;} #settings-topbar {width: 840px; height: 30px; z-index: 9999; background-color: rgb(68, 68, 68); display: flex; align-items: center; justify-content: center; z-index: 100;}
+  #settingstext {color: white; font-family: monospace;} #close {position: relative; display: flex; justify-content: center; align-items: center; width: 840px; background-color: rgb(34, 34, 34); height: 30px; border-top-left-radius: 8px; border-top-right-radius: 8px; } 
+  #close:hover {background-color: rgb(46, 46, 46); transition: 0.2s;} #leftnav {width: 220px; background-color: rgb(46, 46, 46); height: 640px; margin-top: 0; margin-bottom: 30px;} #leftnav ul {margin: 0; padding: 0; list-style-type: none;}
+  .animate {animation: fadeOpen 0.2s ease forwards;}
+  @keyframes fadeOpen {
+    0% {opacity: 0;}
+    100% {opacity: 1;}
+  }
+      /*
+      Understanding ID/Class Names:
+
+      label + number = labels for settings radio
+      option = rad andthen a number after it. rad equals a radio select button
+
+      Note: all option odd numbers arent there because their positioning is determind by the margin: right; of the option (odd number) before it
+      */
+  .sidebar-buttons {background-color: rgb(46, 46, 46); border: none; border-bottom: 2px solid rgb(42, 42, 42); width: 220px; height: 60px; color: white; font-size: 0.85rem; text-align: left; padding-left: 20px;} .sidebar-buttons:hover {cursor: pointer; background-color: rgb(57, 57, 57); transition: 0.1s;} #mainlayout {list-style-type: none; margin: 0; padding: 0; display: inline-block;} 
+  .mainlayout-li {display: inline-block; margin:0; padding: 0; left: 220px; position: absolute; height: 600px; width: 616px; max-width: 616px; max-height: 640px; top: 60px;} #settings-links-ul {list-style-type: none; display: inline-block; margin:0; padding: 0; position: absolute; bottom: 2px; right: 30px; margin-bottom: 4px;}
+  .all-sections {background-color: rgb(55, 55, 55); margin: 0; padding: 10px;} #themes-section select {margin:0; padding: 0;} .active-buttons {background-color: rgb(55, 55, 55);} .l1 {display: inline-block; margin:0; padding: 0;} #undo {display: inline-block; vertical-align: center; position: absolute; bottom: 3px; right: 84px; color: rgb(181, 181, 181); opacity: 0.7;}
+  /*#restore-link {display: inline-block; vertical-align: center; color: rgb(181, 181, 181); margin-right: 18px; text-decoration: none; opacity: 0.7; font-family: monospace; margin-bottom: 1px;} #restore-link:hover{cursor: pointer; opacity: 1;}*/ #undo:hover {cursor: pointer; opacity: 1;} 
+  #settings-save {color: white; border: none; background-color: rgb(67, 84, 215); height: 28px; padding-left: 25px; padding-right: 25px; border-radius: 4px; font-family: monospace; font-size: 0.77rem;} #settings-save:hover {background-color: rgb(38, 131, 252); cursor: pointer;}
+  .settings-labels{font-family: 'Roboto', sans-serif; font-size: 0.9rem;} .settings-headers {color: white; font-family: 'Roboto', sans-serif; margin-bottom: 3px; margin-top: 40px;} .radio:hover {cursor: pointer;} .radio {margin-left: 20px; margin-right: 150px;} #themes-content {margin-top: 5px; padding-left: 20px; margin-left: 30px;}
+  #label1 {margin-left: 10px;} #label2 {margin-left: 32px;} #label3 {margin-left: 29px;} #label4 {margin-left: 88px;} #option3 {margin-left: 40px; margin-right: 88px;} #option5 {margin-left: 45px; margin-right: 88px;} 
+  #ulradio {display: inline-block; margin: 0; padding: 0;} .ulradioli {display: inline-block; margin: 0; padding: 0; text-align: center;} #container1 {margin-left: 5px;} #container2 {margin-left: 34px;} 
+  hr {margin-bottom: 15px; height: 1px; background-color: white; border: none; margin-left: none; opacity: 0.4;} #settings p {font-family: 'Roboto', sans-serif; font-size: 0.9rem; font-weight: 300;}
+  #text-editor-settings {margin-top: 5px; padding-left: 20px; margin-left: 30px;}    #darktheme-options {display: inline} #spanny {margin-right: 50px;}                                                                                              
+  #darktheme-1 {width: 16px; height: 16px; border: 1px solid rgb(214, 214, 214); background-color: rgb(37, 37, 37); cursor: pointer; margin-bottom: 4px; margin-top: 5px; margin-right: 5px;}
+  #darktheme-2 {width: 16px; height: 16px; border: 1px solid rgb(214, 214, 214); background-color: rgb(52, 52, 52); cursor: pointer; margin-bottom: 4px; margin-top: 5px; margin-right: 5px; margin-left: 22px;}
+  #darktheme-3 {width: 16px; height: 16px; border: 1px solid rgb(214, 214, 214); background-color: rgb(27, 27, 27); cursor: pointer; margin-bottom: 4px; margin-top: 5px; margin-right: 5px; margin-left: 22px;}
+  #darktheme-4 {width: 16px; height: 16px; border: 1px solid rgb(214, 214, 214); background-color: rgb(73, 73, 73); cursor: pointer; margin-bottom: 4px; margin-top: 5px; margin-right: 5px; margin-left: 22px;}
+  .disabled {color: rgb(170, 170, 170) !important; background-color: none !important; border: 1px solid rgb(75, 75, 75) !important; cursor: not-allowed} .disabled span {cursor: not-allowed;}
+  #darktheme-options {width: fit-content; font-size: 0.8rem; padding: 10px; padding-left: 0; border-radius: 4px;; height: fit-content; max-height: 200px; font-family: 'Roboto', sans-serif; display: flex; justify-content: center; align-items: center;}
+  #off {margin-left: 123px;} .font-family {font-family: 'Roboto', sans-serif;}
+  #lighttheme-1 {width: 16px; height: 16px; border: 1px solid rgb(214, 214, 214); background-color: rgb(210, 210, 210); cursor: pointer; margin-bottom: 4px; margin-top: 5px; margin-right: 5px;}
+  #lighttheme-2 {width: 16px; height: 16px; border: 1px solid rgb(214, 214, 214); background-color: rgb(184, 184, 184); cursor: pointer; margin-bottom: 4px; margin-top: 5px; margin-right: 5px; margin-left: 22px;}
+  #lighttheme-3 {width: 16px; height: 16px; border: 1px solid rgb(214, 214, 214); background-color: rgb(227, 227, 227); cursor: pointer; margin-bottom: 4px; margin-top: 5px; margin-right: 5px; margin-left: 22px;}
+  #lighttheme-4 {width: 16px; height: 16px; border: 1px solid rgb(214, 214, 214); background-color: rgb(208, 208, 208); cursor: pointer; margin-bottom: 4px; margin-top: 5px; margin-right: 5px; margin-left: 22px;}
+  .disabled {color: rgb(170, 170, 170) !important; background-color: none !important; border: 1px solid rgb(75, 75, 75) !important; cursor: not-allowed} .disabled span {cursor: not-allowed;}
+  #lighttheme-options {width: fit-content; font-size: 0.8rem; padding: 10px; padding-left: 0; border-radius: 4px;; height: fit-content; max-height: 200px; font-family: 'Roboto', sans-serif; display: flex; justify-content: center; align-items: center;} 
+  select {background-color: rgb(83, 83, 83); color: white; border: 1px solid rgb(114, 114, 114); padding: 5px; border-radius: 3px;} select:hover {cursor: pointer;} #select {padding: 5px;}
+
+/* End settings */
+
+@media only screen and (max-width: 1030px) {
+  .developer-text {display: none; visibility: hidden;} #app-version-text {display: none; visibility: hidden;} #settings-bottombar-text {display: none; visibility: hidden;} .home-text {display: none; visibility: hidden;} #contact-text {display: none; visibility: hidden;}
 }
-/*
-Understanding ID/Class Names:
-
-label + number = labels for settings radio
-option = rad andthen a number after it. rad equals a radio select button
-
-Note: all option odd numbers arent there because their positioning is determind by the margin: right; of the option (odd number) before it
-*/
-.sidebar-buttons {background-color: rgb(46, 46, 46); border: none; border-bottom: 2px solid rgb(42, 42, 42); width: 220px; height: 60px; color: white; font-size: 0.85rem; text-align: left; padding-left: 20px;} .sidebar-buttons:hover {cursor: pointer; background-color: rgb(57, 57, 57); transition: 0.1s;} #mainlayout {list-style-type: none; margin: 0; padding: 0; display: inline-block;} 
-.mainlayout-li {display: inline-block; margin:0; padding: 0; left: 220px; position: absolute; height: 600px; width: 616px; max-width: 616px; max-height: 640px; top: 60px;} #settings-links-ul {list-style-type: none; display: inline-block; margin:0; padding: 0; position: absolute; bottom: 2px; right: 30px; margin-bottom: 4px;}
-.all-sections {background-color: rgb(55, 55, 55); margin: 0; padding: 10px;} #themes-section select {margin:0; padding: 0;} .active-buttons {background-color: rgb(55, 55, 55);} .l1 {display: inline-block; margin:0; padding: 0;} #undo {display: inline-block; vertical-align: center; position: absolute; bottom: 3px; right: 84px; color: rgb(181, 181, 181); opacity: 0.7;}
-/*#restore-link {display: inline-block; vertical-align: center; color: rgb(181, 181, 181); margin-right: 18px; text-decoration: none; opacity: 0.7; font-family: monospace; margin-bottom: 1px;} #restore-link:hover{cursor: pointer; opacity: 1;}*/ #undo:hover {cursor: pointer; opacity: 1;} 
-#settings-save {color: white; border: none; background-color: rgb(67, 84, 215); height: 28px; padding-left: 25px; padding-right: 25px; border-radius: 4px; font-family: monospace; font-size: 0.77rem;} #settings-save:hover {background-color: rgb(38, 131, 252); cursor: pointer;}
-.settings-labels{font-family: 'Roboto', sans-serif; font-size: 0.9rem;} .settings-headers {color: white; font-family: 'Roboto', sans-serif; margin-bottom: 3px; margin-top: 40px;} .radio:hover {cursor: pointer;} .radio {margin-left: 20px; margin-right: 150px;} #themes-content {margin-top: 5px; padding-left: 20px; margin-left: 30px;}
-#label1 {margin-left: 10px;} #label2 {margin-left: 32px;} #label3 {margin-left: 29px;} #label4 {margin-left: 88px;} #option3 {margin-left: 40px; margin-right: 88px;} #option5 {margin-left: 45px; margin-right: 88px;} 
-#ulradio {display: inline-block; margin: 0; padding: 0;} .ulradioli {display: inline-block; margin: 0; padding: 0; text-align: center;} #container1 {margin-left: 5px;} #container2 {margin-left: 34px;} 
-hr {margin-bottom: 15px; height: 1px; background-color: white; border: none; margin-left: none; opacity: 0.4;} #settings p {font-family: 'Roboto', sans-serif; font-size: 0.9rem; font-weight: 300;}
-#text-editor-settings {margin-top: 5px; padding-left: 20px; margin-left: 30px;}    #darktheme-options {display: inline} #spanny {margin-right: 50px;}                                                                                              
-#darktheme-1 {width: 16px; height: 16px; border: 1px solid rgb(214, 214, 214); background-color: rgb(37, 37, 37); cursor: pointer; margin-bottom: 4px; margin-top: 5px;}
-#darktheme-2 {width: 16px; height: 16px; border: 1px solid rgb(214, 214, 214); background-color: rgb(52, 52, 52); cursor: pointer; margin-bottom: 4px; margin-top: 5px;}
-#darktheme-3 {width: 16px; height: 16px; border: 1px solid rgb(214, 214, 214); background-color: rgb(27, 27, 27); cursor: pointer; margin-bottom: 4px; margin-top: 5px;}
-#darktheme-4 {width: 16px; height: 16px; border: 1px solid rgb(214, 214, 214); background-color: rgb(73, 73, 73); cursor: pointer; margin-bottom: 4px; margin-top: 5px;}
-.disabled {color: rgb(170, 170, 170) !important; background-color: none !important; border: 1px solid rgb(75, 75, 75) !important; cursor: not-allowed} .disabled span {cursor: not-allowed;}
-#darktheme-options {width: 200px; font-size: 0.8rem; padding: 10px; padding-left: 0; border-radius: 4px;; height: 200px; min-height: 200px; max-height: 200px; font-family: 'Roboto', sans-serif;}
-
-#lighttheme-1 {width: 16px; height: 16px; border: 1px solid rgb(214, 214, 214); background-color: rgb(37, 37, 37); cursor: pointer; margin-bottom: 4px; margin-top: 5px;}
-#lighttheme-2 {width: 16px; height: 16px; border: 1px solid rgb(214, 214, 214); background-color: rgb(52, 52, 52); cursor: pointer; margin-bottom: 4px; margin-top: 5px;}
-#lighttheme-3 {width: 16px; height: 16px; border: 1px solid rgb(214, 214, 214); background-color: rgb(27, 27, 27); cursor: pointer; margin-bottom: 4px; margin-top: 5px;}
-#lighttheme-4 {width: 16px; height: 16px; border: 1px solid rgb(214, 214, 214); background-color: rgb(73, 73, 73); cursor: pointer; margin-bottom: 4px; margin-top: 5px;}
-.disabled {color: rgb(170, 170, 170) !important; background-color: none !important; border: 1px solid rgb(75, 75, 75) !important; cursor: not-allowed} .disabled span {cursor: not-allowed;}
-#lighttheme-options {width: 200px; font-size: 0.8rem; padding: 10px; padding-top: 0; padding-left: 0; border-radius: 4px;; height: 200px; min-height: 200px; max-height: 200px; font-family: 'Roboto', sans-serif;} 
-

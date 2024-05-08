@@ -26,6 +26,8 @@ window.onload = () => {
     // Get references to the buttons and set initial properties
     const previewButton = document.getElementById('previewbutton');
     const errorsButton = document.getElementById('errorsbutton');
+    const iframeOn = document.getElementById('iframeon');
+    const iframeOff = document.getElementById('iframeoff')
     previewButton.disabled = true;
     previewButton.style.opacity = '0.7';
     previewButton.style.cursor = 'default';
@@ -37,11 +39,19 @@ window.onload = () => {
         toggleAndHide(['display-pdf', 'textoveriframe'], ['errors', 'textovererrors']);
         toggleButtonState('previewbutton', 'errorsbutton');
     });
+    iframeOn.addEventListener('click', () => {
+        toggleAndHide(['display-pdf', 'textoveriframe'], ['errors', 'textovererrors']);
+        toggleButtonState('previewbutton', 'errorsbutton');
+    })
     // Add event listener for errors button click
     errorsButton.addEventListener('click', () => {
         toggleAndHide(['errors', 'textovererrors'], ['display-pdf', 'textoveriframe']);
         toggleButtonState('errorsbutton', 'previewbutton');
     });
+    iframeOff.addEventListener('click', () => {
+        toggleAndHide(['errors', 'textovererrors'], ['display-pdf', 'textoveriframe']);
+        toggleButtonState('errorsbutton', 'previewbutton');
+    })
 };
 // Disabling buttons
 let lastClickedButtonId = null;
@@ -59,6 +69,22 @@ function toggleButtonState(clickedButtonId, otherButtonId) {
     otherButton.style.cursor = 'pointer';
     lastClickedButtonId = clickedButtonId;
 }
+// Disabling Icons
+/*
+let lastClickedIconId = null;
+function toggleIconState(clickedIconId, otherIconId) {
+    if (lastClickedIconId === clickedIconId) {
+        return;
+    }
+    const clickedIcon = document.getElementById(clickedIconId);
+    const otherIcon = document.getElementById(otherIconId);
+    clickedIcon.disabled = true;
+    clickedIcon.style.display = 'none';
+    otherIcon.disabled = false;
+    otherIcon.style.display = 'block';
+    lastClickedIconId = clickedIconId;
+}
+*/
 // Showing and hiding elements
 function toggleAndHide(elementsToShow, elementsToHide) {
     toggleVisibility(elementsToShow);

@@ -53,7 +53,16 @@
                             </div>
                             <div id="bttn1contain">
                                 <button id="open-button1" class="opening-screen-button" onclick="document.getElementById('file-searcher').click()">Open</button>
-
+                            </div>
+                            <div class="description" id="description">
+                                    <i class="material-symbols-outlined" id="close1">
+                                        close
+                                    </i> 
+                                    <br>
+                                    <span class="material-symbols-outlined">
+                                        help
+                                        </span>
+                                <p>For more information on how to set up a document, click <a href="https://PML-Official.github.io" id="link">here</a></p>
                             </div>
                         </div>
                     </li>
@@ -82,7 +91,7 @@
         <!--Bottom Bar-->
         
         <div class="bottom-bar">
-            <img alt="pml logo" class="bottom-logo" src="images/PML White.png" href="https://PML-Official.github.io">
+            <img alt="pml logo" class="bottom-logo" src="images/PML White.png" href="https://PML-Official.github.io" id="pml-logo">
             <span class="pipe">|</span>
 
             <!--Home icon-->
@@ -120,12 +129,12 @@
 
             <!--Settings-->
 
-        <div class="icon-3">
-            <i class="material-symbols-outlined" id="settings-icon">
+        <div class="icon-3" id="settings-icon">
+            <i class="material-symbols-outlined">
                 settings
             </i>
 
-            <span id="settings-text">Settings</span>
+            <span id="settings-bottombar-text">Settings</span>
         </div>
 
             <!--Contact-->
@@ -141,13 +150,19 @@
             <!--Iframe Toggle-->
             <div class="iframe-icon">
                 <!--On-->
-                <span class="material-symbols-outlined">
-                    iframe
+                <div id="iframeon">
+                    <span class="material-symbols-outlined">
+                        iframe
                     </span>
+                    <span id="iframe-on">Iframe On</span>
+                </div>
                 <!--Off-->
-                <span class="material-symbols-outlined">
-                    iframe_off
+                <div id="iframeoff">
+                    <span class="material-symbols-outlined">
+                        iframe_off
                     </span>
+                    <span id="iframe-off">Iframe Off</span>
+                 </div>
             </div>
 
             
@@ -196,17 +211,17 @@
         <div class="container">
             <!--Text Over-->
             <div id="textoveriframe" class="hidden">PREVIEW</div>
-            <div class="hidden" id="textovererrors">LANGUAGE ERRORS</div>
+            <div class="hidden" id="textovererrors">CODING ERRORS</div>
             <div class="iframe-contain" id="iframe">     
                 <!--Iframe-->       
                 <iframe id="display-pdf" src="output.pdf" width="900" height="700" class="hidden">No Preview Avliable</iframe>
                 <!--End Iframe-->
                 
                 <div id="errors" class="hidden">
-                    <span class="material-symbols-outlined">
+                    <span class="material-symbols-outlined" id="errors-warning">
                         warning
                     </span>
-                    <span class="material-symbols-outlined">
+                    <span class="material-symbols-outlined" id="errors-error">
                         error
                         </span>
                     <span id="span">
@@ -230,11 +245,6 @@
     </div>
 </ul>
 </div>
-
-<!--this is the script for pressing enter-->
-
-
-
 
 
 
@@ -270,13 +280,13 @@
                                 <button class="sidebar-buttons active-buttons" id="themeButton" onclick="toggleButton(this, ['themes-section'], ['text-editor-section', 'preview-settings-section', 'empty-section1', 'empty-section2'])">Themes</button>
                             </li>
                             <li>
-                                <button class="sidebar-buttons" id="text-editor-bttn" onclick="toggleButton(this, ['text-editor-section'], ['themes-section', 'preview-settings-section', 'empty-section1', 'empty-section2'])">Text Editor</button>
+                                <button class="sidebar-buttons" id="text-editor-bttn" onclick="toggleButton(this, ['text-editor-section'], ['themes-section', 'preview-settings-section', 'empty-section1', 'empty-section2'])">Text Editor Settings</button>
                             </li>
                             <li>
-                                <button class="sidebar-buttons" id="preview-settings-bttn" onclick="toggleButton(this, ['preview-settings-section'], ['themes-section', 'text-editor-section', 'empty-section1', 'empty-section2'])">Preview</button>
+                                <button class="sidebar-buttons" id="preview-settings-bttn" onclick="toggleButton(this, ['preview-settings-section'], ['themes-section', 'text-editor-section', 'empty-section1', 'empty-section2'])">Preview Settings</button>
                             </li>
                             <li>
-                                <button class="sidebar-buttons" id="othersettings3" onclick="toggleButton(this, ['empty-section1'], ['themes-section', 'text-editor-section', 'preview-settings-section', 'empty-section2'])">Empty</button>
+                                <button class="sidebar-buttons" id="othersettings3" onclick="toggleButton(this, ['empty-section1'], ['themes-section', 'text-editor-section', 'preview-settings-section', 'empty-section2'])">Errors Settings</button>
                             </li>
                             <li>
                                 <button class="sidebar-buttons" id="othersettings4" onclick="toggleButton(this, ['empty-section2'], ['themes-section', 'text-editor-section', 'preview-settings-section', 'empty-section1'])">Empty</button>
@@ -290,9 +300,9 @@
                     <h3 class="settings-headers">Color Theme</h3>
                     <hr>
                     <p>In both light and dark themes: The light theme offers soft colors and clean lines,<br> while the dark theme provides clear icons against a dark background for visibility.</p>
-                    <select>
+                    <select onchange="colorThemeChange()" id="select">
+                        <option>Dark Theme (default)</option>
                         <option>Light Theme</option>
-                        <option>Dark Theme</option>
                     </select>
                     
                     
@@ -338,10 +348,10 @@
                     <input type="radio" id="No" name="colors-on/off" value="No" class="radio">   
                     <br>
                     <label for="Yes" class="settings-labels">On (Default)</label>       
-                    <label for="No" class="settings-labels">Off</label>        
+                    <label for="No" class="settings-labels" id="off">Off</label>        
                     <h3 class="settings-headers">Editor Font/Family</h3>
                     <hr>
-                    <label for="fonts">Choose a font:</label>
+                    <p>Choose a font:</p>
                     <select id="fonts" onchange="editorFontChange()">
                         <option value="monospace">Monospace (default)</option>
                         <option value="font:tbd">Other font</option>
