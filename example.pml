@@ -2,7 +2,7 @@
 [meta-author: Stashey13 and lukewhite32]
 
 style [
-p (fontsz: 21) (color: pink);
+p (fontsz: 20) (color: blue);
 ]
 
 {-- Page 1}
@@ -23,6 +23,9 @@ p (fontsz: 21) (color: pink);
 [nl]
 [p: this * shouldn't be bold, _this is underlined_ and this isnt, /this is italicied/ and this isn't, -this is strikethrough- and this isnt]
 [nl]
+
 [text: this/this ]
+
 [nl: 2]
+
 [img: local(images/Linux Icon.png)]

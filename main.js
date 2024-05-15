@@ -4,6 +4,7 @@ const { app, BrowserWindow, shell, globalShortcut, dialog, ipcMain, Menu, MenuIt
 const path = require('path');
 const { mainModule } = require('process');
 
+
 let mainWindow;
 
 function createWindow() {
@@ -49,6 +50,25 @@ app.on('activate', () => {
 });
 
 
+// stuff for settings
+
+
+// settings undo recent
+ipcMain.on('show-settings-dialog-for-undo-settings', () => {
+  dialog.showMessageBox({
+    type: "warning",
+    message: 'Are you sure you want restore to default settings?',
+    buttons: ['Restore', 'Cancel']
+  }).then((result) => {
+    const response = result.response;
+    
+    if (response === 0) {
+    
+    } else if (response === 1) {
+
+    } 
+  })
+});
 // Customize menu?
 /*
 const template = [

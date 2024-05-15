@@ -1,7 +1,14 @@
 "use strict";
+
+
+
 // this is the script for the settings. includes all funtionality and button clicks ect.
 var _a;
 //script for active buttons
+
+const { ipcRenderer } = require("electron");
+
+
 function toggleButton(button, showElements, hideElements) {
     var buttons = document.querySelectorAll('.sidebar-buttons');
     buttons.forEach(function (btn) {
@@ -60,15 +67,14 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 
 function restoreToDefaults() {
-    alert("Restore Clicked TESt TET AGAIN");
-    console.log("Settings Restored to Default");
-}
-;
+    ipcRenderer.send('show-settings-dialog-for-undo-settings')
+    console.log("Settings Undo to Default");
+};
+
 function settingsSaveButton() {
     alert("Save bttn clicked!");
     console.log("Settings Saved");
-}
-;
+};
 
 function darkThemeI () {
     alert("dark theme color I was clicked")
