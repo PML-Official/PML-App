@@ -202,9 +202,7 @@ function parseData() {
     doc.initForm();
 
     var currentPage = 0;
-    var pageStyle = new Style();
     var allPages = [];
-    pageStyle.margin = 40;
 
     let buffer = "";
 
@@ -300,6 +298,7 @@ function parseData() {
                             if (!inHeader) {
                                 if (buffer.split("Page").length != 1) {
                                     if (currentPage != 0) {
+                                        currentPage.style = pageStyle;
                                         allPages.push(currentPage);
                                     }
                                     currentPage = new Page();
@@ -458,8 +457,10 @@ function parseData() {
             }
         }
     }
+    currentPage.style = pageStyle;
     allPages.push(currentPage);
     for (let x = 0; x < allPages.length; x ++) {
+        doc.rect(0, 0, doc.page.width, doc.page.height).fill(allPages[x].style.backgroundColor);
         allPages[x].tags = allPages[x].header.concat(allPages[x].tags);
         allPages[x].tags = allPages[x].tags.concat(allPages[x].footer);
         for (let y = 0; y < allPages[x].tags.length; y ++) {

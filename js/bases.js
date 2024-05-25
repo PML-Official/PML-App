@@ -27,7 +27,7 @@ class Style {
         this.margin = 1;
         this.topMargin = 20;
         this.botMargin = 20;
-        this.lineGap = undefined;
+        this.lineGap = 10;
         this.underlined = false;
     }
     setAttrOfStr(str, val) {
@@ -36,6 +36,18 @@ class Style {
         }
         else if (str == "color") {
             this.color = val;
+        }
+        else if (str == "lineGap") {
+            this.lineGap = val;
+        }
+        else if (str == "backgroundColor") {
+            this.backgroundColor = val;
+        }
+        else if (str == "width") {
+            this.width = val;
+        }
+        else if (str == "height") {
+            this.height = val;
         }
     }
 }
@@ -46,6 +58,7 @@ class Page {
         this.pageNum = 0;
         this.header = [];
         this.footer = [];
+        this.style = 0;
     }
 }
 

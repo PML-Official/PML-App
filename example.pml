@@ -2,7 +2,7 @@
 [meta-author: Stashey13 and lukewhite32]
 
 style [
-p (fontsz: 20) (color: blue);
+page (backgroundColor: red);
 ]
 
 {-- Page 1}

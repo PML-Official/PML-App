@@ -52,6 +52,10 @@ textboxStyle.lineGap = 5;
 textboxStyle.width = 200;
 textboxStyle.height = 20;
 
+const pageStyle = new Style();
+pageStyle.margin = 40;
+pageStyle.backgroundColor = "white";
+
 function stringToStyle(str) {
     if (str == "h1") {
         return h1Style;
@@ -73,6 +77,9 @@ function stringToStyle(str) {
     }
     if (str == "p") {
         return pStyle;
+    }
+    if (str == "page") {
+        return pageStyle;
     }
 }
 const styleStringList = {"h1": h1Style, "h2": h2Style, "h3": h3Style, "h4": h4Style, "h5": h5Style, "h6": h6Style, "p": pStyle};
